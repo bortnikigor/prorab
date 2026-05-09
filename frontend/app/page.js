@@ -18,8 +18,8 @@ export default function Home() {
 
       {/* ── NAVBAR ─────────────────────────────────────────── */}
       <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-5 sm:px-10 sm:py-6">
-        <span className="flex-1 text-base font-semibold tracking-[0.35em] uppercase text-white">
-          PRORAB
+        <span className="flex-1 text-base tracking-[0.35em] uppercase text-white">
+          <span className="font-bold">PRO</span><span className="font-light">RAB</span>
         </span>
         <Image
           src="/logo.png"
