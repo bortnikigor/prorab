@@ -12,7 +12,7 @@ function TickerRow({ phrases, direction }) {
   const animName = direction === "left" ? "ticker-left" : "ticker-right";
 
   return (
-    <div className="overflow-hidden border-b border-[#1E2124] py-3 last:border-b-0">
+    <div className="overflow-hidden py-3">
       <div
         style={{ animation: `${animName} ${duration} linear infinite`, display: "inline-flex", whiteSpace: "nowrap" }}
       >
@@ -215,7 +215,7 @@ export default function TelegramBotSection() {
   const { t } = useLanguage();
 
   return (
-    <section style={{ background: "#0F1113" }} className="border-y border-[#1E2124]">
+    <section className="border-y border-[var(--border)]">
       {/* Ticker */}
       <div>
         <TickerRow phrases={t.ticker} direction="left" />
