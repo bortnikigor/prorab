@@ -1,5 +1,6 @@
 import { Geist } from "next/font/google";
 import { LanguageProvider } from "./context/LanguageContext";
+import CustomCursor from "./components/CustomCursor";
 import "./globals.css";
 
 const geist = Geist({
@@ -17,6 +18,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="uk" className={`${geist.variable}`}>
       <body className="min-h-screen antialiased">
+        <CustomCursor />
         <LanguageProvider>{children}</LanguageProvider>
       </body>
     </html>

@@ -69,6 +69,10 @@ body {
   box-sizing: border-box;
 }
 
+@media (pointer: fine) {
+  *, *::before, *::after { cursor: none !important; }
+}
+
 /* Ticker animations */
 @keyframes ticker-left {
   0%   { transform: translateX(0); }
