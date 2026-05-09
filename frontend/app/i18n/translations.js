@@ -70,7 +70,7 @@ export const translations = {
       instagram: "Instagram",
       telegram: "Telegram",
     },
-    footer: { rights: "Усі права захищено." },
+    footer: { rights: "Усі права захищено.", privacy: "Політика конфіденційності" },
   },
 
   EN: {
@@ -144,7 +144,7 @@ export const translations = {
       instagram: "Instagram",
       telegram: "Telegram",
     },
-    footer: { rights: "All rights reserved." },
+    footer: { rights: "All rights reserved.", privacy: "Privacy Policy" },
   },
 
   RU: {
@@ -218,7 +218,7 @@ export const translations = {
       instagram: "Instagram",
       telegram: "Telegram",
     },
-    footer: { rights: "Все права защищены." },
+    footer: { rights: "Все права защищены.", privacy: "Политика конфиденциальности" },
   },
 };
 
