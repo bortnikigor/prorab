@@ -127,7 +127,7 @@ export default function Home() {
             {t.telegram.text}
           </p>
           <a
-            href="https://t.me/elly_assis_bot"
+            href="https://t.me/prorab_websitebot"
             target="_blank"
             rel="noopener noreferrer"
             className="mt-2 inline-flex items-center gap-3 border border-[var(--accent)] px-10 py-4 text-xs tracking-widest uppercase text-[var(--accent)] transition-colors hover:bg-[var(--accent)] hover:text-[var(--background)]"
@@ -180,7 +180,7 @@ export default function Home() {
 
             {/* Telegram */}
             <a
-              href="https://t.me/elly_assis_bot"
+              href="https://t.me/prorab_websitebot"
               target="_blank"
               rel="noopener noreferrer"
               className="group flex flex-col gap-3 border border-[var(--border)] p-6 transition-colors hover:border-[var(--accent)]/50 hover:bg-[var(--muted)]"
@@ -191,7 +191,7 @@ export default function Home() {
               <span className="text-xs tracking-widest uppercase text-[var(--text-muted)] transition-colors group-hover:text-[var(--foreground)]">
                 {t.contacts.telegram}
               </span>
-              <span className="text-sm text-[var(--foreground)]">@elly_assis_bot</span>
+              <span className="text-sm text-[var(--foreground)]">@prorab_websitebot</span>
             </a>
 
             {/* City */}
