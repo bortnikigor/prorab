@@ -5,15 +5,6 @@ import { useLanguage } from "../context/LanguageContext";
 
 // ── Pill rows ─────────────────────────────────────────────────────────────────
 
-function getRows(phrases) {
-  const shift = Math.floor(phrases.length / 3);
-  return [
-    phrases,
-    [...phrases.slice(shift), ...phrases.slice(0, shift)],
-    [...phrases.slice(shift * 2), ...phrases.slice(0, shift * 2)],
-  ];
-}
-
 function PillRow({ phrases, direction, speed = 1 }) {
   const doubled = [...phrases, ...phrases];
   const duration = `${(phrases.length * 4.5) / speed}s`;
@@ -54,9 +45,8 @@ function AIInput() {
   const tc = t.telegramChat;
   const [input, setInput] = useState("");
   const [sending, setSending] = useState(false);
-  const [status, setStatus] = useState(null); // 'sent' | 'error' | null
+  const [status, setStatus] = useState(null);
   const [focused, setFocused] = useState(false);
-  const inputRef = useRef(null);
 
   async function handleSend(e) {
     e?.preventDefault();
@@ -105,7 +95,6 @@ function AIInput() {
           }}
         >
           <input
-            ref={inputRef}
             type="text"
             value={input}
             onChange={(e) => setInput(e.target.value)}
@@ -151,19 +140,29 @@ function AIInput() {
 
 export default function TelegramBotSection() {
   const { t } = useLanguage();
-  const rows = getRows(t.ticker);
+  const half = Math.ceil(t.ticker.length / 2);
+  const row1 = t.ticker.slice(0, half);
+  const row2 = t.ticker.slice(half);
 
   return (
     <section className="border-y border-[var(--border)] py-20 lg:py-28">
       {/* Pill rows */}
       <div className="mb-16">
-        <PillRow phrases={rows[0]} direction="left"  speed={0.8} />
-        <PillRow phrases={rows[1]} direction="right" speed={1.0} />
-        <PillRow phrases={rows[2]} direction="left"  speed={1.3} />
+        <PillRow phrases={row1} direction="left"  speed={0.8} />
+        <PillRow phrases={row2} direction="right" speed={1.0} />
       </div>
 
-      {/* Input */}
-      <div className="mx-auto max-w-2xl px-6">
+      {/* Label + title + subtitle + input */}
+      <div className="mx-auto max-w-2xl px-6 text-center">
+        <p className="mb-4 text-xs tracking-[0.5em] uppercase text-[var(--accent)]">
+          {t.telegram.label}
+        </p>
+        <h2 className="mb-4 text-3xl font-semibold tracking-tight sm:text-4xl">
+          {t.telegram.title}
+        </h2>
+        <p className="mb-10 text-sm leading-relaxed text-[var(--text-muted)]">
+          {t.telegram.text}
+        </p>
         <AIInput />
       </div>
     </section>

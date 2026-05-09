@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useLanguage } from "./context/LanguageContext";
 import LanguageSwitcher from "./components/LanguageSwitcher";
 import PortfolioSlider from "./components/PortfolioSlider";
+import TelegramBotSection from "./components/TelegramBotSection";
 
 const SERVICE_ICONS = ["◻", "◼", "▣"];
 const CLOUD_NAME = "dpcqf9y8l";
@@ -64,6 +65,9 @@ export default function Home() {
 
       {/* ── PORTFOLIO SLIDER ───────────────────────────────── */}
       <PortfolioSlider />
+
+      {/* ── TELEGRAM BOT ───────────────────────────────────── */}
+      <TelegramBotSection />
 
       {/* ── ABOUT + SERVICES ───────────────────────────────── */}
       <section className="border-t border-[var(--border)]">
