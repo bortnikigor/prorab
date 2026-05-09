@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { useLanguage } from "./context/LanguageContext";
 import LanguageSwitcher from "./components/LanguageSwitcher";
 import PortfolioSlider from "./components/PortfolioSlider";
@@ -19,14 +18,9 @@ export default function Home() {
       {/* ── NAVBAR ─────────────────────────────────────────── */}
       <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-5 sm:px-10 sm:py-6">
         <div className="flex-1" />
-        <Image
-          src="/logo.png"
-          alt="PRORAB"
-          width={40}
-          height={40}
-          priority
-          style={{ filter: "invert(1) brightness(2)" }}
-        />
+        <span className="text-base font-semibold tracking-[0.35em] uppercase text-white">
+          PRORAB
+        </span>
         <div className="flex flex-1 justify-end">
           <LanguageSwitcher />
         </div>
