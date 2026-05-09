@@ -158,7 +158,7 @@ export default function Home() {
 
           {/* Left: copyright */}
           <p className="text-[11px] whitespace-nowrap" style={{ color: "rgba(245,243,239,0.45)" }}>
-            © {new Date().getFullYear()} PRORAB. {t.footer.rights}
+            © {new Date().getFullYear()} PRORAB
           </p>
 
           {/* Center: social icons */}
@@ -207,15 +207,6 @@ export default function Home() {
               </svg>
             </a>
           </div>
-
-          {/* Right: privacy policy */}
-          <a
-            href="#"
-            className="text-[11px] whitespace-nowrap underline-offset-2 hover:underline transition-colors"
-            style={{ color: "rgba(245,243,239,0.45)" }}
-          >
-            {t.footer.privacy}
-          </a>
 
         </div>
       </footer>
