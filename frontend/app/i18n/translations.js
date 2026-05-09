@@ -24,7 +24,7 @@ export const translations = {
       error: "Помилка надсилання. Спробуйте ще раз або напишіть нам напряму.",
     },
     portfolio: {
-      label: "Портфоліо",
+      label: "Простори, реалізовані в деталях",
       title: "Наші проєкти",
       close: "Закрити",
       comingSoon: "Фото незабаром",
@@ -98,7 +98,7 @@ export const translations = {
       error: "Failed to send. Please try again or contact us directly.",
     },
     portfolio: {
-      label: "Portfolio",
+      label: "Spaces, realized in detail",
       title: "Our projects",
       close: "Close",
       comingSoon: "Photos coming soon",
@@ -172,7 +172,7 @@ export const translations = {
       error: "Ошибка отправки. Попробуйте ещё раз или напишите нам напрямую.",
     },
     portfolio: {
-      label: "Портфолио",
+      label: "Пространства, реализованные в деталях",
       title: "Наши проекты",
       close: "Закрыть",
       comingSoon: "Фото скоро",

@@ -154,12 +154,9 @@ export default function PortfolioSlider() {
       {/* Header */}
       <div className="mx-auto mb-10 flex items-end justify-between px-6 lg:px-12">
         <div>
-          <p className="mb-3 text-xs tracking-[0.5em] uppercase text-[var(--accent)]">
+          <p className="mb-3 text-sm leading-snug text-[var(--foreground)]">
             {t.portfolio.label}
           </p>
-          <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl lg:text-5xl">
-            {t.portfolio.title}
-          </h2>
         </div>
         <div className="flex gap-2">
           {([-1, 1]).map((dir) => (
