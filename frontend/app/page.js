@@ -125,8 +125,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── TELEGRAM BOT ───────────────────────────────────── */}
-      <section className="border-t border-[var(--border)] bg-[var(--muted)]">
+      {/* ── CTA ────────────────────────────────────────────── */}
+      {false && <section className="border-t border-[var(--border)] bg-[var(--muted)]">
         <div className="mx-auto flex max-w-5xl flex-col items-center gap-6 px-6 py-20 text-center sm:py-24 lg:py-28">
           <p className="text-xs tracking-[0.5em] uppercase text-[var(--accent)]">
             {t.telegram.label}
@@ -143,14 +143,13 @@ export default function Home() {
             rel="noopener noreferrer"
             className="mt-2 inline-flex items-center gap-3 border border-[var(--accent)] px-10 py-4 text-xs tracking-widest uppercase text-[var(--accent)] transition-colors hover:bg-[var(--accent)] hover:text-[var(--background)]"
           >
-            {/* Telegram icon */}
             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
               <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L7.17 13.6l-2.94-.92c-.64-.203-.658-.64.136-.954l11.49-4.43c.533-.194 1.003.136.838.925z"/>
             </svg>
             {t.telegram.cta}
           </a>
         </div>
-      </section>
+      </section>}
 
       {/* ── FOOTER ─────────────────────────────────────────── */}
       <footer style={{ background: "#0F1113", borderTop: "1px solid rgba(207,199,189,0.12)" }}>
