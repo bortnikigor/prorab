@@ -199,12 +199,14 @@ export default function Home() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Telegram"
-              className="flex h-8 w-8 items-center justify-center rounded-full transition-opacity hover:opacity-60"
-              style={{ background: "rgba(207,199,189,0.08)", border: "1px solid rgba(207,199,189,0.15)" }}
+              className="flex h-8 w-8 items-center justify-center rounded-full overflow-hidden transition-opacity hover:opacity-60"
+              style={{ background: "#0F1113", border: "1px solid rgba(207,199,189,0.15)" }}
             >
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="#CFC7BD">
-                <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L7.17 13.6l-2.94-.92c-.64-.203-.658-.64.136-.954l11.49-4.43c.533-.194 1.003.136.838.925z"/>
-              </svg>
+              <img
+                src="/telegram-icon.png"
+                alt=""
+                style={{ width: "100%", height: "100%", objectFit: "cover", mixBlendMode: "screen" }}
+              />
             </a>
           </div>
 
