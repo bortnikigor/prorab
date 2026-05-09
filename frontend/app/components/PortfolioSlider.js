@@ -158,18 +158,6 @@ export default function PortfolioSlider() {
             {t.portfolio.label}
           </p>
         </div>
-        <div className="flex gap-2">
-          {([-1, 1]).map((dir) => (
-            <button
-              key={dir}
-              onClick={() => manualScroll(dir)}
-              aria-label={dir === -1 ? "Prev" : "Next"}
-              className="flex h-10 w-10 cursor-pointer items-center justify-center border border-[var(--border)] text-[var(--text-muted)] transition-colors hover:border-[#CFC7BD] hover:text-[#CFC7BD]"
-            >
-              {dir === -1 ? "←" : "→"}
-            </button>
-          ))}
-        </div>
       </div>
 
       {/* Track */}
