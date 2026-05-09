@@ -8,7 +8,7 @@ export default function LanguageSwitcher() {
 
   return (
     <div className="flex items-center gap-1">
-      {LANGUAGES.map(({ code }, i) => (
+      {LANGUAGES.filter(({ code }) => code !== "RU").map(({ code }, i, arr) => (
         <span key={code} className="flex items-center gap-1">
           <button
             onClick={() => setLanguage(code)}
@@ -17,7 +17,7 @@ export default function LanguageSwitcher() {
           >
             {code}
           </button>
-          {i < LANGUAGES.length - 1 && (
+          {i < arr.length - 1 && (
             <span style={{ color: "rgba(207,199,189,0.2)" }}>|</span>
           )}
         </span>
