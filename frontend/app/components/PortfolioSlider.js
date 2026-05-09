@@ -4,8 +4,38 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { projects } from "../data/projects";
 import { useLanguage } from "../context/LanguageContext";
 
+const GAP = 12; // gap-3 = 12px
+const N = projects.length;
+// Triple the array so we can loop seamlessly
+const LOOPED = [...projects, ...projects, ...projects];
+
+const thumbUrl = (id) =>
+  `https://picsum.photos/seed/prorab${id}/800/1000`;
+const photoUrls = (id) =>
+  [1, 2, 3, 4, 5].map((i) =>
+    `https://picsum.photos/seed/prorab${id}p${i}/1200/800`
+  );
+
+// ── helpers ───────────────────────────────────────────────────────────────────
+
+function getCardW(trackEl) {
+  const card = trackEl?.querySelector("[data-card]");
+  if (!card) return 300;
+  return card.getBoundingClientRect().width + GAP;
+}
+
+function reCenter(trackEl, cardW) {
+  if (!trackEl) return;
+  const setW = N * cardW;
+  if (trackEl.scrollLeft >= setW * 2) trackEl.scrollLeft -= setW;
+  else if (trackEl.scrollLeft < setW) trackEl.scrollLeft += setW;
+}
+
+// ── Modal ─────────────────────────────────────────────────────────────────────
+
 function Modal({ project, onClose }) {
   const { language, t } = useLanguage();
+  const photos = photoUrls(project.id);
 
   useEffect(() => {
     document.body.style.overflow = "hidden";
@@ -18,87 +48,109 @@ function Modal({ project, onClose }) {
   }, [onClose]);
 
   return (
-    <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/85 p-4 backdrop-blur-sm"
-      onClick={onClose}
-    >
-      <div
-        className="relative w-full max-w-3xl max-h-[90vh] overflow-y-auto bg-[#0c0c0c] border border-[var(--border)]"
-        onClick={(e) => e.stopPropagation()}
-      >
-        {/* Close */}
+    <div className="fixed inset-0 z-50 flex flex-col bg-black/96 backdrop-blur-sm">
+      {/* Top bar */}
+      <div className="flex shrink-0 items-center justify-between px-6 py-5">
+        <div>
+          <p className="mb-0.5 text-[10px] tracking-widest uppercase text-[#CFC7BD]">
+            {project.categories[language]}
+          </p>
+          <h3 className="text-lg font-semibold text-white">
+            {project.titles[language]}
+          </h3>
+        </div>
         <button
           onClick={onClose}
-          className="absolute top-5 right-5 z-10 flex h-8 w-8 items-center justify-center text-xl text-[var(--text-muted)] transition-colors hover:text-[var(--foreground)] cursor-pointer"
           aria-label={t.portfolio.close}
+          className="flex h-10 w-10 cursor-pointer items-center justify-center text-xl text-white/40 transition-colors hover:text-white"
         >
           ✕
         </button>
+      </div>
 
-        {/* Video */}
-        {project.videoId ? (
-          <div className="aspect-video w-full bg-black">
-            <iframe
-              src={`https://player.cloudinary.com/embed/?cloud_name=dpcqf9y8l&public_id=${project.videoId}&autoplay=true&muted=false`}
-              allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
-              allowFullScreen
-              className="h-full w-full"
-            />
-          </div>
-        ) : (
-          <div
-            className="aspect-video w-full flex items-center justify-center"
-            style={{ background: project.bg }}
-          >
-            <span className="text-6xl font-bold text-white/5 select-none">
-              {String(project.id).padStart(2, "0")}
-            </span>
-          </div>
-        )}
-
-        {/* Info */}
-        <div className="p-8 pb-10">
-          <p className="mb-2 text-xs tracking-widest uppercase text-[var(--accent)]">
-            {project.categories[language]}
-          </p>
-          <h3 className="mb-6 text-2xl font-semibold">{project.titles[language]}</h3>
-
-          {/* Image grid */}
-          {project.images.length > 0 ? (
-            <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
-              {project.images.map((imgId, i) => (
-                <img
-                  key={i}
-                  src={`https://res.cloudinary.com/dpcqf9y8l/image/upload/c_fill,w_600,h_400/${imgId}`}
-                  alt=""
-                  className="w-full aspect-[3/2] object-cover"
-                />
-              ))}
-            </div>
-          ) : (
-            !project.videoId && (
-              <p className="text-sm text-[var(--text-muted)]">{t.portfolio.comingSoon}</p>
-            )
-          )}
-        </div>
+      {/* Horizontal photo strip — clicking any photo closes modal */}
+      <div
+        className="flex flex-1 items-center gap-4 overflow-x-auto px-6 pb-8"
+        style={{ scrollbarWidth: "none" }}
+      >
+        {photos.map((src, i) => (
+          <img
+            key={i}
+            src={src}
+            alt=""
+            onClick={onClose}
+            draggable={false}
+            className="h-[65vh] max-w-[85vw] w-auto shrink-0 cursor-pointer rounded object-cover opacity-90 transition-opacity hover:opacity-100"
+          />
+        ))}
       </div>
     </div>
   );
 }
 
+// ── Carousel ──────────────────────────────────────────────────────────────────
+
 export default function PortfolioSlider() {
   const { language, t } = useLanguage();
   const [selected, setSelected] = useState(null);
-  const scrollRef = useRef(null);
+  const trackRef = useRef(null);
+  const pausedRef = useRef(false);
+  const initDone = useRef(false);
 
-  const scroll = (dir) => {
-    scrollRef.current?.scrollBy({ left: dir * 360, behavior: "smooth" });
-  };
+  // Set initial scroll to middle set + run peek animation
+  useEffect(() => {
+    if (initDone.current) return;
+    initDone.current = true;
+
+    const timer = setTimeout(() => {
+      const el = trackRef.current;
+      if (!el) return;
+      const cw = getCardW(el);
+
+      // Silently start in the middle set
+      el.scrollLeft = N * cw;
+
+      // Peek: nudge right then back to hint scrollability
+      setTimeout(() => {
+        el.scrollBy({ left: cw * 0.22, behavior: "smooth" });
+        setTimeout(() => {
+          el.scrollBy({ left: -cw * 0.22, behavior: "smooth" });
+        }, 480);
+      }, 600);
+    }, 120);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  // Auto-scroll every 3.5 s
+  useEffect(() => {
+    const id = setInterval(() => {
+      if (pausedRef.current) return;
+      const el = trackRef.current;
+      if (!el) return;
+      const cw = getCardW(el);
+      el.scrollBy({ left: cw, behavior: "smooth" });
+      setTimeout(() => reCenter(el, cw), 650);
+    }, 3500);
+    return () => clearInterval(id);
+  }, []);
+
+  function manualScroll(dir) {
+    const el = trackRef.current;
+    if (!el) return;
+    pausedRef.current = true;
+    const cw = getCardW(el);
+    el.scrollBy({ left: dir * cw, behavior: "smooth" });
+    setTimeout(() => {
+      reCenter(el, cw);
+      pausedRef.current = false;
+    }, 650);
+  }
 
   const handleClose = useCallback(() => setSelected(null), []);
 
   return (
-    <section className="py-20 lg:py-28">
+    <section className="overflow-hidden py-20 lg:py-28">
       {/* Header */}
       <div className="mx-auto mb-10 flex items-end justify-between px-6 lg:px-12">
         <div>
@@ -109,59 +161,84 @@ export default function PortfolioSlider() {
             {t.portfolio.title}
           </h2>
         </div>
-        <div className="hidden gap-2 sm:flex">
-          <button
-            onClick={() => scroll(-1)}
-            aria-label="Prev"
-            className="flex h-10 w-10 items-center justify-center border border-[var(--border)] text-[var(--text-muted)] transition-colors hover:border-[var(--accent)] hover:text-[var(--accent)] cursor-pointer"
-          >
-            ←
-          </button>
-          <button
-            onClick={() => scroll(1)}
-            aria-label="Next"
-            className="flex h-10 w-10 items-center justify-center border border-[var(--border)] text-[var(--text-muted)] transition-colors hover:border-[var(--accent)] hover:text-[var(--accent)] cursor-pointer"
-          >
-            →
-          </button>
+        <div className="flex gap-2">
+          {([-1, 1]).map((dir) => (
+            <button
+              key={dir}
+              onClick={() => manualScroll(dir)}
+              aria-label={dir === -1 ? "Prev" : "Next"}
+              className="flex h-10 w-10 cursor-pointer items-center justify-center border border-[var(--border)] text-[var(--text-muted)] transition-colors hover:border-[#CFC7BD] hover:text-[#CFC7BD]"
+            >
+              {dir === -1 ? "←" : "→"}
+            </button>
+          ))}
         </div>
       </div>
 
       {/* Track */}
       <div
-        ref={scrollRef}
-        className="flex gap-3 overflow-x-auto scroll-smooth px-6 pb-4 lg:px-12"
-        style={{ scrollbarWidth: "none", scrollSnapType: "x mandatory" }}
+        ref={trackRef}
+        onMouseEnter={() => { pausedRef.current = true; }}
+        onMouseLeave={() => { pausedRef.current = false; }}
+        onTouchStart={() => { pausedRef.current = true; }}
+        onTouchEnd={() => {
+          const el = trackRef.current;
+          setTimeout(() => {
+            reCenter(el, getCardW(el));
+            pausedRef.current = false;
+          }, 650);
+        }}
+        className="flex overflow-x-auto px-6 pb-3 lg:px-12"
+        style={{
+          gap: GAP,
+          scrollbarWidth: "none",
+          scrollSnapType: "x mandatory",
+        }}
       >
-        {projects.map((project) => (
+        {LOOPED.map((project, i) => (
           <button
-            key={project.id}
+            key={i}
+            data-card
             onClick={() => setSelected(project)}
-            className="group relative flex-none cursor-pointer overflow-hidden"
+            className="group relative flex-none cursor-pointer overflow-hidden rounded-sm"
             style={{
-              width: "clamp(240px, 30vw, 320px)",
-              aspectRatio: "3/4",
-              background: project.bg,
+              /* 1 card mobile, 2 tablet, 3 desktop */
+              width: "min(85vw, calc(33.333% - 8px))",
+              minWidth: 220,
+              aspectRatio: "3 / 4",
               scrollSnapAlign: "start",
+              scrollSnapStop: "always",
             }}
           >
-            {/* Large number watermark */}
-            <span className="absolute -right-2 top-4 select-none text-[7rem] font-bold leading-none text-white/[0.04]">
-              {String(project.id).padStart(2, "0")}
-            </span>
+            {/* Thumbnail */}
+            <img
+              src={thumbUrl(project.id)}
+              alt=""
+              draggable={false}
+              className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+            />
+            {/* Gradient */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent" />
 
-            {/* Bottom info */}
-            <div className="absolute inset-x-0 bottom-0 flex flex-col gap-1 p-7 translate-y-1 transition-transform duration-300 group-hover:translate-y-0">
-              <p className="text-[10px] tracking-widest uppercase text-[var(--accent)]">
-                {project.categories[language]}
-              </p>
-              <h3 className="text-base font-semibold text-[var(--foreground)] leading-snug">
+            {/* Info */}
+            <div className="absolute inset-x-0 bottom-0 p-5">
+              <span
+                className="mb-2 inline-block rounded-full px-3 py-0.5 text-[10px] tracking-widest uppercase"
+                style={{
+                  background: "rgba(207,199,189,0.1)",
+                  border: "1px solid rgba(207,199,189,0.22)",
+                  color: "#CFC7BD",
+                }}
+              >
+                {project.categories[language].split("·")[0].trim()}
+              </span>
+              <h3 className="text-sm font-semibold leading-snug text-white">
                 {project.titles[language]}
               </h3>
             </div>
 
-            {/* Gold border on hover */}
-            <div className="absolute inset-0 border border-transparent transition-colors duration-300 group-hover:border-[var(--accent)]/40" />
+            {/* Hover border */}
+            <div className="absolute inset-0 rounded-sm border border-transparent transition-colors duration-300 group-hover:border-[#CFC7BD]/30" />
           </button>
         ))}
       </div>
