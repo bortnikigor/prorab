@@ -153,11 +153,11 @@ export default function Home() {
       </section>
 
       {/* ── FOOTER ─────────────────────────────────────────── */}
-      <footer style={{ background: "#F5F3EF" }}>
+      <footer style={{ background: "#0F1113", borderTop: "1px solid rgba(207,199,189,0.12)" }}>
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-6 py-5 lg:px-12">
 
           {/* Left: copyright */}
-          <p className="text-[11px] text-[#5a5a5a] whitespace-nowrap">
+          <p className="text-[11px] whitespace-nowrap" style={{ color: "rgba(245,243,239,0.45)" }}>
             © {new Date().getFullYear()} PRORAB. {t.footer.rights}
           </p>
 
@@ -169,13 +169,13 @@ export default function Home() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Instagram"
-              className="flex h-8 w-8 items-center justify-center rounded-full transition-opacity hover:opacity-70"
-              style={{ background: "#1a1a1a" }}
+              className="flex h-8 w-8 items-center justify-center rounded-full transition-opacity hover:opacity-60"
+              style={{ background: "rgba(207,199,189,0.08)", border: "1px solid rgba(207,199,189,0.15)" }}
             >
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#F5F3EF" strokeWidth="1.6">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#CFC7BD" strokeWidth="1.6">
                 <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
                 <circle cx="12" cy="12" r="4"/>
-                <circle cx="17.5" cy="6.5" r="0.6" fill="#F5F3EF" stroke="none"/>
+                <circle cx="17.5" cy="6.5" r="0.6" fill="#CFC7BD" stroke="none"/>
               </svg>
             </a>
 
@@ -185,10 +185,10 @@ export default function Home() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="TikTok"
-              className="flex h-8 w-8 items-center justify-center rounded-full transition-opacity hover:opacity-70"
-              style={{ background: "#1a1a1a" }}
+              className="flex h-8 w-8 items-center justify-center rounded-full transition-opacity hover:opacity-60"
+              style={{ background: "rgba(207,199,189,0.08)", border: "1px solid rgba(207,199,189,0.15)" }}
             >
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="#F5F3EF">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="#CFC7BD">
                 <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.74a4.85 4.85 0 0 1-1.01-.05z"/>
               </svg>
             </a>
@@ -199,10 +199,10 @@ export default function Home() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Telegram"
-              className="flex h-8 w-8 items-center justify-center rounded-full transition-opacity hover:opacity-70"
-              style={{ background: "#1a1a1a" }}
+              className="flex h-8 w-8 items-center justify-center rounded-full transition-opacity hover:opacity-60"
+              style={{ background: "rgba(207,199,189,0.08)", border: "1px solid rgba(207,199,189,0.15)" }}
             >
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="#F5F3EF">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="#CFC7BD">
                 <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L7.17 13.6l-2.94-.92c-.64-.203-.658-.64.136-.954l11.49-4.43c.533-.194 1.003.136.838.925z"/>
               </svg>
             </a>
@@ -211,7 +211,8 @@ export default function Home() {
           {/* Right: privacy policy */}
           <a
             href="#"
-            className="text-[11px] text-[#5a5a5a] underline-offset-2 hover:underline whitespace-nowrap transition-colors hover:text-[#1a1a1a]"
+            className="text-[11px] whitespace-nowrap underline-offset-2 hover:underline transition-colors"
+            style={{ color: "rgba(245,243,239,0.45)" }}
           >
             {t.footer.privacy}
           </a>
