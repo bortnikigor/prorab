@@ -154,10 +154,10 @@ export default function Home() {
 
       {/* ── FOOTER ─────────────────────────────────────────── */}
       <footer style={{ background: "#0F1113", borderTop: "1px solid rgba(207,199,189,0.12)" }}>
-        <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-6 py-5 lg:px-12">
+        <div className="relative mx-auto flex max-w-7xl items-center justify-center px-6 py-5 lg:px-12">
 
           {/* Left: copyright */}
-          <p className="text-[11px] whitespace-nowrap" style={{ color: "rgba(245,243,239,0.45)" }}>
+          <p className="absolute left-6 text-[11px] whitespace-nowrap lg:left-12" style={{ color: "rgba(245,243,239,0.45)" }}>
             © {new Date().getFullYear()} PRORAB
           </p>
 
