@@ -3,6 +3,51 @@
 import { useRef, useState } from "react";
 import { useLanguage } from "../context/LanguageContext";
 
+// ── Pills ─────────────────────────────────────────────────────────────────────
+
+function getRows(phrases) {
+  const n = phrases.length;
+  const shift = Math.floor(n / 3);
+  return [
+    phrases,
+    [...phrases.slice(shift), ...phrases.slice(0, shift)],
+    [...phrases.slice(shift * 2), ...phrases.slice(0, shift * 2)],
+  ];
+}
+
+function PillRow({ phrases, direction, speed = 1 }) {
+  const doubled = [...phrases, ...phrases];
+  const duration = `${(phrases.length * 4.5) / speed}s`;
+  const anim = direction === "left" ? "ticker-left" : "ticker-right";
+
+  return (
+    <div className="overflow-hidden py-1.5">
+      <div
+        style={{
+          animation: `${anim} ${duration} linear infinite`,
+          display: "inline-flex",
+          gap: "8px",
+          whiteSpace: "nowrap",
+        }}
+      >
+        {doubled.map((phrase, i) => (
+          <span
+            key={i}
+            className="inline-flex items-center rounded-full px-4 py-2 text-sm"
+            style={{
+              background: "rgba(255,255,255,0.04)",
+              border: "1px solid rgba(207,199,189,0.1)",
+              color: "rgba(207,199,189,0.45)",
+            }}
+          >
+            {phrase}
+          </span>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 // ── AI input ──────────────────────────────────────────────────────────────────
 
 function AIInput() {
@@ -108,9 +153,18 @@ function AIInput() {
 
 export default function TelegramBotSection() {
   const { t } = useLanguage();
+  const rows = getRows(t.ticker);
 
   return (
     <section className="border-y border-[var(--border)] py-20 lg:py-28">
+      {/* Pill rows */}
+      <div className="mb-16">
+        <PillRow phrases={rows[0]} direction="left"  speed={0.8} />
+        <PillRow phrases={rows[1]} direction="right" speed={1.0} />
+        <PillRow phrases={rows[2]} direction="left"  speed={1.3} />
+      </div>
+
+      {/* Title + input */}
       <div className="mx-auto max-w-2xl px-6">
         <p className="mb-3 text-xs tracking-[0.5em] uppercase text-[var(--accent)]">
           {t.telegram.label}
