@@ -1,65 +1,200 @@
-import Image from "next/image";
+import ContactForm from "./components/ContactForm";
+
+const services = [
+  {
+    title: "Квартири",
+    description:
+      "Комплексний ремонт під ключ — від демонтажу до фінішного оздоблення. Дизайн-проєкт, авторський нагляд.",
+    icon: "◻",
+  },
+  {
+    title: "Будинки",
+    description:
+      "Будівництво та ремонт приватних будинків. Фасади, покрівля, внутрішні роботи будь-якої складності.",
+    icon: "◼",
+  },
+  {
+    title: "Офіси",
+    description:
+      "Комерційні приміщення та офіси. Швидкі строки, мінімальний простій у роботі вашого бізнесу.",
+    icon: "▣",
+  },
+];
+
+const stats = [
+  { value: "12+", label: "Років досвіду" },
+  { value: "340+", label: "Завершених об'єктів" },
+  { value: "100%", label: "Гарантія якості" },
+];
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.js file.
+    <div className="min-h-screen bg-[var(--background)] text-[var(--foreground)]">
+      {/* Nav */}
+      <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-8 py-6 backdrop-blur-sm border-b border-[var(--border)]/50">
+        <span className="text-lg font-semibold tracking-[0.3em] uppercase text-[var(--foreground)]">
+          PRORAB
+        </span>
+        <a
+          href="#contact"
+          className="text-xs tracking-widest uppercase text-[var(--text-muted)] transition-colors hover:text-[var(--accent)]"
+        >
+          Зв'язатися
+        </a>
+      </nav>
+
+      {/* Hero */}
+      <section className="relative flex min-h-screen flex-col items-center justify-center px-6 text-center">
+        <div className="absolute inset-0 pointer-events-none">
+          <div
+            className="absolute inset-0 opacity-[0.03]"
+            style={{
+              backgroundImage:
+                "repeating-linear-gradient(0deg, transparent, transparent 79px, var(--foreground) 79px, var(--foreground) 80px)",
+            }}
+          />
+        </div>
+
+        <div className="relative flex flex-col items-center gap-8">
+          <p className="text-xs tracking-[0.5em] uppercase text-[var(--accent)]">
+            Преміальний ремонт
+          </p>
+
+          <h1 className="text-[clamp(5rem,18vw,16rem)] font-semibold leading-none tracking-[-0.03em] text-[var(--foreground)]">
+            PRORAB
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+
+          <p className="max-w-md text-lg font-light leading-relaxed tracking-wide text-[var(--text-muted)]">
+            Перетворюємо простори на витвори архітектури.
+            <br />
+            Від ідеї до фінішного штриха.
+          </p>
+
+          <a
+            href="#services"
+            className="mt-4 border border-[var(--accent)] px-10 py-4 text-xs tracking-widest uppercase text-[var(--accent)] transition-colors hover:bg-[var(--accent)] hover:text-[var(--background)]"
+          >
+            Наші послуги
+          </a>
+        </div>
+
+        <a
+          href="#services"
+          className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-[var(--text-muted)] transition-colors hover:text-[var(--accent)]"
+          aria-label="Прокрутити вниз"
+        >
+          <span className="text-xs tracking-widest uppercase">Далі</span>
+          <span className="text-lg leading-none">↓</span>
+        </a>
+      </section>
+
+      {/* Stats */}
+      <section className="border-y border-[var(--border)] bg-[var(--muted)]">
+        <div className="mx-auto grid max-w-5xl grid-cols-3 divide-x divide-[var(--border)]">
+          {stats.map((s) => (
+            <div key={s.label} className="flex flex-col items-center gap-1 px-6 py-10">
+              <span className="text-3xl font-semibold text-[var(--accent)] sm:text-4xl">
+                {s.value}
+              </span>
+              <span className="text-xs tracking-widest uppercase text-[var(--text-muted)]">
+                {s.label}
+              </span>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Services */}
+      <section id="services" className="mx-auto max-w-6xl px-6 py-32">
+        <div className="mb-16 flex flex-col gap-4">
+          <p className="text-xs tracking-[0.5em] uppercase text-[var(--accent)]">
+            Послуги
+          </p>
+          <h2 className="text-4xl font-semibold tracking-tight sm:text-5xl">
+            Що ми робимо
+          </h2>
+        </div>
+
+        <div className="grid grid-cols-1 gap-px border border-[var(--border)] bg-[var(--border)] sm:grid-cols-3">
+          {services.map((service) => (
+            <div
+              key={service.title}
+              className="group flex flex-col gap-6 bg-[var(--background)] p-10 transition-colors hover:bg-[var(--muted)]"
             >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+              <span className="text-2xl text-[var(--accent)]">{service.icon}</span>
+              <h3 className="text-xl font-semibold tracking-tight">
+                {service.title}
+              </h3>
+              <p className="text-sm leading-relaxed text-[var(--text-muted)]">
+                {service.description}
+              </p>
+              <div className="mt-auto pt-4">
+                <span className="text-xs tracking-widest uppercase text-[var(--accent)] opacity-0 transition-opacity group-hover:opacity-100">
+                  Дізнатися більше →
+                </span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Process */}
+      <section className="border-y border-[var(--border)] bg-[var(--muted)] py-24">
+        <div className="mx-auto max-w-6xl px-6">
+          <div className="mb-16 flex flex-col gap-4">
+            <p className="text-xs tracking-[0.5em] uppercase text-[var(--accent)]">
+              Підхід
+            </p>
+            <h2 className="text-4xl font-semibold tracking-tight sm:text-5xl">
+              Як ми працюємо
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4">
+            {[
+              { n: "01", title: "Консультація", desc: "Обговорюємо ваші побажання та бюджет" },
+              { n: "02", title: "Проєктування", desc: "Дизайн-проєкт та кошторис" },
+              { n: "03", title: "Виконання", desc: "Ремонтні роботи у строк" },
+              { n: "04", title: "Здача", desc: "Прийом об'єкта та гарантія" },
+            ].map((step) => (
+              <div key={step.n} className="flex flex-col gap-4">
+                <span className="text-4xl font-semibold text-[var(--border)]">{step.n}</span>
+                <h3 className="text-base font-semibold tracking-wide">{step.title}</h3>
+                <p className="text-sm text-[var(--text-muted)]">{step.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Contact */}
+      <section id="contact" className="mx-auto max-w-3xl px-6 py-32">
+        <div className="mb-16 flex flex-col gap-4">
+          <p className="text-xs tracking-[0.5em] uppercase text-[var(--accent)]">
+            Контакт
+          </p>
+          <h2 className="text-4xl font-semibold tracking-tight sm:text-5xl">
+            Обговоримо ваш проєкт
+          </h2>
+          <p className="max-w-md text-sm leading-relaxed text-[var(--text-muted)]">
+            Залиште заявку і ми зв'яжемося з вами протягом одного робочого дня
           </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+
+        <ContactForm />
+      </section>
+
+      {/* Footer */}
+      <footer className="border-t border-[var(--border)]">
+        <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-6 py-8 sm:flex-row">
+          <span className="text-sm tracking-[0.3em] uppercase text-[var(--text-muted)]">
+            PRORAB
+          </span>
+          <p className="text-xs text-[var(--text-muted)]">
+            © {new Date().getFullYear()} PRORAB. Усі права захищено.
+          </p>
         </div>
-      </main>
+      </footer>
     </div>
   );
 }
