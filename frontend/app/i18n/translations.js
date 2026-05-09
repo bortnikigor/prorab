@@ -4,6 +4,25 @@ export const translations = {
     hero: {
       slogan: "Простір, де кожна деталь реалізована так, як була задумана.",
     },
+    ticker: [
+      "Як зробити ремонт під ключ?",
+      "Хто може зробити якісний ремонт?",
+      "Скільки коштує ремонт квартири?",
+      "Як краще зробити планування?",
+      "Які матеріали обрати?",
+      "Як оптимально виконати оздоблення?",
+      "Де знайти надійних майстрів?",
+      "Як зробити ремонт швидко?",
+      "Скільки часу займає ремонт?",
+      "Як обрати дизайн інтер'єру?",
+    ],
+    telegramChat: {
+      botName: "PRORAB",
+      welcome: "Привіт! Напишіть ваше питання і ми відповімо найближчим часом 🏠",
+      placeholder: "Написати повідомлення...",
+      reply: "Дякуємо! Ми отримали ваше повідомлення і відповімо якнайшвидше. 👍",
+      error: "Помилка надсилання. Спробуйте ще раз або напишіть нам напряму.",
+    },
     portfolio: {
       label: "Портфоліо",
       title: "Наші проєкти",
@@ -59,6 +78,25 @@ export const translations = {
     hero: {
       slogan: "A space where every detail is realized exactly as envisioned.",
     },
+    ticker: [
+      "How to do a turnkey renovation?",
+      "Who can do quality renovation?",
+      "How much does apartment renovation cost?",
+      "How to plan the layout better?",
+      "What materials to choose?",
+      "How to do the finishing optimally?",
+      "Where to find reliable craftsmen?",
+      "How to renovate quickly?",
+      "How long does renovation take?",
+      "How to choose an interior design?",
+    ],
+    telegramChat: {
+      botName: "PRORAB",
+      welcome: "Hello! Write your question and we will reply shortly 🏠",
+      placeholder: "Write a message...",
+      reply: "Thank you! We received your message and will get back to you shortly. 👍",
+      error: "Failed to send. Please try again or contact us directly.",
+    },
     portfolio: {
       label: "Portfolio",
       title: "Our projects",
@@ -113,6 +151,25 @@ export const translations = {
     htmlLang: "ru",
     hero: {
       slogan: "Пространство, где каждая деталь воплощена так, как было задумано.",
+    },
+    ticker: [
+      "Как сделать ремонт под ключ?",
+      "Кто может сделать качественный ремонт?",
+      "Сколько стоит ремонт квартиры?",
+      "Как лучше сделать планировку?",
+      "Какие материалы выбрать?",
+      "Как оптимально выполнить отделку?",
+      "Где найти надёжных мастеров?",
+      "Как быстро сделать ремонт?",
+      "Сколько времени займёт ремонт?",
+      "Как выбрать дизайн интерьера?",
+    ],
+    telegramChat: {
+      botName: "PRORAB",
+      welcome: "Привет! Напишите ваш вопрос и мы ответим в ближайшее время 🏠",
+      placeholder: "Написать сообщение...",
+      reply: "Спасибо! Мы получили ваше сообщение и ответим в ближайшее время. 👍",
+      error: "Ошибка отправки. Попробуйте ещё раз или напишите нам напрямую.",
     },
     portfolio: {
       label: "Портфолио",
