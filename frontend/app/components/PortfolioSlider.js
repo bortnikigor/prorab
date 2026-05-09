@@ -4,38 +4,33 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { projects } from "../data/projects";
 import { useLanguage } from "../context/LanguageContext";
 
-const GAP = 12; // gap-3 = 12px
 const N = projects.length;
-// Triple the array so we can loop seamlessly
-const LOOPED = [...projects, ...projects, ...projects];
 
-const thumbUrl = (id) =>
-  `https://picsum.photos/seed/prorab${id}/800/1000`;
+// Signed wrap-around distance from active index
+function wrapDist(i, active) {
+  let d = i - active;
+  if (d > N / 2) d -= N;
+  if (d < -N / 2) d += N;
+  return d;
+}
+
+// Transform config for each position relative to center
+function slotStyle(d) {
+  const abs = Math.abs(d);
+  const sign = d < 0 ? -1 : 1;
+  if (abs === 0) return { x: 0,         scale: 1.0,  opacity: 1.0, z: 10, click: true };
+  if (abs === 1) return { x: sign * 44,  scale: 0.72, opacity: 0.6, z: 5,  click: true };
+  return              { x: sign * 90,   scale: 0.55, opacity: 0.0, z: 0,  click: false };
+}
+
+const thumbUrl = (id) => `https://picsum.photos/seed/prorab${id}/800/1000`;
 const photoUrls = (id) =>
-  [1, 2, 3, 4, 5].map((i) =>
-    `https://picsum.photos/seed/prorab${id}p${i}/1200/800`
-  );
-
-// ── helpers ───────────────────────────────────────────────────────────────────
-
-function getCardW(trackEl) {
-  const card = trackEl?.querySelector("[data-card]");
-  if (!card) return 300;
-  return card.getBoundingClientRect().width + GAP;
-}
-
-function reCenter(trackEl, cardW) {
-  if (!trackEl) return;
-  const setW = N * cardW;
-  if (trackEl.scrollLeft >= setW * 2) trackEl.scrollLeft -= setW;
-  else if (trackEl.scrollLeft < setW) trackEl.scrollLeft += setW;
-}
+  [1, 2, 3, 4, 5].map((i) => `https://picsum.photos/seed/prorab${id}p${i}/1200/800`);
 
 // ── Modal ─────────────────────────────────────────────────────────────────────
 
 function Modal({ project, onClose }) {
   const { language, t } = useLanguage();
-  const photos = photoUrls(project.id);
 
   useEffect(() => {
     document.body.style.overflow = "hidden";
@@ -49,7 +44,6 @@ function Modal({ project, onClose }) {
 
   return (
     <div className="fixed inset-0 z-50 flex flex-col bg-black/96 backdrop-blur-sm">
-      {/* Top bar */}
       <div className="flex shrink-0 items-center justify-between px-6 py-5">
         <div>
           <p className="mb-0.5 text-[10px] tracking-widest uppercase text-[#CFC7BD]">
@@ -67,13 +61,11 @@ function Modal({ project, onClose }) {
           ✕
         </button>
       </div>
-
-      {/* Horizontal photo strip — clicking any photo closes modal */}
       <div
         className="flex flex-1 items-center gap-4 overflow-x-auto px-6 pb-8"
         style={{ scrollbarWidth: "none" }}
       >
-        {photos.map((src, i) => (
+        {photoUrls(project.id).map((src, i) => (
           <img
             key={i}
             src={src}
@@ -92,139 +84,124 @@ function Modal({ project, onClose }) {
 
 export default function PortfolioSlider() {
   const { language, t } = useLanguage();
+  const [active, setActive] = useState(0);
   const [selected, setSelected] = useState(null);
-  const trackRef = useRef(null);
   const pausedRef = useRef(false);
-  const initDone = useRef(false);
 
-  // Set initial scroll to middle set + run peek animation
-  useEffect(() => {
-    if (initDone.current) return;
-    initDone.current = true;
-
-    const timer = setTimeout(() => {
-      const el = trackRef.current;
-      if (!el) return;
-      const cw = getCardW(el);
-
-      // Silently start in the middle set
-      el.scrollLeft = N * cw;
-
-      // Peek: nudge right then back to hint scrollability
-      setTimeout(() => {
-        el.scrollBy({ left: cw * 0.22, behavior: "smooth" });
-        setTimeout(() => {
-          el.scrollBy({ left: -cw * 0.22, behavior: "smooth" });
-        }, 480);
-      }, 600);
-    }, 120);
-
-    return () => clearTimeout(timer);
-  }, []);
-
-  // Auto-scroll every 3.5 s
+  // Auto-advance every 4 s
   useEffect(() => {
     const id = setInterval(() => {
-      if (pausedRef.current) return;
-      const el = trackRef.current;
-      if (!el) return;
-      const cw = getCardW(el);
-      el.scrollBy({ left: cw, behavior: "smooth" });
-      setTimeout(() => reCenter(el, cw), 650);
-    }, 3500);
+      if (!pausedRef.current) setActive((a) => (a + 1) % N);
+    }, 4000);
     return () => clearInterval(id);
   }, []);
 
-  function manualScroll(dir) {
-    const el = trackRef.current;
-    if (!el) return;
-    pausedRef.current = true;
-    const cw = getCardW(el);
-    el.scrollBy({ left: dir * cw, behavior: "smooth" });
-    setTimeout(() => {
-      reCenter(el, cw);
-      pausedRef.current = false;
-    }, 650);
+  function handleCardClick(i, d) {
+    if (d === 0) {
+      setSelected(projects[i]);
+    } else if (Math.abs(d) === 1) {
+      pausedRef.current = true;
+      setActive(i);
+      setTimeout(() => { pausedRef.current = false; }, 900);
+    }
   }
 
   const handleClose = useCallback(() => setSelected(null), []);
 
   return (
-    <section className="overflow-hidden py-20 lg:py-28">
+    <section className="py-20 lg:py-28">
       {/* Header */}
-      <div className="mx-auto mb-10 flex items-end justify-between px-6 lg:px-12">
-        <div>
-          <p className="mb-3 text-sm leading-snug text-[var(--foreground)]">
-            {t.portfolio.label}
-          </p>
-        </div>
+      <div className="mx-auto mb-12 px-6 lg:px-12">
+        <p className="text-sm leading-snug text-[var(--foreground)]">
+          {t.portfolio.label}
+        </p>
       </div>
 
-      {/* Track */}
+      {/* Cinematic carousel */}
       <div
-        ref={trackRef}
+        className="relative w-full overflow-hidden"
+        style={{ height: "clamp(380px, 66vh, 720px)" }}
         onMouseEnter={() => { pausedRef.current = true; }}
         onMouseLeave={() => { pausedRef.current = false; }}
         onTouchStart={() => { pausedRef.current = true; }}
-        onTouchEnd={() => {
-          const el = trackRef.current;
-          setTimeout(() => {
-            reCenter(el, getCardW(el));
-            pausedRef.current = false;
-          }, 650);
-        }}
-        className="flex overflow-x-auto px-6 pb-3 lg:px-12"
-        style={{
-          gap: GAP,
-          scrollbarWidth: "none",
-          scrollSnapType: "x mandatory",
-        }}
+        onTouchEnd={() => { setTimeout(() => { pausedRef.current = false; }, 900); }}
       >
-        {LOOPED.map((project, i) => (
+        {projects.map((project, i) => {
+          const d = wrapDist(i, active);
+          const { x, scale, opacity, z, click } = slotStyle(d);
+
+          return (
+            <div
+              key={project.id}
+              onClick={() => handleCardClick(i, d)}
+              style={{
+                position: "absolute",
+                left: "50%",
+                top: "50%",
+                width: "min(58vw, 660px)",
+                height: "100%",
+                transform: `translate(calc(-50% + ${x}vw), -50%) scale(${scale})`,
+                opacity,
+                zIndex: z,
+                pointerEvents: click ? "auto" : "none",
+                cursor: d === 0 ? "pointer" : "pointer",
+                transition:
+                  "transform 0.72s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.6s ease",
+              }}
+            >
+              <div className="relative h-full w-full overflow-hidden">
+                {/* Thumbnail */}
+                <img
+                  src={thumbUrl(project.id)}
+                  alt=""
+                  draggable={false}
+                  className="absolute inset-0 h-full w-full object-cover"
+                />
+                {/* Gradient for text legibility */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent" />
+                {/* Text */}
+                <div className="absolute inset-x-0 bottom-0 p-6 lg:p-8">
+                  <span
+                    className="mb-2 inline-block rounded-full px-3 py-0.5 text-[10px] tracking-widest uppercase"
+                    style={{
+                      background: "rgba(207,199,189,0.1)",
+                      border: "1px solid rgba(207,199,189,0.22)",
+                      color: "#CFC7BD",
+                    }}
+                  >
+                    {project.categories[language].split("·")[0].trim()}
+                  </span>
+                  <h3 className="text-sm font-semibold leading-snug text-white">
+                    {project.titles[language]}
+                  </h3>
+                </div>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
+      {/* Dot indicators */}
+      <div className="mt-8 flex justify-center gap-2">
+        {projects.map((_, i) => (
           <button
             key={i}
-            data-card
-            onClick={() => setSelected(project)}
-            className="group relative flex-none cursor-pointer overflow-hidden rounded-sm"
-            style={{
-              /* 1 card mobile, 2 tablet, 3 desktop */
-              width: "min(85vw, calc(33.333% - 8px))",
-              minWidth: 220,
-              aspectRatio: "3 / 4",
-              scrollSnapAlign: "start",
-              scrollSnapStop: "always",
+            onClick={() => {
+              pausedRef.current = true;
+              setActive(i);
+              setTimeout(() => { pausedRef.current = false; }, 900);
             }}
-          >
-            {/* Thumbnail */}
-            <img
-              src={thumbUrl(project.id)}
-              alt=""
-              draggable={false}
-              className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-            />
-            {/* Gradient */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent" />
-
-            {/* Info */}
-            <div className="absolute inset-x-0 bottom-0 p-5">
-              <span
-                className="mb-2 inline-block rounded-full px-3 py-0.5 text-[10px] tracking-widest uppercase"
-                style={{
-                  background: "rgba(207,199,189,0.1)",
-                  border: "1px solid rgba(207,199,189,0.22)",
-                  color: "#CFC7BD",
-                }}
-              >
-                {project.categories[language].split("·")[0].trim()}
-              </span>
-              <h3 className="text-sm font-semibold leading-snug text-white">
-                {project.titles[language]}
-              </h3>
-            </div>
-
-            {/* Hover border */}
-            <div className="absolute inset-0 rounded-sm border border-transparent transition-colors duration-300 group-hover:border-[#CFC7BD]/30" />
-          </button>
+            style={{
+              width: i === active ? 24 : 6,
+              height: 6,
+              borderRadius: 3,
+              background: i === active ? "#CFC7BD" : "rgba(207,199,189,0.25)",
+              transition: "all 0.4s ease",
+              border: "none",
+              padding: 0,
+              cursor: "pointer",
+            }}
+          />
         ))}
       </div>
 
