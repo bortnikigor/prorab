@@ -197,16 +197,13 @@ export default function Home() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Telegram"
-              className="flex h-8 w-8 items-center justify-center rounded-full overflow-hidden transition-opacity hover:opacity-60"
+              className="flex h-8 w-8 items-center justify-center rounded-full transition-opacity hover:opacity-60"
               style={{ background: "#222", border: "1px solid rgba(207,199,189,0.15)" }}
             >
-              <img
-                src="/telegram-icon.png"
-                alt=""
-                width={32}
-                height={32}
-                style={{ filter: "brightness(0) invert(1)", width: "100%", height: "100%", objectFit: "cover" }}
-              />
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#CFC7BD" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M22 2L11 13"/>
+                <path d="M22 2L15 22l-4-9-9-4 20-7z"/>
+              </svg>
             </a>
           </div>
 
