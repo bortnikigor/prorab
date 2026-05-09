@@ -6,11 +6,11 @@ export async function submitContact(prevState, formData) {
   const message = formData.get("message")?.toString().trim();
 
   if (!name || !phone) {
-    return { success: false, error: "Будь ласка, заповніть обов'язкові поля." };
+    return { success: false, error: "required" };
   }
 
   if (!/^\+?[\d\s\-()]{7,20}$/.test(phone)) {
-    return { success: false, error: "Вкажіть коректний номер телефону." };
+    return { success: false, error: "invalid_phone" };
   }
 
   // TODO: send to CRM / email / Strapi

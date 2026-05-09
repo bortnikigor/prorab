@@ -1,33 +1,14 @@
+"use client";
+
+import { useLanguage } from "./context/LanguageContext";
 import ContactForm from "./components/ContactForm";
+import LanguageSwitcher from "./components/LanguageSwitcher";
 
-const services = [
-  {
-    title: "Квартири",
-    description:
-      "Комплексний ремонт під ключ — від демонтажу до фінішного оздоблення. Дизайн-проєкт, авторський нагляд.",
-    icon: "◻",
-  },
-  {
-    title: "Будинки",
-    description:
-      "Будівництво та ремонт приватних будинків. Фасади, покрівля, внутрішні роботи будь-якої складності.",
-    icon: "◼",
-  },
-  {
-    title: "Офіси",
-    description:
-      "Комерційні приміщення та офіси. Швидкі строки, мінімальний простій у роботі вашого бізнесу.",
-    icon: "▣",
-  },
-];
-
-const stats = [
-  { value: "12+", label: "Років досвіду" },
-  { value: "340+", label: "Завершених об'єктів" },
-  { value: "100%", label: "Гарантія якості" },
-];
+const SERVICE_ICONS = ["◻", "◼", "▣"];
 
 export default function Home() {
+  const { t } = useLanguage();
+
   return (
     <div className="min-h-screen bg-[var(--background)] text-[var(--foreground)]">
       {/* Nav */}
@@ -35,12 +16,7 @@ export default function Home() {
         <span className="text-lg font-semibold tracking-[0.3em] uppercase text-[var(--foreground)]">
           PRORAB
         </span>
-        <a
-          href="#contact"
-          className="text-xs tracking-widest uppercase text-[var(--text-muted)] transition-colors hover:text-[var(--accent)]"
-        >
-          Зв'язатися
-        </a>
+        <LanguageSwitcher />
       </nav>
 
       {/* Hero */}
@@ -57,7 +33,7 @@ export default function Home() {
 
         <div className="relative flex flex-col items-center gap-8">
           <p className="text-xs tracking-[0.5em] uppercase text-[var(--accent)]">
-            Преміальний ремонт
+            {t.hero.label}
           </p>
 
           <h1 className="text-[clamp(5rem,18vw,16rem)] font-semibold leading-none tracking-[-0.03em] text-[var(--foreground)]">
@@ -65,25 +41,25 @@ export default function Home() {
           </h1>
 
           <p className="max-w-md text-lg font-light leading-relaxed tracking-wide text-[var(--text-muted)]">
-            Перетворюємо простори на витвори архітектури.
+            {t.hero.tagline[0]}
             <br />
-            Від ідеї до фінішного штриха.
+            {t.hero.tagline[1]}
           </p>
 
           <a
             href="#services"
             className="mt-4 border border-[var(--accent)] px-10 py-4 text-xs tracking-widest uppercase text-[var(--accent)] transition-colors hover:bg-[var(--accent)] hover:text-[var(--background)]"
           >
-            Наші послуги
+            {t.hero.cta}
           </a>
         </div>
 
         <a
           href="#services"
           className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-[var(--text-muted)] transition-colors hover:text-[var(--accent)]"
-          aria-label="Прокрутити вниз"
+          aria-label={t.hero.scroll}
         >
-          <span className="text-xs tracking-widest uppercase">Далі</span>
+          <span className="text-xs tracking-widest uppercase">{t.hero.scroll}</span>
           <span className="text-lg leading-none">↓</span>
         </a>
       </section>
@@ -91,7 +67,7 @@ export default function Home() {
       {/* Stats */}
       <section className="border-y border-[var(--border)] bg-[var(--muted)]">
         <div className="mx-auto grid max-w-5xl grid-cols-3 divide-x divide-[var(--border)]">
-          {stats.map((s) => (
+          {t.stats.map((s) => (
             <div key={s.label} className="flex flex-col items-center gap-1 px-6 py-10">
               <span className="text-3xl font-semibold text-[var(--accent)] sm:text-4xl">
                 {s.value}
@@ -108,29 +84,27 @@ export default function Home() {
       <section id="services" className="mx-auto max-w-6xl px-6 py-32">
         <div className="mb-16 flex flex-col gap-4">
           <p className="text-xs tracking-[0.5em] uppercase text-[var(--accent)]">
-            Послуги
+            {t.services.label}
           </p>
           <h2 className="text-4xl font-semibold tracking-tight sm:text-5xl">
-            Що ми робимо
+            {t.services.title}
           </h2>
         </div>
 
         <div className="grid grid-cols-1 gap-px border border-[var(--border)] bg-[var(--border)] sm:grid-cols-3">
-          {services.map((service) => (
+          {t.services.items.map((service, i) => (
             <div
               key={service.title}
               className="group flex flex-col gap-6 bg-[var(--background)] p-10 transition-colors hover:bg-[var(--muted)]"
             >
-              <span className="text-2xl text-[var(--accent)]">{service.icon}</span>
-              <h3 className="text-xl font-semibold tracking-tight">
-                {service.title}
-              </h3>
+              <span className="text-2xl text-[var(--accent)]">{SERVICE_ICONS[i]}</span>
+              <h3 className="text-xl font-semibold tracking-tight">{service.title}</h3>
               <p className="text-sm leading-relaxed text-[var(--text-muted)]">
                 {service.description}
               </p>
               <div className="mt-auto pt-4">
                 <span className="text-xs tracking-widest uppercase text-[var(--accent)] opacity-0 transition-opacity group-hover:opacity-100">
-                  Дізнатися більше →
+                  {t.services.hover}
                 </span>
               </div>
             </div>
@@ -143,20 +117,15 @@ export default function Home() {
         <div className="mx-auto max-w-6xl px-6">
           <div className="mb-16 flex flex-col gap-4">
             <p className="text-xs tracking-[0.5em] uppercase text-[var(--accent)]">
-              Підхід
+              {t.process.label}
             </p>
             <h2 className="text-4xl font-semibold tracking-tight sm:text-5xl">
-              Як ми працюємо
+              {t.process.title}
             </h2>
           </div>
 
           <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4">
-            {[
-              { n: "01", title: "Консультація", desc: "Обговорюємо ваші побажання та бюджет" },
-              { n: "02", title: "Проєктування", desc: "Дизайн-проєкт та кошторис" },
-              { n: "03", title: "Виконання", desc: "Ремонтні роботи у строк" },
-              { n: "04", title: "Здача", desc: "Прийом об'єкта та гарантія" },
-            ].map((step) => (
+            {t.process.steps.map((step) => (
               <div key={step.n} className="flex flex-col gap-4">
                 <span className="text-4xl font-semibold text-[var(--border)]">{step.n}</span>
                 <h3 className="text-base font-semibold tracking-wide">{step.title}</h3>
@@ -171,13 +140,13 @@ export default function Home() {
       <section id="contact" className="mx-auto max-w-3xl px-6 py-32">
         <div className="mb-16 flex flex-col gap-4">
           <p className="text-xs tracking-[0.5em] uppercase text-[var(--accent)]">
-            Контакт
+            {t.contact.label}
           </p>
           <h2 className="text-4xl font-semibold tracking-tight sm:text-5xl">
-            Обговоримо ваш проєкт
+            {t.contact.title}
           </h2>
           <p className="max-w-md text-sm leading-relaxed text-[var(--text-muted)]">
-            Залиште заявку і ми зв'яжемося з вами протягом одного робочого дня
+            {t.contact.subtitle}
           </p>
         </div>
 
@@ -191,7 +160,7 @@ export default function Home() {
             PRORAB
           </span>
           <p className="text-xs text-[var(--text-muted)]">
-            © {new Date().getFullYear()} PRORAB. Усі права захищено.
+            © {new Date().getFullYear()} PRORAB. {t.footer.rights}
           </p>
         </div>
       </footer>

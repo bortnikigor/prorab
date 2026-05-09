@@ -1,4 +1,5 @@
 import { Geist } from "next/font/google";
+import { LanguageProvider } from "./context/LanguageContext";
 import "./globals.css";
 
 const geist = Geist({
@@ -15,7 +16,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="uk" className={`${geist.variable}`}>
-      <body className="min-h-screen antialiased">{children}</body>
+      <body className="min-h-screen antialiased">
+        <LanguageProvider>{children}</LanguageProvider>
+      </body>
     </html>
   );
 }
