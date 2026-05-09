@@ -161,6 +161,9 @@ export default function TelegramBotSection() {
       {/* Input */}
       <div className="mx-auto max-w-2xl px-6">
         <AIInput />
+        <p className="mt-5 text-center text-sm" style={{ color: "#CFC7BD" }}>
+          {t.telegramChat.tagline}
+        </p>
       </div>
     </section>
   );

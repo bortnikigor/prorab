@@ -22,6 +22,7 @@ export const translations = {
       placeholder: "Написати повідомлення...",
       reply: "Дякуємо! Ми отримали ваше повідомлення і відповімо якнайшвидше. 👍",
       error: "Помилка надсилання. Спробуйте ще раз або напишіть нам напряму.",
+      tagline: "Напишіть нам — покажемо, як виглядає якісна реалізація на практиці.",
     },
     portfolio: {
       label: "Простори, реалізовані в деталях",
@@ -96,6 +97,7 @@ export const translations = {
       placeholder: "Write a message...",
       reply: "Thank you! We received your message and will get back to you shortly. 👍",
       error: "Failed to send. Please try again or contact us directly.",
+      tagline: "Write to us — we'll show you what quality looks like in practice.",
     },
     portfolio: {
       label: "Spaces, realized in detail",
@@ -170,6 +172,7 @@ export const translations = {
       placeholder: "Написать сообщение...",
       reply: "Спасибо! Мы получили ваше сообщение и ответим в ближайшее время. 👍",
       error: "Ошибка отправки. Попробуйте ещё раз или напишите нам напрямую.",
+      tagline: "Напишите нам — покажем, как выглядит качественная реализация на практике.",
     },
     portfolio: {
       label: "Пространства, реализованные в деталях",
