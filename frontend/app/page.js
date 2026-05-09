@@ -63,12 +63,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── PORTFOLIO SLIDER ───────────────────────────────── */}
-      <PortfolioSlider />
-
-      {/* ── TELEGRAM BOT ───────────────────────────────────── */}
-      <TelegramBotSection />
-
       {/* ── ABOUT + SERVICES ───────────────────────────────── */}
       <section className="border-t border-[var(--border)]">
         <div className="mx-auto grid max-w-7xl grid-cols-1 lg:grid-cols-2">
@@ -124,6 +118,12 @@ export default function Home() {
 
         </div>
       </section>
+
+      {/* ── PORTFOLIO SLIDER ───────────────────────────────── */}
+      <PortfolioSlider />
+
+      {/* ── TELEGRAM BOT ───────────────────────────────────── */}
+      <TelegramBotSection />
 
       {/* ── CTA ────────────────────────────────────────────── */}
       {false && <section className="border-t border-[var(--border)] bg-[var(--muted)]">
