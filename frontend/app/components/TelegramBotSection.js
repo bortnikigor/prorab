@@ -162,17 +162,8 @@ export default function TelegramBotSection() {
         <PillRow phrases={rows[2]} direction="left"  speed={1.3} />
       </div>
 
-      {/* Title + input */}
+      {/* Input */}
       <div className="mx-auto max-w-2xl px-6">
-        <p className="mb-3 text-xs tracking-[0.5em] uppercase text-[var(--accent)]">
-          {t.telegram.label}
-        </p>
-        <h2 className="mb-3 text-3xl font-semibold tracking-tight sm:text-4xl">
-          {t.telegram.title}
-        </h2>
-        <p className="mb-10 text-sm leading-relaxed text-[var(--text-muted)]">
-          {t.telegram.text}
-        </p>
         <AIInput />
       </div>
     </section>
