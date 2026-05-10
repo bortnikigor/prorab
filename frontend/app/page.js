@@ -75,7 +75,7 @@ export default function Home() {
   }, [currentSection, isAnimating]);
 
   return (
-    <div style={{ position: "fixed", inset: 0, overflow: "hidden", background: "#0F1113" }}>
+    <div style={{ position: "fixed", inset: 0, overflow: "hidden", backgroundImage: "url('/bg.png')", backgroundSize: "cover", backgroundPosition: "center", backgroundRepeat: "no-repeat" }}>
 
       {/* ── NAVBAR ── */}
       <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-5 sm:px-10 sm:py-6">
