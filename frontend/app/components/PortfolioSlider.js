@@ -109,7 +109,7 @@ export default function PortfolioSlider() {
   const handleClose = useCallback(() => setSelected(null), []);
 
   return (
-    <section className="py-20 lg:py-28">
+    <section className="py-20 lg:py-28" style={{ backgroundColor: "#0F1113" }}>
       {/* Header */}
       <div className="mx-auto mb-12 px-6 lg:px-12">
         <p className="text-sm leading-snug text-[var(--foreground)]">

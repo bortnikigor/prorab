@@ -150,7 +150,7 @@ export default function TelegramBotSection() {
   const rows = getRows(t.ticker);
 
   return (
-    <section className="border-y border-[var(--border)] py-20 lg:py-28">
+    <section className="border-y border-[var(--border)] py-20 lg:py-28" style={{ backgroundColor: "#0F1113" }}>
       {/* Three pill rows */}
       <div className="mb-16">
         <PillRow phrases={rows[0]} direction="left"  speed={0.8} />
