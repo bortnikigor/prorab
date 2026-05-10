@@ -57,7 +57,7 @@ export default function Home() {
 
         {/* Slogan */}
         <div className="relative z-10 w-full max-w-5xl px-6 pb-20 sm:px-10 sm:pb-28 text-center">
-          <p className="leading-relaxed tracking-wide text-white" style={{ fontSize: "36px", fontWeight: 600 }}>
+          <p className="leading-relaxed tracking-wide text-white" style={{ fontSize: "26px", fontWeight: 500 }}>
             {t.hero.slogan}
           </p>
         </div>
