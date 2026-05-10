@@ -67,7 +67,7 @@ export const translations = {
     },
     contacts: {
       label: "Контакти",
-      title: "Зв'яжіться з нами",
+      title: "GET IN TOUCH",
       description: "Якщо вам близький наш підхід, будемо раді обговорити ваш проєкт.",
       city: "Набережно-Рибальська 3, Київ",
       instagram: "Instagram",
@@ -151,7 +151,7 @@ export const translations = {
     },
     contacts: {
       label: "Contacts",
-      title: "Get in touch",
+      title: "GET IN TOUCH",
       description: "If our approach resonates with you, we'd be happy to discuss your project.",
       city: "Naberezhno-Rybalska Street 3, Kyiv",
       instagram: "Instagram",
