@@ -124,7 +124,7 @@ export default function Home() {
         {/* ── HERO ── */}
         <section style={{ position: "relative", width: "100%", height: "100vh", overflow: "hidden" }}>
           {/* Background video */}
-          <video autoPlay muted loop playsInline
+          <video autoPlay muted playsInline
             poster={`https://res.cloudinary.com/${CLOUD_NAME}/video/upload/so_0/${HERO_VIDEO_ID}.jpg`}
             style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }}
           >
