@@ -163,16 +163,16 @@ export default function Home() {
 
           {/* CENTER — Slogan */}
           <div style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center", zIndex: 10 }}>
-            <div style={{ textAlign: "center", padding: "0 24px" }}>
-              <p style={{ fontFamily: "Montserrat, sans-serif", fontSize: "11px", letterSpacing: "0.5em", color: "#CFC7BD", textTransform: "uppercase", marginBottom: "20px" }}>
+            <div style={{ padding: "0 24px" }}>
+              <p style={{ fontFamily: "Montserrat, sans-serif", fontSize: "11px", letterSpacing: "0.5em", color: "#CFC7BD", textTransform: "uppercase", marginBottom: "20px", marginLeft: "4px" }}>
                 I AM
               </p>
-              <div style={{ padding: "24px 48px", marginBottom: "20px" }}>
+              <div style={{ marginBottom: "20px" }}>
                 <h1 style={{ fontFamily: "Montserrat, sans-serif", fontSize: "clamp(40px, 8vw, 100px)", fontWeight: 800, color: "#F5F3EF", letterSpacing: "0.05em", textTransform: "uppercase", margin: 0, lineHeight: 1 }}>
                   PRORAB
                 </h1>
               </div>
-              <p style={{ fontFamily: "Montserrat, sans-serif", fontSize: "11px", letterSpacing: "0.35em", color: "#CFC7BD", textTransform: "uppercase" }}>
+              <p style={{ fontFamily: "Montserrat, sans-serif", fontSize: "11px", letterSpacing: "0.35em", color: "#CFC7BD", textTransform: "uppercase", marginLeft: "4px" }}>
                 {t.hero.slogan}
               </p>
             </div>
