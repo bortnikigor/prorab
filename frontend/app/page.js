@@ -350,6 +350,7 @@ export default function Home() {
           </div>
 
           {/* Footer */}
+          {false && (
           <div style={{ borderTop: "1px solid rgba(207,199,189,0.1)", padding: "20px 60px", display: "flex", alignItems: "center", justifyContent: "center", position: "relative", flexShrink: 0 }}>
             <p style={{ position: "absolute", left: "60px", fontFamily: "Montserrat, sans-serif", fontSize: "11px", color: "rgba(207,199,189,0.4)", margin: 0 }}>
               © {new Date().getFullYear()} PRORAB
@@ -358,6 +359,7 @@ export default function Home() {
               {t.footer.rights}
             </p>
           </div>
+          )}
 
         </section>
 
