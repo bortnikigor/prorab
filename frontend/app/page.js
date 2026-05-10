@@ -312,25 +312,25 @@ export default function Home() {
                 { placeholder: t.contacts.emailPlaceholder, type: "email" },
                 { placeholder: t.contacts.messagePlaceholder, type: "text" },
               ].map((field) => (
-                <div key={field.placeholder} style={{ borderBottom: "1px solid rgba(207,199,189,0.2)", marginBottom: "24px" }}>
+                <div key={field.placeholder} style={{ borderBottom: "1px solid rgba(207,199,189,0.2)", marginBottom: "12px" }}>
                   <input
                     type={field.type}
                     placeholder={field.placeholder}
                     style={{
                       width: "100%", background: "transparent", border: "none", outline: "none",
-                      fontFamily: "Montserrat, sans-serif", fontSize: "13px", color: "#CFC7BD",
-                      padding: "12px 0", letterSpacing: "0.05em",
+                      fontFamily: "Montserrat, sans-serif", fontSize: "11px", color: "#CFC7BD",
+                      padding: "8px 0", letterSpacing: "0.05em",
                     }}
                   />
                 </div>
               ))}
 
-              <div style={{ display: "flex", justifyContent: "center", marginTop: "8px" }}>
+              <div style={{ display: "flex", justifyContent: "center", marginTop: "12px" }}>
                 <button
                   style={{
                     background: "rgba(207,199,189,0.1)", border: "1px solid rgba(207,199,189,0.3)",
                     color: "#CFC7BD", fontFamily: "Montserrat, sans-serif", fontSize: "11px",
-                    letterSpacing: "0.25em", textTransform: "uppercase", padding: "14px 32px",
+                    letterSpacing: "0.25em", textTransform: "uppercase", padding: "10px 24px",
                     cursor: "pointer", display: "flex", alignItems: "center", gap: "12px",
                     transition: "all 0.3s",
                   }}
