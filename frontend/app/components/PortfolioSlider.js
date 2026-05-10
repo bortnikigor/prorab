@@ -23,7 +23,7 @@ function slotStyle(d) {
   return              { x: sign * 90,   scale: 0.55, opacity: 0.0, z: 0,  click: false };
 }
 
-const thumbUrl = (id) => `https://picsum.photos/seed/prorab${id}/800/1000`;
+const thumbUrl = () => "https://res.cloudinary.com/dpcqf9y8l/image/upload/v1778308458/medium_1_7a0af14597.jpg";
 const photoUrls = (id) =>
   [1, 2, 3, 4, 5].map((i) => `https://picsum.photos/seed/prorab${id}p${i}/1200/800`);
 
