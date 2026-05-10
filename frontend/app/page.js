@@ -198,7 +198,7 @@ export default function Home() {
 
           {/* CENTER — Slogan */}
           <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", zIndex: 10 }}>
-            <p style={{ fontFamily: "Montserrat, sans-serif", fontSize: "11px", letterSpacing: "0.3em", color: "#CFC7BD", textTransform: "uppercase", margin: "0 0 16px 0", fontWeight: 400, paddingLeft: "14px" }}>
+            <p style={{ fontFamily: "Montserrat, sans-serif", fontSize: "11px", letterSpacing: "0.3em", color: "#CFC7BD", textTransform: "uppercase", margin: "0 0 16px 0", fontWeight: 400, paddingLeft: "7px" }}>
               I AM
             </p>
             <h1 style={{ fontFamily: "Montserrat, sans-serif", fontSize: "clamp(40px, 8vw, 100px)", fontWeight: 800, color: "#CFC7BD", letterSpacing: "0.05em", textTransform: "uppercase", margin: 0, lineHeight: 1, whiteSpace: "nowrap" }}>
