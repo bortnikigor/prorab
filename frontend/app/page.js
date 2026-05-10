@@ -28,23 +28,60 @@ export default function Home() {
   }
 
   useEffect(() => {
+    let touchStartY = 0;
+    let touchStartTime = 0;
+
     function onWheel(e) {
       const now = Date.now();
       if (now - lastScrollTime.current < 800) return;
       lastScrollTime.current = now;
 
-      // На секції portfolio — делегуємо скрол слайдеру
       if (currentSection === 2 && portfolioRef.current) {
         const advanced = portfolioRef.current.handleScroll(e.deltaY > 0 ? 1 : -1);
-        if (advanced) return; // слайдер ще перемикає — не йдемо далі
+        if (advanced) return;
       }
 
       if (e.deltaY > 0) goTo(currentSection + 1);
       else goTo(currentSection - 1);
     }
 
+    function onTouchStart(e) {
+      touchStartY = e.touches[0].clientY;
+      touchStartTime = Date.now();
+    }
+
+    function onTouchEnd(e) {
+      const deltaY = touchStartY - e.changedTouches[0].clientY;
+      const deltaTime = Date.now() - touchStartTime;
+      const velocity = Math.abs(deltaY) / deltaTime;
+
+      // мінімум 50px свайп або швидкий флік
+      if (Math.abs(deltaY) < 50 && velocity < 0.3) return;
+
+      const now = Date.now();
+      if (now - lastScrollTime.current < 800) return;
+      lastScrollTime.current = now;
+
+      const dir = deltaY > 0 ? 1 : -1;
+
+      if (currentSection === 2 && portfolioRef.current) {
+        const advanced = portfolioRef.current.handleScroll(dir);
+        if (advanced) return;
+      }
+
+      if (dir > 0) goTo(currentSection + 1);
+      else goTo(currentSection - 1);
+    }
+
     window.addEventListener("wheel", onWheel, { passive: true });
-    return () => window.removeEventListener("wheel", onWheel);
+    window.addEventListener("touchstart", onTouchStart, { passive: true });
+    window.addEventListener("touchend", onTouchEnd, { passive: true });
+
+    return () => {
+      window.removeEventListener("wheel", onWheel);
+      window.removeEventListener("touchstart", onTouchStart);
+      window.removeEventListener("touchend", onTouchEnd);
+    };
   }, [currentSection, isAnimating]);
 
   return (
