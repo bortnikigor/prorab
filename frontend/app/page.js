@@ -5,6 +5,7 @@ import { useLanguage } from "./context/LanguageContext";
 import LanguageSwitcher from "./components/LanguageSwitcher";
 import PortfolioSlider from "./components/PortfolioSlider";
 import TelegramBotSection from "./components/TelegramBotSection";
+import TestSection from "./components/TestSection";
 
 const SERVICE_ICONS = ["◻", "◼", "▣"];
 const CLOUD_NAME = "dpcqf9y8l";
@@ -62,6 +63,9 @@ export default function Home() {
           </p>
         </div>
       </section>
+
+      {/* ── TEST SECTION ───────────────────────────────────── */}
+      <TestSection />
 
       {/* ── ABOUT + SERVICES ───────────────────────────────── */}
       <section className="border-t border-[var(--border)]">
