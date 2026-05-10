@@ -10,7 +10,7 @@ import TelegramBotSection from "./components/TelegramBotSection";
 const SERVICE_ICONS = ["◻", "◼", "▣"];
 const CLOUD_NAME = "dpcqf9y8l";
 const HERO_VIDEO_ID = "video2_utuupz";
-const SECTIONS = ["hero", "about", "telegram"];
+const SECTIONS = ["hero", "about", "contact"];
 
 export default function Home() {
   const { t } = useLanguage();
@@ -264,30 +264,101 @@ export default function Home() {
         </section>
         )}
 
-        {/* ── TELEGRAM + FOOTER ── */}
-        <section style={{ width: "100%", height: "100vh", display: "flex", flexDirection: "column" }}>
-          <div style={{ flex: 1, overflowY: "auto" }}>
-            <TelegramBotSection />
-          </div>
-          <footer style={{ background: "#0F1113", borderTop: "1px solid rgba(207,199,189,0.12)", flexShrink: 0 }}>
-            <div style={{ maxWidth: "1280px", margin: "0 auto", display: "flex", alignItems: "center", justifyContent: "center", padding: "20px 48px", position: "relative" }}>
-              <p style={{ position: "absolute", left: "48px", fontSize: "11px", color: "rgba(245,243,239,0.45)", fontFamily: "Montserrat, sans-serif", margin: 0 }}>
-                © {new Date().getFullYear()} PRORAB
-              </p>
-              <div style={{ display: "flex", gap: "12px" }}>
-                {[
-                  { href: "https://www.instagram.com/prorabkiev", icon: <svg width="14" height="14" viewBox="0 0 24 24" fill="#CFC7BD"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg> },
-                  { href: "#", icon: <svg width="14" height="14" viewBox="0 0 24 24" fill="#CFC7BD"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.74a4.85 4.85 0 0 1-1.01-.05z"/></svg> },
-                  { href: "https://t.me/prorab_websitebot", icon: <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#CFC7BD" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M22 2L11 13"/><path d="M22 2L15 22l-4-9-9-4 20-7z"/></svg> },
-                ].map((s, i) => (
-                  <a key={i} href={s.href} target="_blank" rel="noopener noreferrer"
-                    style={{ width: "32px", height: "32px", borderRadius: "50%", background: "#222", border: "1px solid rgba(207,199,189,0.15)", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                    {s.icon}
-                  </a>
-                ))}
+        {/* ── CONTACT ── */}
+        <section style={{ width: "100%", height: "100vh", display: "flex", flexDirection: "column", background: "#0F1113" }}>
+
+          {/* Content */}
+          <div style={{ flex: 1, display: "grid", gridTemplateColumns: "1fr 1fr", maxWidth: "1280px", margin: "0 auto", width: "100%", padding: "0 60px", alignItems: "center", gap: "80px" }}>
+
+            {/* LEFT — Contact info */}
+            <div style={{ display: "flex", flexDirection: "column", gap: "48px", textAlign: "center" }}>
+              <div>
+                <h2 style={{ fontFamily: "Montserrat, sans-serif", fontSize: "clamp(28px, 4vw, 48px)", fontWeight: 800, color: "#CFC7BD", textTransform: "uppercase", letterSpacing: "0.05em", margin: "0 0 20px" }}>
+                  {t.contacts.title}
+                </h2>
+                <p style={{ fontFamily: "Montserrat, sans-serif", fontSize: "13px", color: "rgba(207,199,189,0.6)", lineHeight: 1.7, maxWidth: "380px", margin: "0 auto" }}>
+                  {t.about.text}
+                </p>
+              </div>
+
+              <div>
+                <h3 style={{ fontFamily: "Montserrat, sans-serif", fontSize: "18px", fontWeight: 700, color: "#CFC7BD", margin: "0 0 12px" }}>
+                  {t.contacts.city}
+                </h3>
+                <p style={{ fontFamily: "Montserrat, sans-serif", fontSize: "13px", color: "rgba(207,199,189,0.6)", margin: 0 }}>
+                  Київ, Україна
+                </p>
+              </div>
+
+              <div>
+                <h3 style={{ fontFamily: "Montserrat, sans-serif", fontSize: "18px", fontWeight: 700, color: "#CFC7BD", margin: "0 0 12px" }}>
+                  E-mail
+                </h3>
+                <a href="mailto:info@prorab.ooo" style={{ fontFamily: "Montserrat, sans-serif", fontSize: "13px", color: "rgba(207,199,189,0.6)", textDecoration: "none" }}>
+                  info@prorab.ooo
+                </a>
               </div>
             </div>
-          </footer>
+
+            {/* RIGHT — Contact form */}
+            <div style={{ display: "flex", flexDirection: "column", gap: "0" }}>
+              <h2 style={{ fontFamily: "Montserrat, sans-serif", fontSize: "clamp(28px, 4vw, 48px)", fontWeight: 800, color: "#CFC7BD", textTransform: "uppercase", letterSpacing: "0.05em", margin: "0 0 40px", textAlign: "center" }}>
+                CONTACT FORM
+              </h2>
+
+              {/* Fields */}
+              {[
+                { placeholder: "Your name", type: "text" },
+                { placeholder: "Your phone", type: "tel" },
+                { placeholder: "Your e-mail", type: "email" },
+                { placeholder: "Message", type: "text" },
+              ].map((field) => (
+                <div key={field.placeholder} style={{ borderBottom: "1px solid rgba(207,199,189,0.2)", marginBottom: "24px" }}>
+                  <input
+                    type={field.type}
+                    placeholder={field.placeholder}
+                    style={{
+                      width: "100%", background: "transparent", border: "none", outline: "none",
+                      fontFamily: "Montserrat, sans-serif", fontSize: "13px", color: "#CFC7BD",
+                      padding: "12px 0", letterSpacing: "0.05em",
+                    }}
+                  />
+                </div>
+              ))}
+
+              {/* Button */}
+              <div style={{ display: "flex", justifyContent: "flex-end", marginTop: "8px" }}>
+                <button
+                  style={{
+                    background: "rgba(207,199,189,0.1)", border: "1px solid rgba(207,199,189,0.3)",
+                    color: "#CFC7BD", fontFamily: "Montserrat, sans-serif", fontSize: "11px",
+                    letterSpacing: "0.25em", textTransform: "uppercase", padding: "14px 32px",
+                    cursor: "pointer", display: "flex", alignItems: "center", gap: "12px",
+                    transition: "all 0.3s",
+                  }}
+                  onMouseEnter={(e) => { e.currentTarget.style.background = "#CFC7BD"; e.currentTarget.style.color = "#0F1113"; }}
+                  onMouseLeave={(e) => { e.currentTarget.style.background = "rgba(207,199,189,0.1)"; e.currentTarget.style.color = "#CFC7BD"; }}
+                >
+                  SEND MESSAGE
+                  <svg width="16" height="10" viewBox="0 0 16 10" fill="none">
+                    <path d="M1 5H15M15 5L11 1M15 5L11 9" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                </button>
+              </div>
+            </div>
+
+          </div>
+
+          {/* Footer */}
+          <div style={{ borderTop: "1px solid rgba(207,199,189,0.1)", padding: "20px 60px", display: "flex", alignItems: "center", justifyContent: "center", position: "relative", flexShrink: 0 }}>
+            <p style={{ position: "absolute", left: "60px", fontFamily: "Montserrat, sans-serif", fontSize: "11px", color: "rgba(207,199,189,0.4)", margin: 0 }}>
+              © {new Date().getFullYear()} PRORAB
+            </p>
+            <p style={{ fontFamily: "Montserrat, sans-serif", fontSize: "11px", color: "rgba(207,199,189,0.4)", margin: 0 }}>
+              {t.footer.rights}
+            </p>
+          </div>
+
         </section>
 
       </div>
