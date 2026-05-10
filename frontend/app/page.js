@@ -163,11 +163,15 @@ export default function Home() {
 
           {/* CENTER — Slogan */}
           <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", zIndex: 10 }}>
-            <h1 style={{ fontFamily: "Montserrat, sans-serif", fontSize: "clamp(60px, 10vw, 130px)", fontWeight: 800, color: "#F5F3EF", letterSpacing: "0.02em", textTransform: "uppercase", margin: 0, lineHeight: 1, whiteSpace: "nowrap" }}>
+            <p style={{ fontFamily: "Montserrat, sans-serif", fontSize: "11px", letterSpacing: "0.5em", color: "#CFC7BD", textTransform: "uppercase", margin: "0 0 16px 0" }}>
+              I AM
+            </p>
+            <h1 style={{ fontFamily: "Montserrat, sans-serif", fontSize: "clamp(40px, 8vw, 100px)", fontWeight: 800, color: "#F5F3EF", letterSpacing: "0.05em", textTransform: "uppercase", margin: 0, lineHeight: 1, whiteSpace: "nowrap" }}>
               PRORAB
             </h1>
-            <p style={{ fontFamily: "Montserrat, sans-serif", fontSize: "clamp(11px, 1.2vw, 16px)", fontWeight: 700, color: "#F5F3EF", textTransform: "uppercase", letterSpacing: "0.15em", margin: "12px 0 0", textAlign: "right", lineHeight: 1.4 }}>
-              {t.hero.slogan}
+            <p style={{ fontFamily: "Montserrat, sans-serif", fontSize: "clamp(9px, 1vw, 13px)", fontWeight: 700, color: "#CFC7BD", textTransform: "uppercase", letterSpacing: "0.2em", margin: "12px 0 0", textAlign: "right", lineHeight: 1.5 }}>
+              {t.hero.slogan.split(" ").slice(0, Math.ceil(t.hero.slogan.split(" ").length / 2)).join(" ")}<br/>
+              {t.hero.slogan.split(" ").slice(Math.ceil(t.hero.slogan.split(" ").length / 2)).join(" ")}
             </p>
           </div>
 
