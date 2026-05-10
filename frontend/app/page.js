@@ -135,7 +135,7 @@ export default function Home() {
 
           {/* TOP LEFT — Logo */}
           <div style={{ position: "absolute", top: "28px", left: "32px", zIndex: 20 }}>
-            <div style={{ border: "1px solid rgba(207,199,189,0.5)", padding: "10px 20px" }}>
+            <div style={{ padding: "10px 20px" }}>
               <span style={{ fontFamily: "Montserrat, sans-serif", fontSize: "14px", letterSpacing: "0.3em", color: "#F5F3EF", fontWeight: 700 }}>
                 PRORAB
               </span>
@@ -144,7 +144,7 @@ export default function Home() {
 
           {/* TOP RIGHT — Nav buttons */}
           <div style={{ position: "absolute", top: "28px", right: "32px", zIndex: 20 }}>
-            <div style={{ border: "1px solid rgba(207,199,189,0.5)", display: "flex" }}>
+            <div style={{ display: "flex" }}>
               <button
                 onClick={() => goTo(1)}
                 style={{ background: "none", border: "none", borderRight: "1px solid rgba(207,199,189,0.5)", padding: "10px 24px", fontFamily: "Montserrat, sans-serif", fontSize: "11px", letterSpacing: "0.25em", color: "#F5F3EF", cursor: "pointer", textTransform: "uppercase", transition: "all 0.3s" }}
@@ -170,7 +170,7 @@ export default function Home() {
               <p style={{ fontFamily: "Montserrat, sans-serif", fontSize: "11px", letterSpacing: "0.5em", color: "#CFC7BD", textTransform: "uppercase", marginBottom: "20px" }}>
                 I AM
               </p>
-              <div style={{ border: "1px solid rgba(207,199,189,0.35)", padding: "24px 48px", marginBottom: "20px" }}>
+              <div style={{ padding: "24px 48px", marginBottom: "20px" }}>
                 <h1 style={{ fontFamily: "Montserrat, sans-serif", fontSize: "clamp(40px, 8vw, 100px)", fontWeight: 800, color: "#F5F3EF", letterSpacing: "0.05em", textTransform: "uppercase", margin: 0, lineHeight: 1 }}>
                   PRORAB
                 </h1>
@@ -183,7 +183,7 @@ export default function Home() {
 
           {/* BOTTOM LEFT — Social icons */}
           <div style={{ position: "absolute", bottom: "32px", left: "36px", zIndex: 20, display: "flex", flexDirection: "column", alignItems: "center", gap: "16px" }}>
-            <div style={{ border: "1px solid rgba(207,199,189,0.3)", padding: "16px 10px", display: "flex", flexDirection: "column", gap: "16px", alignItems: "center" }}>
+            <div style={{ padding: "16px 10px", display: "flex", flexDirection: "column", gap: "16px", alignItems: "center" }}>
               {/* Instagram */}
               <a href="https://www.instagram.com/prorabkiev" target="_blank" rel="noopener noreferrer" style={{ color: "#CFC7BD", opacity: 0.7, transition: "opacity 0.3s" }}
                 onMouseEnter={(e) => e.currentTarget.style.opacity = "1"}
@@ -213,7 +213,7 @@ export default function Home() {
 
           {/* BOTTOM RIGHT — SCROLL text + line */}
           <div style={{ position: "absolute", bottom: "32px", right: "36px", zIndex: 20 }}>
-            <div style={{ border: "1px solid rgba(207,199,189,0.3)", padding: "16px 10px", display: "flex", flexDirection: "column", alignItems: "center", gap: "12px" }}>
+            <div style={{ padding: "16px 10px", display: "flex", flexDirection: "column", alignItems: "center", gap: "12px" }}>
               <span style={{ fontFamily: "Montserrat, sans-serif", fontSize: "9px", letterSpacing: "0.3em", color: "#CFC7BD", textTransform: "uppercase", writingMode: "vertical-rl", textOrientation: "mixed", opacity: 0.7 }}>
                 SCROLL
               </span>
