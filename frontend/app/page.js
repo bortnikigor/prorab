@@ -10,7 +10,7 @@ import TelegramBotSection from "./components/TelegramBotSection";
 const SERVICE_ICONS = ["◻", "◼", "▣"];
 const CLOUD_NAME = "dpcqf9y8l";
 const HERO_VIDEO_ID = "video1_qnwxdv";
-const SECTIONS = ["hero", "about", "portfolio", "telegram"];
+const SECTIONS = ["hero", "about", "telegram"];
 
 export default function Home() {
   const { t } = useLanguage();
@@ -36,11 +36,6 @@ export default function Home() {
       if (now - lastScrollTime.current < 800) return;
       lastScrollTime.current = now;
 
-      if (currentSection === 2 && portfolioRef.current) {
-        const advanced = portfolioRef.current.handleScroll(e.deltaY > 0 ? 1 : -1);
-        if (advanced) return;
-      }
-
       if (e.deltaY > 0) goTo(currentSection + 1);
       else goTo(currentSection - 1);
     }
@@ -63,11 +58,6 @@ export default function Home() {
       lastScrollTime.current = now;
 
       const dir = deltaY > 0 ? 1 : -1;
-
-      if (currentSection === 2 && portfolioRef.current) {
-        const advanced = portfolioRef.current.handleScroll(dir);
-        if (advanced) return;
-      }
 
       if (dir > 0) goTo(currentSection + 1);
       else goTo(currentSection - 1);
@@ -196,9 +186,11 @@ export default function Home() {
         </section>
 
         {/* ── PORTFOLIO ── */}
+        {false && (
         <section style={{ width: "100%", height: "100vh", position: "relative" }}>
           <PortfolioSlider ref={portfolioRef} onExitBottom={() => goTo(3)} onExitTop={() => goTo(1)} />
         </section>
+        )}
 
         {/* ── TELEGRAM + FOOTER ── */}
         <section style={{ width: "100%", height: "100vh", display: "flex", flexDirection: "column" }}>
