@@ -81,8 +81,8 @@ export default function Home() {
       <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-5 sm:px-10 sm:py-6">
         <div className="flex items-center gap-3">
           <Image src="/logo.png" alt="PRORAB" width={36} height={36} priority style={{ filter: "invert(1) brightness(2)" }} />
-          <span style={{ fontFamily: "Montserrat, sans-serif", fontSize: "13px", letterSpacing: "0.3em", color: "#F5F3EF", fontWeight: 700 }}>
-            PRORAB
+          <span style={{ fontFamily: "Montserrat, sans-serif", fontSize: "13px", letterSpacing: "0.3em", color: "#F5F3EF" }}>
+            <span style={{ fontWeight: 500 }}>PRO</span><span style={{ fontWeight: 400 }}>RAB</span>
           </span>
         </div>
         <div className="flex justify-end">
