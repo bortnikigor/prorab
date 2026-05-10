@@ -68,7 +68,7 @@ export default function Home() {
       <TestSection />
 
       {/* ── ABOUT + SERVICES ───────────────────────────────── */}
-      <section className="border-t border-[var(--border)]">
+      {false && <section className="border-t border-[var(--border)]">
         <div className="mx-auto grid max-w-7xl grid-cols-1 lg:grid-cols-2">
 
           {/* About – left column */}
@@ -121,7 +121,7 @@ export default function Home() {
           </div>
 
         </div>
-      </section>
+      </section>}
 
       {/* ── PORTFOLIO SLIDER ───────────────────────────────── */}
       <PortfolioSlider />
