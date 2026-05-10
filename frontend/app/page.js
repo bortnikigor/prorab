@@ -133,16 +133,7 @@ export default function Home() {
           <div style={{ position: "absolute", inset: 0, background: "rgba(0,0,0,0.55)" }} />
           <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, #0F1113 0%, transparent 50%)" }} />
 
-          {/* TOP LEFT — Logo */}
-          <div style={{ position: "absolute", top: "28px", left: "32px", zIndex: 20 }}>
-            <div style={{ padding: "10px 20px" }}>
-              <span style={{ fontFamily: "Montserrat, sans-serif", fontSize: "14px", letterSpacing: "0.3em", color: "#F5F3EF", fontWeight: 700 }}>
-                PRORAB
-              </span>
-            </div>
-          </div>
-
-          {/* TOP RIGHT — Nav buttons */}
+{/* TOP RIGHT — Nav buttons */}
           <div style={{ position: "absolute", top: "28px", right: "32px", zIndex: 20 }}>
             <div style={{ display: "flex" }}>
               <button
