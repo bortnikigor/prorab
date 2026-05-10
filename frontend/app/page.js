@@ -283,7 +283,7 @@ export default function Home() {
 
               <div>
                 <h3 style={{ fontFamily: "Montserrat, sans-serif", fontSize: "18px", fontWeight: 700, color: "#CFC7BD", margin: "0 0 12px" }}>
-                  Address
+                  {t.contacts.address}
                 </h3>
                 <p style={{ fontFamily: "Montserrat, sans-serif", fontSize: "13px", color: "rgba(207,199,189,0.6)", margin: 0 }}>
                   {t.contacts.city}
