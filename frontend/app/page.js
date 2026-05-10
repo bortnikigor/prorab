@@ -273,7 +273,7 @@ export default function Home() {
             {/* LEFT — Contact info */}
             <div style={{ display: "flex", flexDirection: "column", gap: "48px", textAlign: "center" }}>
               <div>
-                <h2 style={{ fontFamily: "Montserrat, sans-serif", fontSize: "clamp(28px, 4vw, 48px)", fontWeight: 800, color: "#CFC7BD", textTransform: "uppercase", letterSpacing: "0.05em", margin: "0 0 20px" }}>
+                <h2 style={{ fontFamily: "Montserrat, sans-serif", fontSize: "clamp(24px, 3vw, 36px)", fontWeight: 600, color: "#CFC7BD", margin: "0 0 20px", letterSpacing: "-0.02em" }}>
                   {t.contacts.title}
                 </h2>
                 <p style={{ fontFamily: "Montserrat, sans-serif", fontSize: "13px", color: "rgba(207,199,189,0.6)", lineHeight: 1.7, maxWidth: "380px", margin: "0 auto" }}>
@@ -302,7 +302,7 @@ export default function Home() {
 
             {/* RIGHT — Contact form */}
             <div style={{ display: "flex", flexDirection: "column", gap: "0" }}>
-              <h2 style={{ fontFamily: "Montserrat, sans-serif", fontSize: "clamp(28px, 4vw, 48px)", fontWeight: 800, color: "#CFC7BD", textTransform: "uppercase", letterSpacing: "0.05em", margin: "0 0 40px", textAlign: "center" }}>
+              <h2 style={{ fontFamily: "Montserrat, sans-serif", fontSize: "clamp(24px, 3vw, 36px)", fontWeight: 600, color: "#CFC7BD", margin: "0 0 40px", textAlign: "center", letterSpacing: "-0.02em" }}>
                 {t.contacts.formTitle}
               </h2>
 
