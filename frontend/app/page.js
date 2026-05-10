@@ -215,9 +215,9 @@ export default function Home() {
 
         {/* ── ABOUT + SERVICES ── */}
         <section style={{ width: "100%", height: "100vh", borderTop: "1px solid rgba(207,199,189,0.12)", overflowY: "auto", backgroundImage: "url('/bg.png')", backgroundSize: "cover", backgroundPosition: "center", backgroundRepeat: "no-repeat" }}>
-          <div style={{ maxWidth: "1280px", margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1fr", height: "100%" }}>
+          <div className="about-grid" style={{ maxWidth: "1280px", margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1fr", height: "100%", width: "100%" }}>
             {/* About */}
-            <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", gap: "32px", borderRight: "1px solid rgba(207,199,189,0.12)", padding: "80px 48px" }}>
+            <div className="about-left" style={{ display: "flex", flexDirection: "column", justifyContent: "center", gap: "32px", borderRight: "1px solid rgba(207,199,189,0.12)", padding: "80px 48px" }}>
               <p style={{ color: "#CFC7BD", fontSize: "11px", letterSpacing: "0.5em", textTransform: "uppercase", fontFamily: "Montserrat, sans-serif" }}>
                 {t.about.label}
               </p>
@@ -237,7 +237,7 @@ export default function Home() {
               </div>
             </div>
             {/* Services */}
-            <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", padding: "80px 48px" }}>
+            <div className="about-right" style={{ display: "flex", flexDirection: "column", justifyContent: "center", padding: "80px 48px" }}>
               <p style={{ color: "#CFC7BD", fontSize: "11px", letterSpacing: "0.5em", textTransform: "uppercase", fontFamily: "Montserrat, sans-serif", marginBottom: "32px" }}>
                 {t.services.label}
               </p>
@@ -264,10 +264,10 @@ export default function Home() {
         )}
 
         {/* ── CONTACT ── */}
-        <section style={{ width: "100%", height: "100vh", display: "flex", flexDirection: "column", background: "#0F1113", backgroundImage: "url('/bg.png')", backgroundSize: "cover", backgroundPosition: "center", backgroundRepeat: "no-repeat" }}>
+        <section className="contact-section" style={{ width: "100%", height: "100vh", display: "flex", flexDirection: "column", background: "#0F1113", backgroundImage: "url('/bg.png')", backgroundSize: "cover", backgroundPosition: "center", backgroundRepeat: "no-repeat" }}>
 
           {/* Content */}
-          <div style={{ flex: 1, display: "grid", gridTemplateColumns: "1fr 1fr", maxWidth: "1280px", margin: "0 auto", width: "100%", padding: "0 60px", alignItems: "center", gap: "80px" }}>
+          <div className="contact-grid" style={{ flex: 1, display: "grid", gridTemplateColumns: "1fr 1fr", maxWidth: "1280px", margin: "0 auto", width: "100%", padding: "0 60px", alignItems: "center", gap: "80px" }}>
 
             {/* LEFT — Contact info */}
             <div style={{ display: "flex", flexDirection: "column", gap: "32px", textAlign: "center", justifyContent: "center", alignItems: "center" }}>
@@ -366,6 +366,13 @@ export default function Home() {
         @keyframes scrollHint {
           0%, 100% { opacity: 0.3; transform: scaleY(0.5); transform-origin: top; }
           50% { opacity: 1; transform: scaleY(1); transform-origin: top; }
+        }
+        @media (max-width: 768px) {
+          .about-grid { grid-template-columns: 1fr !important; overflow-y: auto; height: auto !important; }
+          .about-left { border-right: none !important; border-bottom: 1px solid rgba(207,199,189,0.12); padding: 40px 24px !important; }
+          .about-right { padding: 40px 24px !important; }
+          .contact-grid { grid-template-columns: 1fr !important; padding: 0 24px !important; gap: 32px !important; }
+          .contact-section { height: auto !important; min-height: 100vh; overflow-y: auto; }
         }
       `}</style>
     </div>
