@@ -301,7 +301,7 @@ export default function Home() {
             </div>
 
             {/* RIGHT — Contact form */}
-            <div style={{ display: "flex", flexDirection: "column", gap: "0", background: "rgba(255,255,255,0.04)", border: "1px solid rgba(207,199,189,0.12)", padding: "40px", borderRadius: "2px" }}>
+            <div style={{ display: "flex", flexDirection: "column", gap: "0", background: "rgba(255,255,255,0.04)", border: "1px solid rgba(207,199,189,0.12)", padding: "40px", borderRadius: "2px", alignSelf: "stretch", justifyContent: "space-between" }}>
               <h2 style={{ fontFamily: "Montserrat, sans-serif", fontSize: "clamp(24px, 3vw, 36px)", fontWeight: 600, color: "#CFC7BD", margin: "0 0 20px", letterSpacing: "0.05em", textTransform: "uppercase" }}>
                 {t.contacts.formTitle}
               </h2>
