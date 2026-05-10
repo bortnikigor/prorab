@@ -9,7 +9,7 @@ import TelegramBotSection from "./components/TelegramBotSection";
 
 const SERVICE_ICONS = ["◻", "◼", "▣"];
 const CLOUD_NAME = "dpcqf9y8l";
-const HERO_VIDEO_ID = "video1_qnwxdv";
+const HERO_VIDEO_ID = "video2_utuupz";
 const SECTIONS = ["hero", "about", "telegram"];
 
 export default function Home() {
