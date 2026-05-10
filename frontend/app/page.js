@@ -303,15 +303,14 @@ export default function Home() {
             {/* RIGHT — Contact form */}
             <div style={{ display: "flex", flexDirection: "column", gap: "0" }}>
               <h2 style={{ fontFamily: "Montserrat, sans-serif", fontSize: "clamp(28px, 4vw, 48px)", fontWeight: 800, color: "#CFC7BD", textTransform: "uppercase", letterSpacing: "0.05em", margin: "0 0 40px", textAlign: "center" }}>
-                CONTACT FORM
+                {t.contacts.formTitle}
               </h2>
 
-              {/* Fields */}
               {[
-                { placeholder: "Your name", type: "text" },
-                { placeholder: "Your phone", type: "tel" },
-                { placeholder: "Your e-mail", type: "email" },
-                { placeholder: "Message", type: "text" },
+                { placeholder: t.contacts.namePlaceholder, type: "text" },
+                { placeholder: t.contacts.phonePlaceholder, type: "tel" },
+                { placeholder: t.contacts.emailPlaceholder, type: "email" },
+                { placeholder: t.contacts.messagePlaceholder, type: "text" },
               ].map((field) => (
                 <div key={field.placeholder} style={{ borderBottom: "1px solid rgba(207,199,189,0.2)", marginBottom: "24px" }}>
                   <input
@@ -326,7 +325,6 @@ export default function Home() {
                 </div>
               ))}
 
-              {/* Button */}
               <div style={{ display: "flex", justifyContent: "flex-end", marginTop: "8px" }}>
                 <button
                   style={{
@@ -339,7 +337,7 @@ export default function Home() {
                   onMouseEnter={(e) => { e.currentTarget.style.background = "#CFC7BD"; e.currentTarget.style.color = "#0F1113"; }}
                   onMouseLeave={(e) => { e.currentTarget.style.background = "rgba(207,199,189,0.1)"; e.currentTarget.style.color = "#CFC7BD"; }}
                 >
-                  SEND MESSAGE
+                  {t.contacts.sendButton}
                   <svg width="16" height="10" viewBox="0 0 16 10" fill="none">
                     <path d="M1 5H15M15 5L11 1M15 5L11 9" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                   </svg>
