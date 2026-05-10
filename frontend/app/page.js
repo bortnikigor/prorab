@@ -162,18 +162,13 @@ export default function Home() {
           )}
 
           {/* CENTER — Slogan */}
-          <div style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center", zIndex: 10 }}>
-            <div style={{ position: "relative", display: "inline-block" }}>
-              <p style={{ fontFamily: "Montserrat, sans-serif", fontSize: "11px", letterSpacing: "0.5em", color: "#CFC7BD", textTransform: "uppercase", margin: "0 0 16px 0" }}>
-                I AM
-              </p>
-              <h1 style={{ fontFamily: "Montserrat, sans-serif", fontSize: "clamp(40px, 8vw, 100px)", fontWeight: 800, color: "#F5F3EF", letterSpacing: "0.05em", textTransform: "uppercase", margin: "0 0 16px", lineHeight: 1, whiteSpace: "nowrap" }}>
-                PRORAB
-              </h1>
-              <p style={{ fontFamily: "Montserrat, sans-serif", fontSize: "11px", letterSpacing: "0.35em", color: "#CFC7BD", textTransform: "uppercase", margin: 0 }}>
-                {t.hero.slogan}
-              </p>
-            </div>
+          <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", zIndex: 10 }}>
+            <h1 style={{ fontFamily: "Montserrat, sans-serif", fontSize: "clamp(60px, 10vw, 130px)", fontWeight: 800, color: "#F5F3EF", letterSpacing: "0.02em", textTransform: "uppercase", margin: 0, lineHeight: 1, whiteSpace: "nowrap" }}>
+              PRORAB
+            </h1>
+            <p style={{ fontFamily: "Montserrat, sans-serif", fontSize: "clamp(11px, 1.2vw, 16px)", fontWeight: 700, color: "#F5F3EF", textTransform: "uppercase", letterSpacing: "0.15em", margin: "12px 0 0", textAlign: "right", lineHeight: 1.4 }}>
+              {t.hero.slogan}
+            </p>
           </div>
 
           {/* BOTTOM LEFT — Social icons */}

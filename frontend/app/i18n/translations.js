@@ -2,7 +2,7 @@ export const translations = {
   UA: {
     htmlLang: "uk",
     hero: {
-      slogan: "Простір, де кожна деталь реалізована так, як була задумана.",
+      slogan: "МИ БУДУЄМО ПРОСТОРИ НАВКОЛО ІДЕЙ",
     },
     ticker: [
       "Як зробити ремонт під ключ?",
@@ -78,7 +78,7 @@ export const translations = {
   EN: {
     htmlLang: "en",
     hero: {
-      slogan: "A space where every detail is realized exactly as envisioned.",
+      slogan: "WE BUILD SPACES AROUND IDEAS",
     },
     ticker: [
       "How to do a turnkey renovation?",
