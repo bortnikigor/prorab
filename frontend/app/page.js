@@ -56,8 +56,8 @@ export default function Home() {
         <div className="absolute inset-0 bg-gradient-to-t from-[var(--background)] via-transparent to-transparent" />
 
         {/* Slogan */}
-        <div className="absolute z-10" style={{ bottom: "60px", left: "60px" }}>
-          <p style={{ fontSize: "18px", fontWeight: 300, letterSpacing: "0.1em", color: "#fff", textShadow: "0 1px 8px rgba(0,0,0,0.45)" }}>
+        <div className="absolute bottom-0 left-0 right-0 z-10 flex justify-center px-6 pb-[60px]">
+          <p style={{ fontSize: "22px", fontWeight: 300, letterSpacing: "0.15em", color: "#fff", textAlign: "center", textShadow: "0 1px 12px rgba(0,0,0,0.5)" }}>
             {t.hero.slogan}
           </p>
         </div>
