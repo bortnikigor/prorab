@@ -68,6 +68,7 @@ export const translations = {
     contacts: {
       label: "Контакти",
       title: "Зв'яжіться з нами",
+      description: "Якщо вам близький наш підхід, будемо раді обговорити ваш проєкт.",
       city: "Київ, Україна",
       instagram: "Instagram",
       telegram: "Telegram",
@@ -151,6 +152,7 @@ export const translations = {
     contacts: {
       label: "Contacts",
       title: "Get in touch",
+      description: "If our approach resonates with you, we'd be happy to discuss your project.",
       city: "Kyiv, Ukraine",
       instagram: "Instagram",
       telegram: "Telegram",

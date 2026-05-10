@@ -226,7 +226,7 @@ export default function Home() {
                 {t.about.title}
               </h2>
               <p style={{ color: "rgba(245,243,239,0.6)", fontSize: "14px", lineHeight: 1.7, maxWidth: "420px", fontFamily: "Montserrat, sans-serif", margin: 0 }}>
-                {t.about.text}
+                {t.contacts.description}
               </p>
               <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: "16px", borderTop: "1px solid rgba(207,199,189,0.12)", paddingTop: "32px" }}>
                 {t.about.stats.map((s) => (
@@ -277,7 +277,7 @@ export default function Home() {
                   {t.contacts.title}
                 </h2>
                 <p style={{ fontFamily: "Montserrat, sans-serif", fontSize: "13px", color: "rgba(207,199,189,0.6)", lineHeight: 1.7, maxWidth: "380px", margin: "0 auto" }}>
-                  {t.about.text}
+                  {t.contacts.description}
                 </p>
               </div>
 
