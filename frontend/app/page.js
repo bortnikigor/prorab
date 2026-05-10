@@ -134,6 +134,7 @@ export default function Home() {
           <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, #0F1113 0%, transparent 50%)" }} />
 
 {/* TOP RIGHT — Nav buttons */}
+          {false && (
           <div style={{ position: "absolute", top: "28px", right: "32px", zIndex: 20 }}>
             <div style={{ display: "flex" }}>
               <button
@@ -154,6 +155,7 @@ export default function Home() {
               </button>
             </div>
           </div>
+          )}
 
           {/* CENTER — Slogan */}
           <div style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center", zIndex: 10 }}>
