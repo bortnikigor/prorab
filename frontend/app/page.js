@@ -294,8 +294,8 @@ export default function Home() {
                 <h3 style={{ fontFamily: "Montserrat, sans-serif", fontSize: "18px", fontWeight: 700, color: "#CFC7BD", margin: "0 0 12px" }}>
                   E-mail
                 </h3>
-                <a href="mailto:info@prorab.ooo" style={{ fontFamily: "Montserrat, sans-serif", fontSize: "13px", color: "rgba(207,199,189,0.6)", textDecoration: "none" }}>
-                  info@prorab.ooo
+                <a href="mailto:request@prorab.ooo" style={{ fontFamily: "Montserrat, sans-serif", fontSize: "13px", color: "rgba(207,199,189,0.6)", textDecoration: "none" }}>
+                  request@prorab.ooo
                 </a>
               </div>
             </div>
