@@ -139,6 +139,14 @@ export default function Home() {
         </div>
       </div>
 
+      {/* FIXED SCROLL */}
+      <div style={{ position: "fixed", bottom: "32px", right: "36px", zIndex: 50, display: "flex", flexDirection: "column", alignItems: "center", gap: "12px" }}>
+        <span style={{ fontFamily: "Montserrat, sans-serif", fontSize: "9px", letterSpacing: "0.3em", color: "#CFC7BD", textTransform: "uppercase", writingMode: "vertical-rl", textOrientation: "mixed", opacity: 0.7 }}>
+          SCROLL
+        </span>
+        <div style={{ width: "1px", height: "40px", background: "#CFC7BD", opacity: 0.4, animation: "scrollHint 1.5s ease-in-out infinite" }} />
+      </div>
+
       {/* ── SLIDES WRAPPER ── */}
       <div
         style={{
@@ -202,15 +210,6 @@ export default function Home() {
             </p>
           </div>
 
-          {/* BOTTOM RIGHT — SCROLL text + line */}
-          <div style={{ position: "absolute", bottom: "32px", right: "36px", zIndex: 20 }}>
-            <div style={{ padding: "16px 10px", display: "flex", flexDirection: "column", alignItems: "center", gap: "12px" }}>
-              <span style={{ fontFamily: "Montserrat, sans-serif", fontSize: "9px", letterSpacing: "0.3em", color: "#CFC7BD", textTransform: "uppercase", writingMode: "vertical-rl", textOrientation: "mixed", opacity: 0.7 }}>
-                SCROLL
-              </span>
-              <div style={{ width: "1px", height: "40px", background: "#CFC7BD", opacity: 0.4, animation: "scrollHint 1.5s ease-in-out infinite" }} />
-            </div>
-          </div>
 
         </section>
 
