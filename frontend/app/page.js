@@ -35,7 +35,7 @@ export default function Home() {
       </nav>
 
       {/* ── HERO ───────────────────────────────────────────── */}
-      <section className="relative flex min-h-screen items-center justify-center overflow-hidden">
+      <section className="relative flex min-h-screen items-end justify-center overflow-hidden">
         {/* Background video */}
         <video
           autoPlay
@@ -56,8 +56,8 @@ export default function Home() {
         <div className="absolute inset-0 bg-gradient-to-t from-[var(--background)] via-transparent to-transparent" />
 
         {/* Slogan */}
-        <div className="relative z-10 w-full max-w-5xl px-6 sm:px-10 text-center">
-          <p className="leading-relaxed tracking-wide text-white" style={{ fontSize: "18px", fontWeight: 600 }}>
+        <div className="relative z-10 w-full max-w-5xl px-6 pb-20 sm:px-10 sm:pb-28 text-center">
+          <p className="leading-relaxed tracking-wide text-white" style={{ fontSize: "36px", fontWeight: 600 }}>
             {t.hero.slogan}
           </p>
         </div>
