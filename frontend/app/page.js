@@ -89,6 +89,7 @@ export default function Home() {
       </nav>
 
       {/* ── DOT NAVIGATION ── */}
+      {false && (
       <div style={{ position: "fixed", right: "24px", top: "50%", transform: "translateY(-50%)", zIndex: 50, display: "flex", flexDirection: "column", gap: "12px" }}>
         {SECTIONS.map((_, i) => (
           <button
@@ -107,6 +108,7 @@ export default function Home() {
           />
         ))}
       </div>
+      )}
 
       {/* ── SLIDES WRAPPER ── */}
       <div
