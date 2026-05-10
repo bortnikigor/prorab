@@ -268,10 +268,10 @@ export default function Home() {
         <section style={{ width: "100%", height: "100vh", display: "flex", flexDirection: "column", background: "#0F1113", backgroundImage: "url('/bg.png')", backgroundSize: "cover", backgroundPosition: "center", backgroundRepeat: "no-repeat" }}>
 
           {/* Content */}
-          <div style={{ flex: 1, display: "grid", gridTemplateColumns: "1fr 1fr", maxWidth: "1280px", margin: "0 auto", width: "100%", padding: "0 60px", alignItems: "center", gap: "80px" }}>
+          <div style={{ flex: 1, display: "grid", gridTemplateColumns: "1fr 1fr", maxWidth: "1280px", margin: "0 auto", width: "100%", padding: "0 60px", alignItems: "flex-start", gap: "80px" }}>
 
             {/* LEFT — Contact info */}
-            <div style={{ display: "flex", flexDirection: "column", gap: "48px", textAlign: "center" }}>
+            <div style={{ display: "flex", flexDirection: "column", gap: "48px", textAlign: "center", justifyContent: "space-between" }}>
               <div>
                 <h2 style={{ fontFamily: "Montserrat, sans-serif", fontSize: "clamp(24px, 3vw, 36px)", fontWeight: 600, color: "#CFC7BD", margin: "0 0 20px", letterSpacing: "0.05em", textTransform: "uppercase" }}>
                   {t.contacts.title}
@@ -301,7 +301,7 @@ export default function Home() {
             </div>
 
             {/* RIGHT — Contact form */}
-            <div style={{ display: "flex", flexDirection: "column", gap: "0", background: "rgba(255,255,255,0.04)", border: "1px solid rgba(207,199,189,0.12)", padding: "40px", borderRadius: "2px", alignSelf: "stretch", justifyContent: "space-between" }}>
+            <div style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(207,199,189,0.12)", padding: "40px", borderRadius: "2px", display: "flex", flexDirection: "column" }}>
               <h2 style={{ fontFamily: "Montserrat, sans-serif", fontSize: "clamp(24px, 3vw, 36px)", fontWeight: 600, color: "#CFC7BD", margin: "0 0 20px", letterSpacing: "0.05em", textTransform: "uppercase" }}>
                 {t.contacts.formTitle}
               </h2>
