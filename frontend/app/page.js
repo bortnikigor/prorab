@@ -5,7 +5,6 @@ import { useLanguage } from "./context/LanguageContext";
 import LanguageSwitcher from "./components/LanguageSwitcher";
 import PortfolioSlider from "./components/PortfolioSlider";
 import TelegramBotSection from "./components/TelegramBotSection";
-import TestSection from "./components/TestSection";
 
 const SERVICE_ICONS = ["◻", "◼", "▣"];
 const CLOUD_NAME = "dpcqf9y8l";
@@ -64,11 +63,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── TEST SECTION ───────────────────────────────────── */}
-      <TestSection />
-
       {/* ── ABOUT + SERVICES ───────────────────────────────── */}
-      {false && <section className="border-t border-[var(--border)]">
+      <section className="border-t border-[var(--border)]">
         <div className="mx-auto grid max-w-7xl grid-cols-1 lg:grid-cols-2">
 
           {/* About – left column */}
@@ -121,7 +117,7 @@ export default function Home() {
           </div>
 
         </div>
-      </section>}
+      </section>
 
       {/* ── PORTFOLIO SLIDER ───────────────────────────────── */}
       <PortfolioSlider />

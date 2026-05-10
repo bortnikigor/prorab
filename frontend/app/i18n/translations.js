@@ -30,6 +30,7 @@ export const translations = {
       close: "Закрити",
       comingSoon: "Фото незабаром",
       watchVideo: "Відео проєкту",
+      viewProject: "ПЕРЕГЛЯНУТИ",
     },
     about: {
       label: "Про нас",
@@ -105,6 +106,7 @@ export const translations = {
       close: "Close",
       comingSoon: "Photos coming soon",
       watchVideo: "Project video",
+      viewProject: "VIEW PROJECT",
     },
     about: {
       label: "About",
@@ -180,6 +182,7 @@ export const translations = {
       close: "Закрыть",
       comingSoon: "Фото скоро",
       watchVideo: "Видео проекта",
+      viewProject: "СМОТРЕТЬ",
     },
     about: {
       label: "О нас",
