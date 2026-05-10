@@ -283,10 +283,10 @@ export default function Home() {
 
               <div>
                 <h3 style={{ fontFamily: "Montserrat, sans-serif", fontSize: "18px", fontWeight: 700, color: "#CFC7BD", margin: "0 0 12px" }}>
-                  {t.contacts.city}
+                  Address
                 </h3>
                 <p style={{ fontFamily: "Montserrat, sans-serif", fontSize: "13px", color: "rgba(207,199,189,0.6)", margin: 0 }}>
-                  Київ, Україна
+                  {t.contacts.city}
                 </p>
               </div>
 
@@ -296,24 +296,6 @@ export default function Home() {
                 </h3>
                 <a href="mailto:request@prorab.ooo" style={{ fontFamily: "Montserrat, sans-serif", fontSize: "13px", color: "rgba(207,199,189,0.6)", textDecoration: "none" }}>
                   request@prorab.ooo
-                </a>
-              </div>
-
-              <div>
-                <h3 style={{ fontFamily: "Montserrat, sans-serif", fontSize: "18px", fontWeight: 700, color: "#CFC7BD", margin: "0 0 12px" }}>
-                  Telegram
-                </h3>
-                <a href="https://t.me/i_bortnyk" target="_blank" rel="noopener noreferrer" style={{ fontFamily: "Montserrat, sans-serif", fontSize: "13px", color: "rgba(207,199,189,0.6)", textDecoration: "none" }}>
-                  @i_bortnyk
-                </a>
-              </div>
-
-              <div>
-                <h3 style={{ fontFamily: "Montserrat, sans-serif", fontSize: "18px", fontWeight: 700, color: "#CFC7BD", margin: "0 0 12px" }}>
-                  Phone
-                </h3>
-                <a href="tel:+380958611898" style={{ fontFamily: "Montserrat, sans-serif", fontSize: "13px", color: "rgba(207,199,189,0.6)", textDecoration: "none" }}>
-                  +380 95 861 18 98
                 </a>
               </div>
             </div>
