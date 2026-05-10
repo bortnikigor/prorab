@@ -81,7 +81,7 @@ export default function Home() {
       <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-5 sm:px-10 sm:py-6">
         <div className="flex items-center gap-3">
           <Image src="/logo.png" alt="PRORAB" width={36} height={36} priority style={{ filter: "invert(1) brightness(2)" }} />
-          <span style={{ fontFamily: "Montserrat, sans-serif", fontSize: "13px", letterSpacing: "0.3em", color: "#F5F3EF" }}>
+          <span style={{ fontFamily: "Montserrat, sans-serif", fontSize: "13px", letterSpacing: "0.3em", color: "#CFC7BD" }}>
             <span style={{ fontWeight: 500 }}>PRO</span><span style={{ fontWeight: 400 }}>RAB</span>
           </span>
         </div>
@@ -143,7 +143,7 @@ export default function Home() {
             <div style={{ display: "flex" }}>
               <button
                 onClick={() => goTo(1)}
-                style={{ background: "none", border: "none", borderRight: "1px solid rgba(207,199,189,0.5)", padding: "10px 24px", fontFamily: "Montserrat, sans-serif", fontSize: "11px", letterSpacing: "0.25em", color: "#F5F3EF", cursor: "pointer", textTransform: "uppercase", transition: "all 0.3s" }}
+                style={{ background: "none", border: "none", borderRight: "1px solid rgba(207,199,189,0.5)", padding: "10px 24px", fontFamily: "Montserrat, sans-serif", fontSize: "11px", letterSpacing: "0.25em", color: "#CFC7BD", cursor: "pointer", textTransform: "uppercase", transition: "all 0.3s" }}
                 onMouseEnter={(e) => { e.currentTarget.style.background = "rgba(207,199,189,0.1)"; }}
                 onMouseLeave={(e) => { e.currentTarget.style.background = "none"; }}
               >
@@ -151,7 +151,7 @@ export default function Home() {
               </button>
               <button
                 onClick={() => goTo(2)}
-                style={{ background: "none", border: "none", padding: "10px 24px", fontFamily: "Montserrat, sans-serif", fontSize: "11px", letterSpacing: "0.25em", color: "#F5F3EF", cursor: "pointer", textTransform: "uppercase", transition: "all 0.3s" }}
+                style={{ background: "none", border: "none", padding: "10px 24px", fontFamily: "Montserrat, sans-serif", fontSize: "11px", letterSpacing: "0.25em", color: "#CFC7BD", cursor: "pointer", textTransform: "uppercase", transition: "all 0.3s" }}
                 onMouseEnter={(e) => { e.currentTarget.style.background = "rgba(207,199,189,0.1)"; }}
                 onMouseLeave={(e) => { e.currentTarget.style.background = "none"; }}
               >
@@ -166,7 +166,7 @@ export default function Home() {
             <p style={{ fontFamily: "Montserrat, sans-serif", fontSize: "11px", letterSpacing: "0.3em", color: "#CFC7BD", textTransform: "uppercase", margin: "0 0 16px 0", fontWeight: 400, paddingLeft: "14px" }}>
               I AM
             </p>
-            <h1 style={{ fontFamily: "Montserrat, sans-serif", fontSize: "clamp(40px, 8vw, 100px)", fontWeight: 800, color: "#F5F3EF", letterSpacing: "0.05em", textTransform: "uppercase", margin: 0, lineHeight: 1, whiteSpace: "nowrap" }}>
+            <h1 style={{ fontFamily: "Montserrat, sans-serif", fontSize: "clamp(40px, 8vw, 100px)", fontWeight: 800, color: "#CFC7BD", letterSpacing: "0.05em", textTransform: "uppercase", margin: 0, lineHeight: 1, whiteSpace: "nowrap" }}>
               PRORAB
             </h1>
             <p style={{ fontFamily: "Montserrat, sans-serif", fontSize: "11px", fontWeight: 400, color: "#CFC7BD", textTransform: "uppercase", letterSpacing: "0.3em", margin: "12px 0 0", textAlign: "right", lineHeight: 1.5 }}>
@@ -225,7 +225,7 @@ export default function Home() {
               <p style={{ color: "#CFC7BD", fontSize: "11px", letterSpacing: "0.5em", textTransform: "uppercase", fontFamily: "Montserrat, sans-serif" }}>
                 {t.about.label}
               </p>
-              <h2 style={{ color: "#F5F3EF", fontSize: "clamp(24px, 3vw, 36px)", fontWeight: 600, letterSpacing: "-0.02em", fontFamily: "Montserrat, sans-serif", margin: 0 }}>
+              <h2 style={{ color: "#CFC7BD", fontSize: "clamp(24px, 3vw, 36px)", fontWeight: 600, letterSpacing: "-0.02em", fontFamily: "Montserrat, sans-serif", margin: 0 }}>
                 {t.about.title}
               </h2>
               <p style={{ color: "rgba(245,243,239,0.6)", fontSize: "14px", lineHeight: 1.7, maxWidth: "420px", fontFamily: "Montserrat, sans-serif", margin: 0 }}>
@@ -250,7 +250,7 @@ export default function Home() {
                   <div key={item.title} style={{ display: "flex", gap: "20px", padding: "28px 0", borderTop: "1px solid rgba(207,199,189,0.12)" }}>
                     <span style={{ color: "#CFC7BD", fontSize: "18px", marginTop: "2px", flexShrink: 0 }}>{SERVICE_ICONS[i]}</span>
                     <div>
-                      <h3 style={{ color: "#F5F3EF", fontSize: "15px", fontWeight: 600, margin: "0 0 8px", fontFamily: "Montserrat, sans-serif" }}>{item.title}</h3>
+                      <h3 style={{ color: "#CFC7BD", fontSize: "15px", fontWeight: 600, margin: "0 0 8px", fontFamily: "Montserrat, sans-serif" }}>{item.title}</h3>
                       <p style={{ color: "rgba(245,243,239,0.55)", fontSize: "13px", lineHeight: 1.6, margin: 0, fontFamily: "Montserrat, sans-serif" }}>{item.description}</p>
                     </div>
                   </div>
