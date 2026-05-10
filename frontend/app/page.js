@@ -215,7 +215,7 @@ export default function Home() {
         </section>
 
         {/* ── ABOUT + SERVICES ── */}
-        <section style={{ width: "100%", height: "100vh", borderTop: "1px solid rgba(207,199,189,0.12)", overflowY: "auto" }}>
+        <section style={{ width: "100%", height: "100vh", borderTop: "1px solid rgba(207,199,189,0.12)", overflowY: "auto", backgroundImage: "url('/bg.png')", backgroundSize: "cover", backgroundPosition: "center", backgroundRepeat: "no-repeat" }}>
           <div style={{ maxWidth: "1280px", margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1fr", height: "100%" }}>
             {/* About */}
             <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", gap: "32px", borderRight: "1px solid rgba(207,199,189,0.12)", padding: "80px 48px" }}>
@@ -265,7 +265,7 @@ export default function Home() {
         )}
 
         {/* ── CONTACT ── */}
-        <section style={{ width: "100%", height: "100vh", display: "flex", flexDirection: "column", background: "#0F1113" }}>
+        <section style={{ width: "100%", height: "100vh", display: "flex", flexDirection: "column", background: "#0F1113", backgroundImage: "url('/bg.png')", backgroundSize: "cover", backgroundPosition: "center", backgroundRepeat: "no-repeat" }}>
 
           {/* Content */}
           <div style={{ flex: 1, display: "grid", gridTemplateColumns: "1fr 1fr", maxWidth: "1280px", margin: "0 auto", width: "100%", padding: "0 60px", alignItems: "center", gap: "80px" }}>
