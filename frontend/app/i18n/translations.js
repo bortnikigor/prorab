@@ -67,7 +67,7 @@ export const translations = {
     },
     contacts: {
       label: "Контакти",
-      title: "GET IN TOUCH",
+      title: "ЗВ'ЯЖІТЬСЯ З НАМИ",
       description: "Якщо вам близький наш підхід, будемо раді обговорити ваш проєкт.",
       city: "Набережно-Рибальська 3, Київ",
       instagram: "Instagram",
