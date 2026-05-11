@@ -166,7 +166,7 @@ export default function PortfolioSlider() {
           width: 100%;
           min-height: 100vh;
           padding-top: 80px;
-          padding-bottom: 4rem;
+          padding-bottom: 2rem;
           background-image: url('/bg.png');
           background-size: cover;
           background-position: center;
@@ -274,12 +274,9 @@ export default function PortfolioSlider() {
 
         /* ── CAPTION ── */
         .ps-caption-wrap {
-          position: absolute;
-          bottom: 2rem;
-          left: 50%;
-          transform: translateX(-50%);
+          position: relative;
           width: 79vw;
-          margin-top: 0;
+          margin-top: 12px;
           z-index: 20;
         }
 
