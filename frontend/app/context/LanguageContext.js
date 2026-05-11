@@ -6,7 +6,7 @@ import { translations } from "../i18n/translations";
 const LanguageContext = createContext(null);
 
 export function LanguageProvider({ children }) {
-  const [language, setLanguageState] = useState("UA");
+  const [language, setLanguageState] = useState("EN");
 
   useEffect(() => {
     const saved = localStorage.getItem("prorab_lang");
