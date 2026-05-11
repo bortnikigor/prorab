@@ -308,7 +308,6 @@ export default function Home() {
               {[
                 { placeholder: t.contacts.namePlaceholder, type: "text" },
                 { placeholder: t.contacts.phonePlaceholder, type: "tel" },
-                { placeholder: t.contacts.emailPlaceholder, type: "email" },
                 { placeholder: t.contacts.messagePlaceholder, type: "text" },
               ].map((field) => (
                 <div key={field.placeholder} style={{ borderBottom: "1px solid rgba(207,199,189,0.2)", marginBottom: "12px" }}>
