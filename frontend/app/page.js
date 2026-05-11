@@ -10,12 +10,19 @@ import TelegramBotSection from "./components/TelegramBotSection";
 const SERVICE_ICONS = ["◻", "◼", "▣"];
 const CLOUD_NAME = "dpcqf9y8l";
 const HERO_VIDEO_ID = "video2_utuupz";
-const SECTIONS = ["hero", "about", "contact"];
+const SECTIONS = isMobile ? ["hero", "about", "services", "contact-info", "contact-form"] : ["hero", "about", "contact"];
 
 export default function Home() {
   const { t } = useLanguage();
   const [currentSection, setCurrentSection] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
   const portfolioRef = useRef(null);
   const lastScrollTime = useRef(0);
 
@@ -214,7 +221,7 @@ export default function Home() {
         </section>
 
         {/* ── ABOUT + SERVICES ── */}
-        <section style={{ width: "100%", height: "100vh", borderTop: "1px solid rgba(207,199,189,0.12)", overflowY: "auto", backgroundImage: "url('/bg.png')", backgroundSize: "cover", backgroundPosition: "center", backgroundRepeat: "no-repeat" }}>
+        <section style={{ width: "100%", height: "100vh", backgroundImage: "url('/bg.png')", backgroundSize: "cover", backgroundPosition: "center", backgroundRepeat: "no-repeat", overflowY: "auto" }}>
           <div className="about-grid" style={{ maxWidth: "1280px", margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1fr", height: "100%", width: "100%" }}>
             {/* About */}
             <div className="about-left" style={{ display: "flex", flexDirection: "column", justifyContent: "center", gap: "32px", borderRight: "1px solid rgba(207,199,189,0.12)", padding: "80px 48px" }}>
@@ -237,7 +244,7 @@ export default function Home() {
               </div>
             </div>
             {/* Services */}
-            <div className="about-right" style={{ display: "flex", flexDirection: "column", justifyContent: "center", padding: "80px 48px" }}>
+            <div className="about-right" style={{ display: isMobile ? "none" : "flex", flexDirection: "column", justifyContent: "center", padding: "80px 48px" }}>
               <p style={{ color: "#CFC7BD", fontSize: "11px", letterSpacing: "0.5em", textTransform: "uppercase", fontFamily: "Montserrat, sans-serif", marginBottom: "32px" }}>
                 {t.services.label}
               </p>
@@ -256,6 +263,26 @@ export default function Home() {
           </div>
         </section>
 
+        {/* ── SERVICES (mobile only) ── */}
+        {isMobile && (
+          <section style={{ width: "100%", height: "100vh", backgroundImage: "url('/bg.png')", backgroundSize: "cover", backgroundPosition: "center", backgroundRepeat: "no-repeat", overflowY: "auto", padding: "80px 24px" }}>
+            <p style={{ fontFamily: "Montserrat, sans-serif", fontSize: "11px", letterSpacing: "0.5em", color: "#CFC7BD", textTransform: "uppercase", marginBottom: "32px" }}>
+              {t.services.label}
+            </p>
+            <div style={{ display: "flex", flexDirection: "column" }}>
+              {t.services.items.map((item, i) => (
+                <div key={item.title} style={{ display: "flex", gap: "20px", padding: "28px 0", borderTop: "1px solid rgba(207,199,189,0.12)" }}>
+                  <span style={{ color: "#CFC7BD", fontSize: "18px", marginTop: "2px", flexShrink: 0 }}>{"◻◼▣"[i]}</span>
+                  <div>
+                    <h3 style={{ color: "#CFC7BD", fontSize: "15px", fontWeight: 600, margin: "0 0 8px", fontFamily: "Montserrat, sans-serif" }}>{item.title}</h3>
+                    <p style={{ color: "rgba(207,199,189,0.55)", fontSize: "13px", lineHeight: 1.6, margin: 0, fontFamily: "Montserrat, sans-serif" }}>{item.description}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
+
         {/* ── PORTFOLIO ── */}
         {false && (
         <section style={{ width: "100%", height: "100vh", position: "relative" }}>
@@ -264,101 +291,144 @@ export default function Home() {
         )}
 
         {/* ── CONTACT ── */}
-        <section className="contact-section" style={{ width: "100%", height: "100vh", display: "flex", flexDirection: "column", background: "#0F1113", backgroundImage: "url('/bg.png')", backgroundSize: "cover", backgroundPosition: "center", backgroundRepeat: "no-repeat" }}>
-
-          {/* Content */}
-          <div className="contact-grid" style={{ flex: 1, display: "grid", gridTemplateColumns: "1fr 1fr", maxWidth: "1280px", margin: "0 auto", width: "100%", padding: "0 60px", alignItems: "center", gap: "80px" }}>
-
-            {/* LEFT — Contact info */}
-            <div style={{ display: "flex", flexDirection: "column", gap: "32px", textAlign: "center", justifyContent: "center", alignItems: "center" }}>
-              <div>
-                <h2 style={{ fontFamily: "Montserrat, sans-serif", fontSize: "clamp(24px, 3vw, 36px)", fontWeight: 600, color: "#CFC7BD", margin: "0 0 20px", letterSpacing: "0.05em", textTransform: "uppercase" }}>
-                  {t.contacts.title}
-                </h2>
-                <p style={{ fontFamily: "Montserrat, sans-serif", fontSize: "13px", color: "rgba(207,199,189,0.6)", lineHeight: 1.7, maxWidth: "380px", margin: "0 auto" }}>
-                  {t.contacts.description}
-                </p>
-              </div>
-
-              <div>
-                <h3 style={{ fontFamily: "Montserrat, sans-serif", fontSize: "18px", fontWeight: 700, color: "#CFC7BD", margin: "0 0 12px" }}>
-                  {t.contacts.address}
-                </h3>
-                <a href="https://maps.app.goo.gl/t5QG4VNNnVzZu7J88" target="_blank" rel="noopener noreferrer" style={{ fontFamily: "Montserrat, sans-serif", fontSize: "13px", color: "rgba(207,199,189,0.6)", textDecoration: "none" }}>
-                  {t.contacts.city}
-                </a>
-              </div>
-
-              <div>
-                <h3 style={{ fontFamily: "Montserrat, sans-serif", fontSize: "18px", fontWeight: 700, color: "#CFC7BD", margin: "0 0 12px" }}>
-                  E-mail
-                </h3>
-                <a href="mailto:request@prorab.ooo" style={{ fontFamily: "Montserrat, sans-serif", fontSize: "13px", color: "rgba(207,199,189,0.6)", textDecoration: "none" }}>
-                  request@prorab.ooo
-                </a>
-              </div>
-            </div>
-
-            {/* RIGHT — Contact form */}
-            <div style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(207,199,189,0.12)", padding: "44px", borderRadius: "2px", display: "flex", flexDirection: "column", maxHeight: "55vh" }}>
-              <h2 style={{ fontFamily: "Montserrat, sans-serif", fontSize: "clamp(24px, 3vw, 36px)", fontWeight: 600, color: "#CFC7BD", margin: "0 0 20px", letterSpacing: "0.05em", textTransform: "uppercase", textAlign: "center" }}>
-                {t.contacts.formTitle}
-              </h2>
-
-              {[
-                { placeholder: t.contacts.namePlaceholder, type: "text" },
-                { placeholder: t.contacts.phonePlaceholder, type: "tel" },
-                { placeholder: t.contacts.emailPlaceholder, type: "email" },
-                { placeholder: t.contacts.messagePlaceholder, type: "text" },
-              ].map((field) => (
-                <div key={field.placeholder} style={{ borderBottom: "1px solid rgba(207,199,189,0.2)", marginBottom: "12px" }}>
-                  <input
-                    type={field.type}
-                    placeholder={field.placeholder}
-                    style={{
-                      width: "100%", background: "transparent", border: "none", outline: "none",
-                      fontFamily: "Montserrat, sans-serif", fontSize: "11px", color: "#CFC7BD",
-                      padding: "8px 0", letterSpacing: "0.05em",
-                    }}
-                  />
+        {isMobile ? (
+          <>
+            <section style={{ width: "100%", height: "100vh", backgroundImage: "url('/bg.png')", backgroundSize: "cover", backgroundPosition: "center", backgroundRepeat: "no-repeat", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", padding: "80px 24px", textAlign: "center" }}>
+              <h2 style={{ fontFamily: "Montserrat, sans-serif", fontSize: "clamp(24px, 6vw, 36px)", fontWeight: 600, color: "#CFC7BD", letterSpacing: "0.05em", textTransform: "uppercase", margin: "0 0 20px" }}>{t.contacts.title}</h2>
+              <p style={{ fontFamily: "Montserrat, sans-serif", fontSize: "13px", color: "rgba(207,199,189,0.6)", lineHeight: 1.7, margin: "0 0 40px" }}>{t.contacts.description}</p>
+              <div style={{ display: "flex", flexDirection: "column", gap: "24px", width: "100%" }}>
+                <div>
+                  <h3 style={{ fontFamily: "Montserrat, sans-serif", fontSize: "16px", fontWeight: 700, color: "#CFC7BD", margin: "0 0 8px" }}>{t.contacts.address}</h3>
+                  <a href="https://maps.app.goo.gl/t5QG4VNNnVzZu7J88" target="_blank" rel="noopener noreferrer" style={{ fontFamily: "Montserrat, sans-serif", fontSize: "13px", color: "rgba(207,199,189,0.6)", textDecoration: "none" }}>{t.contacts.city}</a>
                 </div>
-              ))}
-
-              <div style={{ display: "flex", justifyContent: "center", marginTop: "12px" }}>
-                <button
-                  style={{
-                    background: "rgba(207,199,189,0.1)", border: "1px solid rgba(207,199,189,0.3)",
-                    color: "#CFC7BD", fontFamily: "Montserrat, sans-serif", fontSize: "11px",
-                    letterSpacing: "0.25em", textTransform: "uppercase", padding: "10px 24px",
-                    cursor: "pointer", display: "flex", alignItems: "center", gap: "12px",
-                    transition: "all 0.3s",
-                  }}
-                  onMouseEnter={(e) => { e.currentTarget.style.background = "#CFC7BD"; e.currentTarget.style.color = "#0F1113"; }}
-                  onMouseLeave={(e) => { e.currentTarget.style.background = "rgba(207,199,189,0.1)"; e.currentTarget.style.color = "#CFC7BD"; }}
-                >
-                  {t.contacts.sendButton}
-                  <svg width="16" height="10" viewBox="0 0 16 10" fill="none">
-                    <path d="M1 5H15M15 5L11 1M15 5L11 9" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                  </svg>
-                </button>
+                <div>
+                  <h3 style={{ fontFamily: "Montserrat, sans-serif", fontSize: "16px", fontWeight: 700, color: "#CFC7BD", margin: "0 0 8px" }}>E-mail</h3>
+                  <a href="mailto:request@prorab.ooo" style={{ fontFamily: "Montserrat, sans-serif", fontSize: "13px", color: "rgba(207,199,189,0.6)", textDecoration: "none" }}>request@prorab.ooo</a>
+                </div>
               </div>
+            </section>
+            <section style={{ width: "100%", height: "100vh", backgroundImage: "url('/bg.png')", backgroundSize: "cover", backgroundPosition: "center", backgroundRepeat: "no-repeat", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", padding: "40px 24px" }}>
+              <div style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(207,199,189,0.12)", padding: "32px 24px", width: "100%", display: "flex", flexDirection: "column" }}>
+                <h2 style={{ fontFamily: "Montserrat, sans-serif", fontSize: "clamp(20px, 5vw, 28px)", fontWeight: 600, color: "#CFC7BD", letterSpacing: "0.05em", textTransform: "uppercase", margin: "0 0 24px", textAlign: "center" }}>{t.contacts.formTitle}</h2>
+                {[
+                  { placeholder: t.contacts.namePlaceholder, type: "text" },
+                  { placeholder: t.contacts.phonePlaceholder, type: "tel" },
+                  { placeholder: t.contacts.emailPlaceholder, type: "email" },
+                  { placeholder: t.contacts.messagePlaceholder, type: "text" },
+                ].map((field) => (
+                  <div key={field.placeholder} style={{ borderBottom: "1px solid rgba(207,199,189,0.2)", marginBottom: "16px" }}>
+                    <input type={field.type} placeholder={field.placeholder}
+                      style={{ width: "100%", background: "transparent", border: "none", outline: "none", fontFamily: "Montserrat, sans-serif", fontSize: "13px", color: "#CFC7BD", padding: "10px 0", letterSpacing: "0.05em" }} />
+                  </div>
+                ))}
+                <div style={{ display: "flex", justifyContent: "center", marginTop: "16px" }}>
+                  <button style={{ background: "rgba(207,199,189,0.1)", border: "1px solid rgba(207,199,189,0.3)", color: "#CFC7BD", fontFamily: "Montserrat, sans-serif", fontSize: "11px", letterSpacing: "0.25em", textTransform: "uppercase", padding: "14px 32px", cursor: "pointer", display: "flex", alignItems: "center", gap: "12px", transition: "all 0.3s" }}
+                    onMouseEnter={(e) => { e.currentTarget.style.background = "#CFC7BD"; e.currentTarget.style.color = "#0F1113"; }}
+                    onMouseLeave={(e) => { e.currentTarget.style.background = "rgba(207,199,189,0.1)"; e.currentTarget.style.color = "#CFC7BD"; }}>
+                    {t.contacts.sendButton}
+                    <svg width="16" height="10" viewBox="0 0 16 10" fill="none"><path d="M1 5H15M15 5L11 1M15 5L11 9" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                  </button>
+                </div>
+              </div>
+            </section>
+          </>
+        ) : (
+          <section className="contact-section" style={{ width: "100%", height: "100vh", display: "flex", flexDirection: "column", background: "#0F1113", backgroundImage: "url('/bg.png')", backgroundSize: "cover", backgroundPosition: "center", backgroundRepeat: "no-repeat" }}>
+
+            {/* Content */}
+            <div className="contact-grid" style={{ flex: 1, display: "grid", gridTemplateColumns: "1fr 1fr", maxWidth: "1280px", margin: "0 auto", width: "100%", padding: "0 60px", alignItems: "center", gap: "80px" }}>
+
+              {/* LEFT — Contact info */}
+              <div style={{ display: "flex", flexDirection: "column", gap: "32px", textAlign: "center", justifyContent: "center", alignItems: "center" }}>
+                <div>
+                  <h2 style={{ fontFamily: "Montserrat, sans-serif", fontSize: "clamp(24px, 3vw, 36px)", fontWeight: 600, color: "#CFC7BD", margin: "0 0 20px", letterSpacing: "0.05em", textTransform: "uppercase" }}>
+                    {t.contacts.title}
+                  </h2>
+                  <p style={{ fontFamily: "Montserrat, sans-serif", fontSize: "13px", color: "rgba(207,199,189,0.6)", lineHeight: 1.7, maxWidth: "380px", margin: "0 auto" }}>
+                    {t.contacts.description}
+                  </p>
+                </div>
+
+                <div>
+                  <h3 style={{ fontFamily: "Montserrat, sans-serif", fontSize: "18px", fontWeight: 700, color: "#CFC7BD", margin: "0 0 12px" }}>
+                    {t.contacts.address}
+                  </h3>
+                  <a href="https://maps.app.goo.gl/t5QG4VNNnVzZu7J88" target="_blank" rel="noopener noreferrer" style={{ fontFamily: "Montserrat, sans-serif", fontSize: "13px", color: "rgba(207,199,189,0.6)", textDecoration: "none" }}>
+                    {t.contacts.city}
+                  </a>
+                </div>
+
+                <div>
+                  <h3 style={{ fontFamily: "Montserrat, sans-serif", fontSize: "18px", fontWeight: 700, color: "#CFC7BD", margin: "0 0 12px" }}>
+                    E-mail
+                  </h3>
+                  <a href="mailto:request@prorab.ooo" style={{ fontFamily: "Montserrat, sans-serif", fontSize: "13px", color: "rgba(207,199,189,0.6)", textDecoration: "none" }}>
+                    request@prorab.ooo
+                  </a>
+                </div>
+              </div>
+
+              {/* RIGHT — Contact form */}
+              <div style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(207,199,189,0.12)", padding: "44px", borderRadius: "2px", display: "flex", flexDirection: "column", maxHeight: "55vh" }}>
+                <h2 style={{ fontFamily: "Montserrat, sans-serif", fontSize: "clamp(24px, 3vw, 36px)", fontWeight: 600, color: "#CFC7BD", margin: "0 0 20px", letterSpacing: "0.05em", textTransform: "uppercase", textAlign: "center" }}>
+                  {t.contacts.formTitle}
+                </h2>
+
+                {[
+                  { placeholder: t.contacts.namePlaceholder, type: "text" },
+                  { placeholder: t.contacts.phonePlaceholder, type: "tel" },
+                  { placeholder: t.contacts.emailPlaceholder, type: "email" },
+                  { placeholder: t.contacts.messagePlaceholder, type: "text" },
+                ].map((field) => (
+                  <div key={field.placeholder} style={{ borderBottom: "1px solid rgba(207,199,189,0.2)", marginBottom: "12px" }}>
+                    <input
+                      type={field.type}
+                      placeholder={field.placeholder}
+                      style={{
+                        width: "100%", background: "transparent", border: "none", outline: "none",
+                        fontFamily: "Montserrat, sans-serif", fontSize: "11px", color: "#CFC7BD",
+                        padding: "8px 0", letterSpacing: "0.05em",
+                      }}
+                    />
+                  </div>
+                ))}
+
+                <div style={{ display: "flex", justifyContent: "center", marginTop: "12px" }}>
+                  <button
+                    style={{
+                      background: "rgba(207,199,189,0.1)", border: "1px solid rgba(207,199,189,0.3)",
+                      color: "#CFC7BD", fontFamily: "Montserrat, sans-serif", fontSize: "11px",
+                      letterSpacing: "0.25em", textTransform: "uppercase", padding: "10px 24px",
+                      cursor: "pointer", display: "flex", alignItems: "center", gap: "12px",
+                      transition: "all 0.3s",
+                    }}
+                    onMouseEnter={(e) => { e.currentTarget.style.background = "#CFC7BD"; e.currentTarget.style.color = "#0F1113"; }}
+                    onMouseLeave={(e) => { e.currentTarget.style.background = "rgba(207,199,189,0.1)"; e.currentTarget.style.color = "#CFC7BD"; }}
+                  >
+                    {t.contacts.sendButton}
+                    <svg width="16" height="10" viewBox="0 0 16 10" fill="none">
+                      <path d="M1 5H15M15 5L11 1M15 5L11 9" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+
             </div>
 
-          </div>
+            {/* Footer */}
+            {false && (
+            <div style={{ borderTop: "1px solid rgba(207,199,189,0.1)", padding: "20px 60px", display: "flex", alignItems: "center", justifyContent: "center", position: "relative", flexShrink: 0 }}>
+              <p style={{ position: "absolute", left: "60px", fontFamily: "Montserrat, sans-serif", fontSize: "11px", color: "rgba(207,199,189,0.4)", margin: 0 }}>
+                © {new Date().getFullYear()} PRORAB
+              </p>
+              <p style={{ fontFamily: "Montserrat, sans-serif", fontSize: "11px", color: "rgba(207,199,189,0.4)", margin: 0 }}>
+                {t.footer.rights}
+              </p>
+            </div>
+            )}
 
-          {/* Footer */}
-          {false && (
-          <div style={{ borderTop: "1px solid rgba(207,199,189,0.1)", padding: "20px 60px", display: "flex", alignItems: "center", justifyContent: "center", position: "relative", flexShrink: 0 }}>
-            <p style={{ position: "absolute", left: "60px", fontFamily: "Montserrat, sans-serif", fontSize: "11px", color: "rgba(207,199,189,0.4)", margin: 0 }}>
-              © {new Date().getFullYear()} PRORAB
-            </p>
-            <p style={{ fontFamily: "Montserrat, sans-serif", fontSize: "11px", color: "rgba(207,199,189,0.4)", margin: 0 }}>
-              {t.footer.rights}
-            </p>
-          </div>
-          )}
-
-        </section>
+          </section>
+        )}
 
       </div>
 
