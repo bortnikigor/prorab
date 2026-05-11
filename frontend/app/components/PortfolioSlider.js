@@ -111,13 +111,11 @@ export default function PortfolioSlider() {
               }}
             >
               <div className="ps-slide-inner">
-                {/* Замініть div на <img src={project.image} /> коли будуть фото */}
-                <div
-                  className="ps-slide-bg"
-                  style={{ background: project.bg }}
-                >
-                  <span className="ps-slide-label">{project.title}</span>
-                </div>
+                <img
+                  src="https://res.cloudinary.com/dpcqf9y8l/image/upload/v1778308458/1_7a0af14597.jpg"
+                  alt={project.title}
+                  style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+                />
               </div>
             </div>
           );
