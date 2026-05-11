@@ -180,7 +180,7 @@ export default function PortfolioSlider() {
         .ps-track {
           position: relative;
           width: 100%;
-          height: 68vh;
+          height: 52vh;
           display: flex;
           align-items: center;
           justify-content: center;
@@ -203,7 +203,7 @@ export default function PortfolioSlider() {
 
         /* ── ПОЗИЦІЇ ── */
         .ps-slide--center {
-          width: 36vw; height: 58vh;
+          width: 36vw; height: 46vh;
           transform: translate(-50%, -50%) translateX(0) scale(1);
           opacity: 1;
           filter: blur(0px) brightness(1);
@@ -211,32 +211,32 @@ export default function PortfolioSlider() {
           cursor: default;
         }
         .ps-slide--left {
-          width: 27vw; height: 48vh;
-          transform: translate(-50%, -50%) translateX(-37vw) scale(0.9);
+          width: 27vw; height: 38vh;
+          transform: translate(-50%, -50%) translateX(-26vw) scale(0.9);
           opacity: 0.65;
           filter: blur(1.5px) brightness(0.7);
           z-index: 5;
           cursor: pointer;
         }
         .ps-slide--right {
-          width: 27vw; height: 48vh;
-          transform: translate(-50%, -50%) translateX(37vw) scale(0.9);
+          width: 27vw; height: 38vh;
+          transform: translate(-50%, -50%) translateX(26vw) scale(0.9);
           opacity: 0.65;
           filter: blur(1.5px) brightness(0.7);
           z-index: 5;
           cursor: pointer;
         }
         .ps-slide--far_left {
-          width: 20vw; height: 38vh;
-          transform: translate(-50%, -50%) translateX(-63vw) scale(0.75);
+          width: 20vw; height: 30vh;
+          transform: translate(-50%, -50%) translateX(-46vw) scale(0.75);
           opacity: 0.28;
           filter: blur(3px) brightness(0.45);
           z-index: 2;
           cursor: pointer;
         }
         .ps-slide--far_right {
-          width: 20vw; height: 38vh;
-          transform: translate(-50%, -50%) translateX(63vw) scale(0.75);
+          width: 20vw; height: 30vh;
+          transform: translate(-50%, -50%) translateX(46vw) scale(0.75);
           opacity: 0.28;
           filter: blur(3px) brightness(0.45);
           z-index: 2;
