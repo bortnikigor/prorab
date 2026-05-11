@@ -82,7 +82,7 @@ export default function Home() {
         <div className="flex items-center gap-3">
           <Image src="/logo.png" alt="PRORAB" width={36} height={36} priority style={{ filter: "invert(1) brightness(2)" }} />
           <span style={{ fontFamily: "Montserrat, sans-serif", fontSize: "13px", letterSpacing: "0.3em", color: "#CFC7BD" }}>
-            <span style={{ fontWeight: 500 }}>PRO</span><span style={{ fontWeight: 400 }}>RAB</span>
+            <span style={{ fontWeight: 700 }}>PRO</span><span style={{ fontWeight: 400 }}>RAB</span>
           </span>
         </div>
         <div className="flex justify-end">
