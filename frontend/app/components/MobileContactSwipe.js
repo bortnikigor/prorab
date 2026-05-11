@@ -38,8 +38,8 @@ export default function MobileContactSwipe({ t, language }) {
             <a href="mailto:request@prorab.ooo" style={{ fontFamily: "Montserrat, sans-serif", fontSize: "13px", color: "rgba(207,199,169,0.6)", textDecoration: "none" }}>request@prorab.ooo</a>
           </div>
           {/* Swipe hint */}
-          <div style={{ display: "flex", alignItems: "center", gap: "8px", marginTop: "16px", opacity: 0.5 }}>
-            <span style={{ fontFamily: "Montserrat, sans-serif", fontSize: "15px", letterSpacing: "0.05em", color: "#F5F3EF", fontWeight: 700, textTransform: "none" }}>{t.contacts.swipeToForm}</span>
+          <div style={{ display: "flex", alignItems: "center", gap: "8px", marginTop: "16px" }}>
+            <span style={{ fontFamily: "Montserrat, sans-serif", fontSize: "15px", letterSpacing: "0.05em", color: "#CFC7BD", fontWeight: 700, textTransform: "none" }}>{t.contacts.swipeToForm}</span>
             <div style={{ width: "40px", height: "1px", background: "#CFC7BD", opacity: 0.4, animation: "scrollHintH 1.5s ease-in-out infinite" }} />
           </div>
         </div>
@@ -65,9 +65,9 @@ export default function MobileContactSwipe({ t, language }) {
             </div>
           </div>
           {/* Swipe back hint */}
-          <div style={{ display: "flex", alignItems: "center", gap: "8px", marginTop: "16px", opacity: 0.5 }}>
+          <div style={{ display: "flex", alignItems: "center", gap: "8px", marginTop: "16px" }}>
             <div style={{ width: "40px", height: "1px", background: "#CFC7BD", opacity: 0.4, animation: "scrollHintH 1.5s ease-in-out infinite" }} />
-            <span style={{ fontFamily: "Montserrat, sans-serif", fontSize: "15px", letterSpacing: "0.05em", color: "#F5F3EF", fontWeight: 700, textTransform: "none" }}>{t.contacts.swipeBack}</span>
+            <span style={{ fontFamily: "Montserrat, sans-serif", fontSize: "15px", letterSpacing: "0.05em", color: "#CFC7BD", fontWeight: 700, textTransform: "none" }}>{t.contacts.swipeBack}</span>
           </div>
         </div>
       </div>
