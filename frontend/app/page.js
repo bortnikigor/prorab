@@ -6,6 +6,7 @@ import { useLanguage } from "./context/LanguageContext";
 import LanguageSwitcher from "./components/LanguageSwitcher";
 import PortfolioSlider from "./components/PortfolioSlider";
 import TelegramBotSection from "./components/TelegramBotSection";
+import MobileContactSwipe from "./components/MobileContactSwipe";
 
 const SERVICE_ICONS = ["◻", "◼", "▣"];
 const CLOUD_NAME = "dpcqf9y8l";
@@ -264,98 +265,53 @@ export default function Home() {
         )}
 
         {/* ── CONTACT ── */}
-        <section className="contact-section" style={{ width: "100%", height: "100vh", display: "flex", flexDirection: "column", background: "#0F1113", backgroundImage: "url('/bg.png')", backgroundSize: "cover", backgroundPosition: "center", backgroundRepeat: "no-repeat" }}>
+        <section className="contact-section" style={{ width: "100%", height: "100vh", display: "flex", flexDirection: "column", backgroundImage: "url('/bg.png')", backgroundSize: "cover", backgroundPosition: "center", backgroundRepeat: "no-repeat" }}>
 
-          {/* Content */}
-          <div className="contact-grid" style={{ flex: 1, display: "grid", gridTemplateColumns: "1fr 1fr", maxWidth: "1280px", margin: "0 auto", width: "100%", padding: "0 60px", alignItems: "center", gap: "80px" }}>
+          {/* DESKTOP layout */}
+          <div className="contact-desktop" style={{ flex: 1, display: "grid", gridTemplateColumns: "1fr 1fr", maxWidth: "1280px", margin: "0 auto", width: "100%", padding: "0 60px", alignItems: "center", gap: "80px" }}>
 
-            {/* LEFT — Contact info */}
+            {/* LEFT */}
             <div style={{ display: "flex", flexDirection: "column", gap: "32px", textAlign: "center", justifyContent: "center", alignItems: "center" }}>
               <div>
-                <h2 style={{ fontFamily: "Montserrat, sans-serif", fontSize: "clamp(24px, 3vw, 36px)", fontWeight: 600, color: "#CFC7BD", margin: "0 0 20px", letterSpacing: "0.05em", textTransform: "uppercase" }}>
-                  {t.contacts.title}
-                </h2>
-                <p style={{ fontFamily: "Montserrat, sans-serif", fontSize: "13px", color: "rgba(207,199,189,0.6)", lineHeight: 1.7, maxWidth: "380px", margin: "0 auto" }}>
-                  {t.contacts.description}
-                </p>
+                <h2 style={{ fontFamily: "Montserrat, sans-serif", fontSize: "clamp(24px, 3vw, 36px)", fontWeight: 600, color: "#CFC7BD", letterSpacing: "0.05em", textTransform: "uppercase", margin: "0 0 20px" }}>{t.contacts.title}</h2>
+                <p style={{ fontFamily: "Montserrat, sans-serif", fontSize: "13px", color: "rgba(207,199,189,0.6)", lineHeight: 1.7, maxWidth: "380px", margin: "0 auto" }}>{t.contacts.description}</p>
               </div>
-
               <div>
-                <h3 style={{ fontFamily: "Montserrat, sans-serif", fontSize: "18px", fontWeight: 700, color: "#CFC7BD", margin: "0 0 12px" }}>
-                  {t.contacts.address}
-                </h3>
-                <a href="https://maps.app.goo.gl/t5QG4VNNnVzZu7J88" target="_blank" rel="noopener noreferrer" style={{ fontFamily: "Montserrat, sans-serif", fontSize: "13px", color: "rgba(207,199,189,0.6)", textDecoration: "none" }}>
-                  {t.contacts.city}
-                </a>
+                <h3 style={{ fontFamily: "Montserrat, sans-serif", fontSize: "18px", fontWeight: 700, color: "#CFC7BD", margin: "0 0 12px" }}>{t.contacts.address}</h3>
+                <a href="https://maps.app.goo.gl/t5QG4VNNnVzZu7J88" target="_blank" rel="noopener noreferrer" style={{ fontFamily: "Montserrat, sans-serif", fontSize: "13px", color: "rgba(207,199,189,0.6)", textDecoration: "none" }}>{t.contacts.city}</a>
               </div>
-
               <div>
-                <h3 style={{ fontFamily: "Montserrat, sans-serif", fontSize: "18px", fontWeight: 700, color: "#CFC7BD", margin: "0 0 12px" }}>
-                  E-mail
-                </h3>
-                <a href="mailto:request@prorab.ooo" style={{ fontFamily: "Montserrat, sans-serif", fontSize: "13px", color: "rgba(207,199,189,0.6)", textDecoration: "none" }}>
-                  request@prorab.ooo
-                </a>
+                <h3 style={{ fontFamily: "Montserrat, sans-serif", fontSize: "18px", fontWeight: 700, color: "#CFC7BD", margin: "0 0 12px" }}>E-mail</h3>
+                <a href="mailto:request@prorab.ooo" style={{ fontFamily: "Montserrat, sans-serif", fontSize: "13px", color: "rgba(207,199,189,0.6)", textDecoration: "none" }}>request@prorab.ooo</a>
               </div>
             </div>
 
-            {/* RIGHT — Contact form */}
-            <div style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(207,199,189,0.12)", padding: "44px", borderRadius: "2px", display: "flex", flexDirection: "column", maxHeight: "55vh" }}>
-              <h2 style={{ fontFamily: "Montserrat, sans-serif", fontSize: "clamp(24px, 3vw, 36px)", fontWeight: 600, color: "#CFC7BD", margin: "0 0 20px", letterSpacing: "0.05em", textTransform: "uppercase", textAlign: "center" }}>
-                {t.contacts.formTitle}
-              </h2>
-
+            {/* RIGHT — form */}
+            <div style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(207,199,189,0.12)", padding: "44px", borderRadius: "2px", display: "flex", flexDirection: "column", maxHeight: "55vh", alignSelf: "center" }}>
+              <h2 style={{ fontFamily: "Montserrat, sans-serif", fontSize: "clamp(24px, 3vw, 36px)", fontWeight: 600, color: "#CFC7BD", letterSpacing: "0.05em", textTransform: "uppercase", margin: "0 0 20px", textAlign: "center" }}>{t.contacts.formTitle}</h2>
               {[
                 { placeholder: t.contacts.namePlaceholder, type: "text" },
                 { placeholder: t.contacts.phonePlaceholder, type: "tel" },
                 { placeholder: t.contacts.messagePlaceholder, type: "text" },
               ].map((field) => (
                 <div key={field.placeholder} style={{ borderBottom: "1px solid rgba(207,199,189,0.2)", marginBottom: "12px" }}>
-                  <input
-                    type={field.type}
-                    placeholder={field.placeholder}
-                    style={{
-                      width: "100%", background: "transparent", border: "none", outline: "none",
-                      fontFamily: "Montserrat, sans-serif", fontSize: "11px", color: "#CFC7BD",
-                      padding: "8px 0", letterSpacing: "0.05em",
-                    }}
-                  />
+                  <input type={field.type} placeholder={field.placeholder}
+                    style={{ width: "100%", background: "transparent", border: "none", outline: "none", fontFamily: "Montserrat, sans-serif", fontSize: "11px", color: "#CFC7BD", padding: "8px 0", letterSpacing: "0.05em" }} />
                 </div>
               ))}
-
               <div style={{ display: "flex", justifyContent: "center", marginTop: "12px" }}>
-                <button
-                  style={{
-                    background: "rgba(207,199,189,0.1)", border: "1px solid rgba(207,199,189,0.3)",
-                    color: "#CFC7BD", fontFamily: "Montserrat, sans-serif", fontSize: "11px",
-                    letterSpacing: "0.25em", textTransform: "uppercase", padding: "10px 24px",
-                    cursor: "pointer", display: "flex", alignItems: "center", gap: "12px",
-                    transition: "all 0.3s",
-                  }}
+                <button style={{ background: "rgba(207,199,189,0.1)", border: "1px solid rgba(207,199,189,0.3)", color: "#CFC7BD", fontFamily: "Montserrat, sans-serif", fontSize: "11px", letterSpacing: "0.25em", textTransform: "uppercase", padding: "10px 24px", cursor: "pointer", display: "flex", alignItems: "center", gap: "12px", transition: "all 0.3s" }}
                   onMouseEnter={(e) => { e.currentTarget.style.background = "#CFC7BD"; e.currentTarget.style.color = "#0F1113"; }}
-                  onMouseLeave={(e) => { e.currentTarget.style.background = "rgba(207,199,189,0.1)"; e.currentTarget.style.color = "#CFC7BD"; }}
-                >
+                  onMouseLeave={(e) => { e.currentTarget.style.background = "rgba(207,199,189,0.1)"; e.currentTarget.style.color = "#CFC7BD"; }}>
                   {t.contacts.sendButton}
-                  <svg width="16" height="10" viewBox="0 0 16 10" fill="none">
-                    <path d="M1 5H15M15 5L11 1M15 5L11 9" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                  </svg>
+                  <svg width="16" height="10" viewBox="0 0 16 10" fill="none"><path d="M1 5H15M15 5L11 1M15 5L11 9" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
                 </button>
               </div>
             </div>
-
           </div>
 
-          {/* Footer */}
-          {false && (
-          <div style={{ borderTop: "1px solid rgba(207,199,189,0.1)", padding: "20px 60px", display: "flex", alignItems: "center", justifyContent: "center", position: "relative", flexShrink: 0 }}>
-            <p style={{ position: "absolute", left: "60px", fontFamily: "Montserrat, sans-serif", fontSize: "11px", color: "rgba(207,199,189,0.4)", margin: 0 }}>
-              © {new Date().getFullYear()} PRORAB
-            </p>
-            <p style={{ fontFamily: "Montserrat, sans-serif", fontSize: "11px", color: "rgba(207,199,189,0.4)", margin: 0 }}>
-              {t.footer.rights}
-            </p>
-          </div>
-          )}
+          {/* MOBILE layout — horizontal swipe */}
+          <MobileContactSwipe t={t} />
 
         </section>
 
@@ -366,12 +322,14 @@ export default function Home() {
           0%, 100% { opacity: 0.3; transform: scaleY(0.5); transform-origin: top; }
           50% { opacity: 1; transform: scaleY(1); transform-origin: top; }
         }
+        .contact-desktop { display: grid; }
+        .mobile-contact { display: none; }
         @media (max-width: 768px) {
           .about-grid { grid-template-columns: 1fr !important; overflow-y: auto; height: auto !important; }
           .about-left { border-right: none !important; border-bottom: 1px solid rgba(207,199,189,0.12); padding: 40px 24px !important; }
           .about-right { padding: 40px 24px !important; }
-          .contact-grid { grid-template-columns: 1fr !important; padding: 0 24px !important; gap: 32px !important; }
-          .contact-section { height: auto !important; min-height: 100vh; overflow-y: auto; }
+          .contact-desktop { display: none !important; }
+          .mobile-contact { display: block !important; }
         }
       `}</style>
     </div>
