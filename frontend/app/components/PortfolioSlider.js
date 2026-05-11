@@ -164,9 +164,9 @@ export default function PortfolioSlider() {
         .ps-section {
           position: relative;
           width: 100%;
-          min-height: 100vh;
+          min-height: auto;
           padding-top: 80px;
-          padding-bottom: 2rem;
+          padding-bottom: 4rem;
           background-image: url('/bg.png');
           background-size: cover;
           background-position: center;
@@ -175,7 +175,7 @@ export default function PortfolioSlider() {
           flex-direction: column;
           align-items: center;
           justify-content: center;
-          overflow: hidden;
+          overflow: visible;
           user-select: none;
         }
 
