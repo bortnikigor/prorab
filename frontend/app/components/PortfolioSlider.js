@@ -164,7 +164,8 @@ export default function PortfolioSlider() {
         .ps-section {
           position: relative;
           width: 100%;
-          min-height: 100vh;
+          min-height: auto;
+          padding-bottom: 3rem;
           background: #0F1113;
           display: flex;
           flex-direction: column;
@@ -271,7 +272,7 @@ export default function PortfolioSlider() {
         .ps-caption-wrap {
           position: relative;
           width: min(88vw, 860px);
-          margin-top: 0.875vh;
+          margin-top: 0.8rem;
           z-index: 20;
         }
 
