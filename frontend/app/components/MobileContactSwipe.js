@@ -39,7 +39,7 @@ export default function MobileContactSwipe({ t, language }) {
           </div>
           {/* Swipe hint */}
           <div style={{ display: "flex", alignItems: "center", gap: "8px", marginTop: "16px", opacity: 0.5 }}>
-            <span style={{ fontFamily: "Montserrat, sans-serif", fontSize: "15px", letterSpacing: "0.05em", color: "#CFC7BD", fontWeight: 700 }}>{t.contacts.swipeToForm}</span>
+            <span style={{ fontFamily: "Montserrat, sans-serif", fontSize: "15px", letterSpacing: "0.05em", color: "#CFC7BD", fontWeight: 700, textTransform: "none" }}>{t.contacts.swipeToForm}</span>
             <div style={{ width: "40px", height: "1px", background: "#CFC7BD", opacity: 0.4, animation: "scrollHintH 1.5s ease-in-out infinite" }} />
           </div>
         </div>
@@ -67,7 +67,7 @@ export default function MobileContactSwipe({ t, language }) {
           {/* Swipe back hint */}
           <div style={{ display: "flex", alignItems: "center", gap: "8px", marginTop: "16px", opacity: 0.5 }}>
             <div style={{ width: "40px", height: "1px", background: "#CFC7BD", opacity: 0.4, animation: "scrollHintH 1.5s ease-in-out infinite" }} />
-            <span style={{ fontFamily: "Montserrat, sans-serif", fontSize: "15px", letterSpacing: "0.05em", color: "#CFC7BD", fontWeight: 700 }}>{t.contacts.swipeBack}</span>
+            <span style={{ fontFamily: "Montserrat, sans-serif", fontSize: "15px", letterSpacing: "0.05em", color: "#CFC7BD", fontWeight: 700, textTransform: "none" }}>{t.contacts.swipeBack}</span>
           </div>
         </div>
       </div>
