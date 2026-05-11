@@ -203,7 +203,7 @@ export default function PortfolioSlider() {
 
         /* ── ПОЗИЦІЇ ── */
         .ps-slide--center {
-          width: 36vw; height: 69vh;
+          width: 36vw; height: 62vh;
           transform: translate(-50%, -50%) translateX(0) scale(1);
           opacity: 1;
           filter: blur(0px) brightness(1);
