@@ -179,7 +179,7 @@ export default function PortfolioSlider() {
         .ps-track {
           position: relative;
           width: 100%;
-          height: 78vh;
+          height: 70vh;
           display: flex;
           align-items: center;
           justify-content: center;
@@ -202,7 +202,7 @@ export default function PortfolioSlider() {
 
         /* ── ПОЗИЦІЇ ── */
         .ps-slide--center {
-          width: 36vw; height: 62vh;
+          width: 36vw; height: 56vh;
           transform: translate(-50%, -50%) translateX(0) scale(1);
           opacity: 1;
           filter: blur(0px) brightness(1);
@@ -210,7 +210,7 @@ export default function PortfolioSlider() {
           cursor: default;
         }
         .ps-slide--left {
-          width: 40vw; height: 57vh;
+          width: 40vw; height: 51vh;
           transform: translate(-50%, -50%) translateX(-26vw) scale(0.9);
           opacity: 0.65;
           filter: blur(1.5px) brightness(0.7);
@@ -218,7 +218,7 @@ export default function PortfolioSlider() {
           cursor: pointer;
         }
         .ps-slide--right {
-          width: 40vw; height: 57vh;
+          width: 40vw; height: 51vh;
           transform: translate(-50%, -50%) translateX(26vw) scale(0.9);
           opacity: 0.65;
           filter: blur(1.5px) brightness(0.7);
