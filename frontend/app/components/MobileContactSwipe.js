@@ -80,9 +80,9 @@ export default function MobileContactSwipe({ t, language }) {
       `}</style>
 
       {/* Dots indicator */}
-      <div style={{ position: "absolute", bottom: "16px", left: "50%", transform: "translateX(-50%)", display: "flex", gap: "8px" }}>
+      <div style={{ position: "absolute", bottom: "16px", left: "50%", transform: "translateX(-50%)", display: "flex", gap: "10px" }}>
         {[0, 1].map((i) => (
-          <button key={i} onClick={() => setPanel(i)} style={{ width: i === panel ? 20 : 6, height: 6, borderRadius: 3, border: "none", padding: 0, cursor: "pointer", background: i === panel ? "#CFC7BD" : "rgba(207,199,189,0.3)", transition: "all 0.3s" }} />
+          <button key={i} onClick={() => setPanel(i)} style={{ width: 5, height: 5, borderRadius: "50%", border: "none", padding: 0, cursor: "pointer", background: i === panel ? "#CFC7BD" : "rgba(207,199,189,0.28)", transform: i === panel ? "scale(1.6)" : "scale(1)", transition: "background 0.3s, transform 0.3s" }} />
         ))}
       </div>
     </div>

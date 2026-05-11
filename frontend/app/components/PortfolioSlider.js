@@ -296,22 +296,7 @@ export default function PortfolioSlider() {
 
         /* ── ARROWS ── */
         .ps-arrow {
-          position: absolute;
-          top: 50%;
-          transform: translateY(-50%);
-          width: 46px;
-          height: 46px;
-          border-radius: 50%;
-          background: rgba(245, 243, 239, 0.05);
-          border: 1px solid rgba(245, 243, 239, 0.18);
-          color: #F5F3EF;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          cursor: pointer;
-          z-index: 30;
-          transition: background 0.25s, border-color 0.25s;
-          padding: 0;
+          display: none;
         }
         .ps-arrow svg { width: 20px; height: 20px; }
         .ps-arrow:hover {
