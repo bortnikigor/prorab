@@ -304,7 +304,6 @@ export default function Home() {
                   onMouseEnter={(e) => { e.currentTarget.style.background = "#CFC7BD"; e.currentTarget.style.color = "#0F1113"; }}
                   onMouseLeave={(e) => { e.currentTarget.style.background = "rgba(207,199,189,0.1)"; e.currentTarget.style.color = "#CFC7BD"; }}>
                   {t.contacts.sendButton}
-                  <svg width="16" height="10" viewBox="0 0 16 10" fill="none"><path d="M1 5H15M15 5L11 1M15 5L11 9" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
                 </button>
               </div>
             </div>

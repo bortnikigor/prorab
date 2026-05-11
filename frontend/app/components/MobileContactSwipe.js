@@ -61,7 +61,6 @@ export default function MobileContactSwipe({ t, language }) {
             <div style={{ display: "flex", justifyContent: "center", marginTop: "16px" }}>
               <button style={{ background: "rgba(207,199,189,0.1)", border: "1px solid rgba(207,199,189,0.3)", color: "#CFC7BD", fontFamily: "Montserrat, sans-serif", fontSize: "11px", letterSpacing: "0.25em", textTransform: "uppercase", padding: "12px 28px", cursor: "pointer", display: "flex", alignItems: "center", gap: "10px" }}>
                 {t.contacts.sendButton}
-                <svg width="14" height="8" viewBox="0 0 14 8" fill="none"><path d="M1 4H13M13 4L10 1M13 4L10 7" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/></svg>
               </button>
             </div>
           </div>
