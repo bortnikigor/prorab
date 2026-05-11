@@ -278,7 +278,7 @@ export default function PortfolioSlider() {
           bottom: 2rem;
           left: 50%;
           transform: translateX(-50%);
-          width: 36vw;
+          width: 79vw;
           margin-top: 0;
           z-index: 20;
         }
