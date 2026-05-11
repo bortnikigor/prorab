@@ -166,7 +166,10 @@ export default function PortfolioSlider() {
           width: 100%;
           min-height: auto;
           padding-bottom: 3rem;
-          background: #0F1113;
+          background-image: url('/bg.png');
+          background-size: cover;
+          background-position: center;
+          background-repeat: no-repeat;
           display: flex;
           flex-direction: column;
           align-items: center;
