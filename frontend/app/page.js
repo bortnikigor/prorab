@@ -201,8 +201,8 @@ export default function Home() {
             <p style={{ fontFamily: "Montserrat, sans-serif", fontSize: "11px", letterSpacing: "0.3em", color: "#CFC7BD", textTransform: "uppercase", margin: "0 0 16px 0", fontWeight: 400, paddingLeft: "7px" }}>
               I AM
             </p>
-            <h1 style={{ fontFamily: "Montserrat, sans-serif", fontSize: "clamp(40px, 8vw, 100px)", fontWeight: 800, color: "#CFC7BD", letterSpacing: "0.05em", textTransform: "uppercase", margin: 0, lineHeight: 1, whiteSpace: "nowrap" }}>
-              PRORAB
+            <h1 style={{ fontFamily: "Montserrat, sans-serif", fontSize: "clamp(40px, 8vw, 100px)", letterSpacing: "0.05em", textTransform: "uppercase", margin: 0, lineHeight: 1, whiteSpace: "nowrap", color: "#CFC7BD" }}>
+              <span style={{ fontWeight: 800 }}>PRO</span><span style={{ fontWeight: 400 }}>RAB</span>
             </h1>
             <p style={{ fontFamily: "Montserrat, sans-serif", fontSize: "11px", fontWeight: 400, color: "#CFC7BD", textTransform: "uppercase", letterSpacing: "0.3em", margin: "12px 0 0", textAlign: "right", lineHeight: 1.5 }}>
               {t.hero.slogan.split(" ").slice(0, Math.ceil(t.hero.slogan.split(" ").length / 2)).join(" ")}<br/>
