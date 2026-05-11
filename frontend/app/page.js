@@ -14,7 +14,7 @@ const HERO_VIDEO_ID = "video2_utuupz";
 const SECTIONS = ["hero", "about", "contact"];
 
 export default function Home() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const [currentSection, setCurrentSection] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
   const portfolioRef = useRef(null);
@@ -311,7 +311,7 @@ export default function Home() {
           </div>
 
           {/* MOBILE layout — horizontal swipe */}
-          <MobileContactSwipe t={t} />
+          <MobileContactSwipe t={t} language={language} />
 
         </section>
 

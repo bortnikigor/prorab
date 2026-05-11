@@ -1,7 +1,7 @@
 "use client";
 import { useRef, useState } from "react";
 
-export default function MobileContactSwipe({ t }) {
+export default function MobileContactSwipe({ t, language }) {
   const [panel, setPanel] = useState(0); // 0 = info, 1 = form
   const touchStartX = useRef(0);
 
@@ -39,7 +39,7 @@ export default function MobileContactSwipe({ t }) {
           </div>
           {/* Swipe hint */}
           <div style={{ display: "flex", alignItems: "center", gap: "8px", marginTop: "16px", opacity: 0.5 }}>
-            <span style={{ fontFamily: "Montserrat, sans-serif", fontSize: "10px", letterSpacing: "0.2em", color: "#CFC7BD", textTransform: "uppercase" }}>свайп для форми</span>
+            <span style={{ fontFamily: "Montserrat, sans-serif", fontSize: "10px", letterSpacing: "0.2em", color: "#CFC7BD", textTransform: "uppercase" }}>{t.contacts.swipeToForm}</span>
             <svg width="16" height="10" viewBox="0 0 16 10" fill="none"><path d="M1 5H15M15 5L11 1M15 5L11 9" stroke="#CFC7BD" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/></svg>
           </div>
         </div>
@@ -68,7 +68,7 @@ export default function MobileContactSwipe({ t }) {
           {/* Swipe back hint */}
           <div style={{ display: "flex", alignItems: "center", gap: "8px", marginTop: "16px", opacity: 0.5 }}>
             <svg width="16" height="10" viewBox="0 0 16 10" fill="none"><path d="M15 5H1M1 5L5 1M1 5L5 9" stroke="#CFC7BD" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/></svg>
-            <span style={{ fontFamily: "Montserrat, sans-serif", fontSize: "10px", letterSpacing: "0.2em", color: "#CFC7BD", textTransform: "uppercase" }}>назад</span>
+            <span style={{ fontFamily: "Montserrat, sans-serif", fontSize: "10px", letterSpacing: "0.2em", color: "#CFC7BD", textTransform: "uppercase" }}>{t.contacts.swipeBack}</span>
           </div>
         </div>
       </div>
