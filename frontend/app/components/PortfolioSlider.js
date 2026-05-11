@@ -280,11 +280,6 @@ export default function PortfolioSlider() {
         }
 
         .ps-caption-bar {
-          background: rgba(12, 14, 16, 0.68);
-          backdrop-filter: blur(14px);
-          -webkit-backdrop-filter: blur(14px);
-          border: 1px solid rgba(207, 199, 189, 0.1);
-          border-radius: 2px;
           padding: 1.2rem 2.8rem;
         }
 
