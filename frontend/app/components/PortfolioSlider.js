@@ -1,162 +1,367 @@
-"use client";
+'use client';
 
-import { forwardRef, useCallback, useEffect, useImperativeHandle, useRef, useState } from "react";
-import { projects } from "../data/projects";
-import { useLanguage } from "../context/LanguageContext";
+import { useState, useCallback, useRef, useEffect } from 'react';
 
-const THUMB = "https://res.cloudinary.com/dpcqf9y8l/image/upload/v1778308458/medium_1_7a0af14597.jpg";
+// ─── ДАНІ ПРОЕКТІВ ───────────────────────────────────────────────────────────
+// Замініть `bg` на реальні шляхи до зображень коли вони будуть готові
+// Наприклад: image: '/images/trusdo.jpg'
+const projects = [
+  {
+    id: 1,
+    title: 'TRUSDO',
+    category: 'Brand Identity & Web Design',
+    caption: 'We are a design company, providing product customization, starting from your needs — your support is our constant driving force.',
+    bg: 'linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%)',
+  },
+  {
+    id: 2,
+    title: 'MEDTECH',
+    category: 'UX/UI & Product Design',
+    caption: 'Innovative medical device interface — simplicity meets precision. Every touchpoint designed with care for the person on the other side.',
+    bg: 'linear-gradient(135deg, #0d1117 0%, #161b22 50%, #21262d 100%)',
+  },
+  {
+    id: 3,
+    title: 'CREATE',
+    category: 'Digital Experience',
+    caption: 'A bold digital platform for creative professionals — fast, immersive, and built to inspire the next generation of makers.',
+    bg: 'linear-gradient(135deg, #111820 0%, #1a2a3a 50%, #243040 100%)',
+  },
+  {
+    id: 4,
+    title: 'INTERIORS',
+    category: 'Interior Design & Renovation',
+    caption: 'Premium residential renovation — from concept to completion. Spaces crafted around the people who inhabit them.',
+    bg: 'linear-gradient(135deg, #1c1410 0%, #2a1f18 50%, #3a2a20 100%)',
+  },
+  {
+    id: 5,
+    title: 'KOMFORT',
+    category: 'Commercial Renovation',
+    caption: 'Commercial spaces reimagined. Minimal downtime, maximum impact — delivering results that drive your business forward.',
+    bg: 'linear-gradient(135deg, #0f1a1a 0%, #162525 50%, #1e3030 100%)',
+  },
+];
+
 const N = projects.length;
+const mod = (i) => ((i % N) + N) % N;
 
-function Modal({ project, onClose }) {
-  const { language, t } = useLanguage();
-  useEffect(() => {
-    document.body.style.overflow = "hidden";
-    const onKey = (e) => { if (e.key === "Escape") onClose(); };
-    window.addEventListener("keydown", onKey);
-    return () => { document.body.style.overflow = ""; window.removeEventListener("keydown", onKey); };
-  }, [onClose]);
-  return (
-    <div style={{ position: "fixed", inset: 0, zIndex: 100, background: "rgba(15,17,19,0.97)", display: "flex", flexDirection: "column" }}>
-      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "24px 48px", flexShrink: 0 }}>
-        <div>
-          <p style={{ color: "#CFC7BD", fontSize: "10px", letterSpacing: "0.3em", textTransform: "uppercase", margin: "0 0 4px", fontFamily: "Montserrat, sans-serif" }}>{project.categories[language]}</p>
-          <h3 style={{ color: "#F5F3EF", fontSize: "18px", fontWeight: 600, margin: 0, fontFamily: "Montserrat, sans-serif" }}>{project.titles[language]}</h3>
-        </div>
-        <button onClick={onClose} style={{ background: "none", border: "none", color: "rgba(245,243,239,0.4)", fontSize: "20px", cursor: "pointer" }}>✕</button>
-      </div>
-      <div style={{ flex: 1, display: "flex", alignItems: "center", gap: "16px", overflowX: "auto", padding: "0 48px 48px", scrollbarWidth: "none" }}>
-        {[1,2,3,4,5].map((i) => (
-          <img key={i} src={`https://picsum.photos/seed/prorab${project.id}p${i}/1200/800`} alt=""
-            onClick={onClose} draggable={false}
-            style={{ height: "65vh", maxWidth: "85vw", width: "auto", flexShrink: 0, objectFit: "cover", cursor: "pointer", opacity: 0.9 }} />
-        ))}
-      </div>
-    </div>
-  );
-}
+// Позиції слайдера: far-left, left, center, right, far-right
+const POSITIONS = ['far_left', 'left', 'center', 'right', 'far_right'];
 
-const PortfolioSlider = forwardRef(function PortfolioSlider({ onExitBottom, onExitTop }, ref) {
-  const { language, t } = useLanguage();
+export default function PortfolioSlider() {
   const [active, setActive] = useState(0);
-  const [selected, setSelected] = useState(null);
-  const [animating, setAnimating] = useState(false);
-  const pausedRef = useRef(false);
-  const lastScrollTime = useRef(0);
+  const [busy, setBusy] = useState(false);
+  const touchX = useRef(null);
+  const captionRef = useRef(null);
 
-  // Expose handleScroll to parent
-  useImperativeHandle(ref, () => ({
-    handleScroll(dir) {
-      const now = Date.now();
-      if (now - lastScrollTime.current < 800) return true;
-      lastScrollTime.current = now;
-
-      if (dir > 0) {
-        if (active < N - 1) { advance(1); return true; }
-        else { onExitBottom?.(); return false; }
-      } else {
-        if (active > 0) { advance(-1); return true; }
-        else { onExitTop?.(); return false; }
-      }
-    }
-  }));
-
-  function advance(dir) {
-    if (animating) return;
-    setAnimating(true);
-    setActive((a) => Math.max(0, Math.min(N - 1, a + dir)));
-    setTimeout(() => setAnimating(false), 800);
-  }
-
-  // Auto-advance
+  // Fade caption on change
   useEffect(() => {
-    const id = setInterval(() => {
-      if (!pausedRef.current) {
-        setActive((a) => (a + 1) % N);
-      }
-    }, 5000);
-    return () => clearInterval(id);
-  }, []);
+    if (captionRef.current) {
+      captionRef.current.style.opacity = '0';
+      const t = setTimeout(() => {
+        if (captionRef.current) captionRef.current.style.opacity = '1';
+      }, 250);
+      return () => clearTimeout(t);
+    }
+  }, [active]);
 
-  const handleClose = useCallback(() => setSelected(null), []);
-  const project = projects[active];
+  const go = useCallback((dir) => {
+    if (busy) return;
+    setBusy(true);
+    setActive((prev) => mod(prev + dir));
+    setTimeout(() => setBusy(false), 550);
+  }, [busy]);
+
+  const onTouchStart = (e) => { touchX.current = e.touches[0].clientX; };
+  const onTouchEnd = (e) => {
+    if (touchX.current === null) return;
+    const dx = touchX.current - e.changedTouches[0].clientX;
+    if (Math.abs(dx) > 50) go(dx > 0 ? 1 : -1);
+    touchX.current = null;
+  };
+
+  // Будуємо масив з 5 слайдів навколо активного
+  const slides = POSITIONS.map((pos, offset) => {
+    const delta = offset - 2; // -2, -1, 0, 1, 2
+    const idx = mod(active + delta);
+    return { pos, idx, project: projects[idx] };
+  });
 
   return (
-    <div
-      style={{ position: "relative", width: "100%", height: "100%", background: "#0F1113", fontFamily: "Montserrat, sans-serif" }}
-      onMouseEnter={() => { pausedRef.current = true; }}
-      onMouseLeave={() => { pausedRef.current = false; }}
+    <section
+      className="ps-section"
+      onTouchStart={onTouchStart}
+      onTouchEnd={onTouchEnd}
     >
-      {/* Fullscreen slides */}
-      {projects.map((p, i) => (
-        <div key={p.id} style={{ position: "absolute", inset: 0, opacity: i === active ? 1 : 0, transition: "opacity 0.8s ease", zIndex: i === active ? 1 : 0 }}>
-          <img src={THUMB} alt="" draggable={false} style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
-          <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(15,17,19,0.9) 0%, rgba(15,17,19,0.15) 50%, rgba(15,17,19,0.25) 100%)" }} />
+      {/* ── СЛАЙДЕР ─────────────────────────────────────── */}
+      <div className="ps-track">
+        {slides.map(({ pos, idx, project }) => {
+          const isLeft  = pos === 'left'     || pos === 'far_left';
+          const isRight = pos === 'right'    || pos === 'far_right';
+          const isCenter = pos === 'center';
+
+          return (
+            <div
+              key={`${pos}`}
+              className={`ps-slide ps-slide--${pos}`}
+              onClick={() => {
+                if (isLeft && !busy)  go(-1);
+                if (isRight && !busy) go(1);
+              }}
+            >
+              <div className="ps-slide-inner">
+                {/* Замініть div на <img src={project.image} /> коли будуть фото */}
+                <div
+                  className="ps-slide-bg"
+                  style={{ background: project.bg }}
+                >
+                  <span className="ps-slide-label">{project.title}</span>
+                </div>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
+      {/* ── ПІДПИС ──────────────────────────────────────── */}
+      <div className="ps-caption-wrap">
+        <div className="ps-caption-bar">
+          <p
+            ref={captionRef}
+            className="ps-caption-text"
+            style={{ transition: 'opacity 0.35s ease' }}
+          >
+            {projects[active].caption}
+          </p>
         </div>
-      ))}
-
-      {/* Top label */}
-      <div style={{ position: "absolute", top: "32px", left: "60px", zIndex: 10 }}>
-        <p style={{ color: "#CFC7BD", fontSize: "11px", letterSpacing: "0.35em", textTransform: "uppercase", margin: 0 }}>{t.portfolio.label}</p>
       </div>
 
-      {/* Counter */}
-      <div style={{ position: "absolute", top: "32px", right: "80px", zIndex: 10 }}>
-        <p style={{ color: "rgba(245,243,239,0.4)", fontSize: "12px", letterSpacing: "0.2em", margin: 0 }}>
-          {String(active + 1).padStart(2, "0")} / {String(N).padStart(2, "0")}
-        </p>
-      </div>
+      {/* ── СТРІЛКИ ─────────────────────────────────────── */}
+      <button className="ps-arrow ps-arrow--left"  onClick={() => go(-1)} aria-label="Попередній">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+          <polyline points="15 18 9 12 15 6"/>
+        </svg>
+      </button>
+      <button className="ps-arrow ps-arrow--right" onClick={() => go(1)}  aria-label="Наступний">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+          <polyline points="9 18 15 12 9 6"/>
+        </svg>
+      </button>
 
-      {/* Bottom left: category + title + button */}
-      <div style={{ position: "absolute", bottom: "60px", left: "60px", zIndex: 10 }}>
-        <p key={`cat-${active}`} style={{ color: "#CFC7BD", fontSize: "11px", letterSpacing: "0.35em", textTransform: "uppercase", margin: "0 0 12px", animation: "fadeUp 0.6s ease forwards" }}>
-          {project.categories[language].split("·")[0].trim()}
-        </p>
-        <h2 key={`title-${active}`} style={{ color: "#F5F3EF", fontSize: "clamp(32px, 5vw, 64px)", fontWeight: 800, lineHeight: 1, textTransform: "uppercase", margin: "0 0 28px", maxWidth: "600px", animation: "fadeUp 0.7s ease forwards" }}>
-          {project.titles[language]}
-        </h2>
-        <button
-          onClick={() => setSelected(project)}
-          style={{ background: "transparent", border: "1px solid rgba(207,199,189,0.5)", color: "#CFC7BD", padding: "12px 32px", fontSize: "11px", letterSpacing: "0.25em", textTransform: "uppercase", cursor: "pointer", display: "flex", alignItems: "center", gap: "12px", fontFamily: "Montserrat, sans-serif", transition: "all 0.3s" }}
-          onMouseEnter={(e) => { e.currentTarget.style.background = "#CFC7BD"; e.currentTarget.style.color = "#0F1113"; }}
-          onMouseLeave={(e) => { e.currentTarget.style.background = "transparent"; e.currentTarget.style.color = "#CFC7BD"; }}
-        >
-          {t.portfolio.viewProject}
-          <svg width="20" height="10" viewBox="0 0 20 10" fill="none">
-            <path d="M1 5H19M19 5L15 1M19 5L15 9" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-          </svg>
-        </button>
-      </div>
-
-      {/* Arrows bottom right */}
-      <div style={{ position: "absolute", bottom: "60px", right: "80px", zIndex: 10, display: "flex", gap: "12px" }}>
-        <button onClick={() => advance(-1)} disabled={active === 0}
-          style={{ background: "none", border: "1px solid rgba(207,199,189,0.25)", color: active === 0 ? "rgba(207,199,189,0.2)" : "#CFC7BD", width: "48px", height: "48px", cursor: active === 0 ? "default" : "pointer", display: "flex", alignItems: "center", justifyContent: "center", transition: "all 0.3s" }}>
-          <svg width="20" height="12" viewBox="0 0 20 12" fill="none"><path d="M19 6H1M1 6L6 1M1 6L6 11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
-        </button>
-        <button onClick={() => advance(1)} disabled={active === N - 1}
-          style={{ background: "none", border: "1px solid rgba(207,199,189,0.25)", color: active === N - 1 ? "rgba(207,199,189,0.2)" : "#CFC7BD", width: "48px", height: "48px", cursor: active === N - 1 ? "default" : "pointer", display: "flex", alignItems: "center", justifyContent: "center", transition: "all 0.3s" }}>
-          <svg width="20" height="12" viewBox="0 0 20 12" fill="none"><path d="M1 6H19M19 6L14 1M19 6L14 11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
-        </button>
-      </div>
-
-      {/* Dots */}
-      <div style={{ position: "absolute", bottom: "24px", left: "50%", transform: "translateX(-50%)", zIndex: 10, display: "flex", gap: "8px" }}>
+      {/* ── ТОЧКИ ───────────────────────────────────────── */}
+      <div className="ps-dots">
         {projects.map((_, i) => (
-          <button key={i} onClick={() => { pausedRef.current = true; setActive(i); setTimeout(() => { pausedRef.current = false; }, 900); }}
-            style={{ width: i === active ? 28 : 6, height: 6, borderRadius: 3, border: "none", padding: 0, cursor: "pointer", background: i === active ? "#CFC7BD" : "rgba(207,199,189,0.25)", transition: "all 0.4s ease" }} />
+          <button
+            key={i}
+            className={`ps-dot${i === active ? ' ps-dot--on' : ''}`}
+            onClick={() => { if (i !== active && !busy) { setBusy(true); setActive(i); setTimeout(() => setBusy(false), 550); } }}
+            aria-label={`Проект ${i + 1}`}
+          />
         ))}
       </div>
 
+      {/* ══ СТИЛІ ══════════════════════════════════════════════════════════ */}
       <style>{`
-        @keyframes fadeUp {
-          from { opacity: 0; transform: translateY(20px); }
-          to { opacity: 1; transform: translateY(0); }
+        .ps-section {
+          position: relative;
+          width: 100%;
+          min-height: 100vh;
+          background: #0F1113;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          overflow: hidden;
+          user-select: none;
+        }
+
+        /* ── TRACK ── */
+        .ps-track {
+          position: relative;
+          width: 100%;
+          height: 68vh;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        /* ── БАЗОВИЙ СЛАЙД ── */
+        .ps-slide {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform-origin: center center;
+          transition:
+            transform 0.55s cubic-bezier(0.4, 0, 0.2, 1),
+            opacity   0.55s cubic-bezier(0.4, 0, 0.2, 1),
+            filter    0.55s cubic-bezier(0.4, 0, 0.2, 1),
+            width     0.55s cubic-bezier(0.4, 0, 0.2, 1),
+            height    0.55s cubic-bezier(0.4, 0, 0.2, 1);
+          will-change: transform, opacity, filter;
+        }
+
+        /* ── ПОЗИЦІЇ ── */
+        .ps-slide--center {
+          width: 36vw; height: 58vh;
+          transform: translate(-50%, -50%) translateX(0) scale(1);
+          opacity: 1;
+          filter: blur(0px) brightness(1);
+          z-index: 10;
+          cursor: default;
+        }
+        .ps-slide--left {
+          width: 27vw; height: 48vh;
+          transform: translate(-50%, -50%) translateX(-37vw) scale(0.9);
+          opacity: 0.65;
+          filter: blur(1.5px) brightness(0.7);
+          z-index: 5;
+          cursor: pointer;
+        }
+        .ps-slide--right {
+          width: 27vw; height: 48vh;
+          transform: translate(-50%, -50%) translateX(37vw) scale(0.9);
+          opacity: 0.65;
+          filter: blur(1.5px) brightness(0.7);
+          z-index: 5;
+          cursor: pointer;
+        }
+        .ps-slide--far_left {
+          width: 20vw; height: 38vh;
+          transform: translate(-50%, -50%) translateX(-63vw) scale(0.75);
+          opacity: 0.28;
+          filter: blur(3px) brightness(0.45);
+          z-index: 2;
+          cursor: pointer;
+        }
+        .ps-slide--far_right {
+          width: 20vw; height: 38vh;
+          transform: translate(-50%, -50%) translateX(63vw) scale(0.75);
+          opacity: 0.28;
+          filter: blur(3px) brightness(0.45);
+          z-index: 2;
+          cursor: pointer;
+        }
+
+        /* ── INNER ── */
+        .ps-slide-inner {
+          width: 100%;
+          height: 100%;
+          border-radius: 3px;
+          overflow: hidden;
+          box-shadow: 0 24px 64px rgba(0,0,0,0.65);
+        }
+
+        .ps-slide-bg {
+          width: 100%;
+          height: 100%;
+          position: relative;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        .ps-slide-label {
+          font-family: 'Montserrat', sans-serif;
+          font-weight: 700;
+          font-size: clamp(1rem, 2.5vw, 2rem);
+          letter-spacing: 0.3em;
+          color: rgba(245, 243, 239, 0.85);
+          text-transform: uppercase;
+          text-shadow: 0 2px 20px rgba(0,0,0,0.5);
+        }
+
+        /* ── CAPTION ── */
+        .ps-caption-wrap {
+          position: relative;
+          width: min(88vw, 860px);
+          margin-top: 3.5vh;
+          z-index: 20;
+        }
+
+        .ps-caption-bar {
+          background: rgba(12, 14, 16, 0.68);
+          backdrop-filter: blur(14px);
+          -webkit-backdrop-filter: blur(14px);
+          border: 1px solid rgba(207, 199, 189, 0.1);
+          border-radius: 2px;
+          padding: 1.2rem 2.8rem;
+        }
+
+        .ps-caption-text {
+          font-family: 'Montserrat', sans-serif;
+          font-size: clamp(0.72rem, 1.1vw, 0.95rem);
+          font-weight: 300;
+          letter-spacing: 0.07em;
+          color: #CFC7BD;
+          text-align: center;
+          line-height: 1.75;
+          margin: 0;
+        }
+
+        /* ── ARROWS ── */
+        .ps-arrow {
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+          width: 46px;
+          height: 46px;
+          border-radius: 50%;
+          background: rgba(245, 243, 239, 0.05);
+          border: 1px solid rgba(245, 243, 239, 0.18);
+          color: #F5F3EF;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+          z-index: 30;
+          transition: background 0.25s, border-color 0.25s;
+          padding: 0;
+        }
+        .ps-arrow svg { width: 20px; height: 20px; }
+        .ps-arrow:hover {
+          background: rgba(245, 243, 239, 0.12);
+          border-color: rgba(245, 243, 239, 0.35);
+        }
+        .ps-arrow--left  { left: 2.5vw; }
+        .ps-arrow--right { right: 2.5vw; }
+
+        /* ── DOTS ── */
+        .ps-dots {
+          display: flex;
+          gap: 10px;
+          margin-top: 2.5vh;
+          z-index: 20;
+        }
+        .ps-dot {
+          width: 5px;
+          height: 5px;
+          border-radius: 50%;
+          background: rgba(207, 199, 189, 0.28);
+          border: none;
+          cursor: pointer;
+          padding: 0;
+          transition: background 0.3s, transform 0.3s;
+        }
+        .ps-dot--on {
+          background: #CFC7BD;
+          transform: scale(1.6);
+        }
+
+        /* ── MOBILE ── */
+        @media (max-width: 768px) {
+          .ps-track { height: 55vh; }
+
+          .ps-slide--center   { width: 74vw; height: 46vh; }
+          .ps-slide--left     { width: 54vw; height: 38vh; transform: translate(-50%, -50%) translateX(-58vw) scale(0.85); }
+          .ps-slide--right    { width: 54vw; height: 38vh; transform: translate(-50%, -50%) translateX(58vw)  scale(0.85); }
+          .ps-slide--far_left,
+          .ps-slide--far_right { opacity: 0; pointer-events: none; }
+
+          .ps-arrow { display: none; }
+          .ps-caption-bar { padding: 1rem 1.4rem; }
         }
       `}</style>
-
-      {selected && <Modal project={selected} onClose={handleClose} />}
-    </div>
+    </section>
   );
-});
-
-export default PortfolioSlider;
+}

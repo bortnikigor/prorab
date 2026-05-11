@@ -215,47 +215,7 @@ export default function Home() {
         </section>
 
         {/* ── ABOUT + SERVICES ── */}
-        <section style={{ width: "100%", height: "100vh", borderTop: "1px solid rgba(207,199,189,0.12)", overflowY: "auto", backgroundImage: "url('/bg.png')", backgroundSize: "cover", backgroundPosition: "center", backgroundRepeat: "no-repeat" }}>
-          <div className="about-grid" style={{ maxWidth: "1280px", margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1fr", height: "100%", width: "100%" }}>
-            {/* About */}
-            <div className="about-left" style={{ display: "flex", flexDirection: "column", justifyContent: "center", gap: "32px", borderRight: "1px solid rgba(207,199,189,0.12)", padding: "80px 48px" }}>
-              <p style={{ color: "#CFC7BD", fontSize: "11px", letterSpacing: "0.5em", textTransform: "uppercase", fontFamily: "Montserrat, sans-serif" }}>
-                {t.about.label}
-              </p>
-              <h2 style={{ color: "#CFC7BD", fontSize: "clamp(24px, 3vw, 36px)", fontWeight: 600, letterSpacing: "-0.02em", fontFamily: "Montserrat, sans-serif", margin: 0 }}>
-                {t.about.title}
-              </h2>
-              <p style={{ color: "rgba(245,243,239,0.6)", fontSize: "14px", lineHeight: 1.7, maxWidth: "420px", fontFamily: "Montserrat, sans-serif", margin: 0 }}>
-                {t.contacts.description}
-              </p>
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: "16px", borderTop: "1px solid rgba(207,199,189,0.12)", paddingTop: "32px" }}>
-                {t.about.stats.map((s) => (
-                  <div key={s.label}>
-                    <span style={{ display: "block", fontSize: "clamp(20px, 2.5vw, 28px)", fontWeight: 600, color: "#CFC7BD", fontFamily: "Montserrat, sans-serif" }}>{s.value}</span>
-                    <span style={{ display: "block", fontSize: "11px", color: "rgba(245,243,239,0.5)", lineHeight: 1.4, marginTop: "4px", fontFamily: "Montserrat, sans-serif" }}>{s.label}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-            {/* Services */}
-            <div className="about-right" style={{ display: "flex", flexDirection: "column", justifyContent: "center", padding: "80px 48px" }}>
-              <p style={{ color: "#CFC7BD", fontSize: "11px", letterSpacing: "0.5em", textTransform: "uppercase", fontFamily: "Montserrat, sans-serif", marginBottom: "32px" }}>
-                {t.services.label}
-              </p>
-              <div style={{ display: "flex", flexDirection: "column" }}>
-                {t.services.items.map((item, i) => (
-                  <div key={item.title} style={{ display: "flex", gap: "20px", padding: "28px 0", borderTop: "1px solid rgba(207,199,189,0.12)" }}>
-                    <span style={{ color: "#CFC7BD", fontSize: "18px", marginTop: "2px", flexShrink: 0 }}>{SERVICE_ICONS[i]}</span>
-                    <div>
-                      <h3 style={{ color: "#CFC7BD", fontSize: "15px", fontWeight: 600, margin: "0 0 8px", fontFamily: "Montserrat, sans-serif" }}>{item.title}</h3>
-                      <p style={{ color: "rgba(245,243,239,0.55)", fontSize: "13px", lineHeight: 1.6, margin: 0, fontFamily: "Montserrat, sans-serif" }}>{item.description}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
+        <PortfolioSlider />
 
         {/* ── PORTFOLIO ── */}
         {false && (
