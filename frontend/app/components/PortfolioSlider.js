@@ -88,20 +88,21 @@ export default function PortfolioSlider() {
     return { pos, idx, project: projects[idx], delta };
   });
 
+  const step = 27;
+
   const getSlideStyle = (position) => {
     const absPos = Math.abs(position);
-    const scale = position === 0 ? 1 : absPos === 1 ? 0.82 : 0.65;
-    const step = 32;
+    const scale = position === 0 ? 1 : absPos === 1 ? 0.85 : 0.65;
     const translateX = position * step;
-    const opacity = position === 0 ? 1 : absPos === 1 ? 0.7 : 0;
+    const opacity = position === 0 ? 1 : absPos === 1 ? 0.65 : 0;
     return {
       width: '26vw',
-      height: '52vh',
+      height: position === 0 ? '65vh' : '55vh',
       transform: `translate(-50%, -50%) translateX(${translateX}vw) scale(${scale})`,
       opacity,
-      filter: position === 0 ? 'brightness(1)' : 'brightness(0.72)',
+      filter: position === 0 ? 'brightness(1)' : 'brightness(0.65)',
       zIndex: 10 - absPos,
-      transition: 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.6s ease, filter 0.6s ease',
+      transition: 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.6s ease, filter 0.6s ease, width 0.6s ease, height 0.6s ease',
       pointerEvents: absPos > 1 ? 'none' : 'auto',
       cursor: position === 0 ? 'default' : 'pointer',
     };
@@ -197,7 +198,7 @@ export default function PortfolioSlider() {
         .ps-track {
           position: relative;
           width: 100%;
-          height: 70vh;
+          height: 72vh;
           display: flex;
           align-items: center;
           justify-content: center;
@@ -243,7 +244,7 @@ export default function PortfolioSlider() {
         /* ── CAPTION ── */
         .ps-caption-wrap {
           position: relative;
-          width: 90vw;
+          width: 78vw;
           margin-top: 3.5vh;
           z-index: 20;
         }
