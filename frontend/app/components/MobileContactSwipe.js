@@ -64,11 +64,6 @@ export default function MobileContactSwipe({ t, language }) {
               </button>
             </div>
           </div>
-          {/* Swipe back hint */}
-          <div style={{ display: "flex", alignItems: "center", gap: "8px", marginTop: "16px" }}>
-            <div style={{ width: "40px", height: "1px", background: "#CFC7BD", opacity: 0.4, animation: "scrollHintH 1.5s ease-in-out infinite" }} />
-            <span style={{ fontFamily: "Montserrat, sans-serif", fontSize: "15px", letterSpacing: "0.05em", color: "#CFC7BD", fontWeight: 700, textTransform: "none" }}>{t.contacts.swipeBack}</span>
-          </div>
         </div>
       </div>
 
