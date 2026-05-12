@@ -8,35 +8,35 @@ const projects = [
     title: 'TRUSDO',
     category: 'Brand Identity & Web Design',
     caption: 'We are a design company, providing product customization, starting from your needs — your support is our constant driving force.',
-    image: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&q=80',
+    image: 'https://res.cloudinary.com/dpcqf9y8l/image/upload/v1778308458/1_7a0af14597.jpg',
   },
   {
     id: 2,
     title: 'MEDTECH',
     category: 'UX/UI & Product Design',
     caption: 'Innovative medical device interface — simplicity meets precision. Every touchpoint designed with care for the person on the other side.',
-    image: 'https://images.unsplash.com/photo-1560448204-603b3fc33ddc?w=800&q=80',
+    image: 'https://res.cloudinary.com/dpcqf9y8l/image/upload/v1778308458/1_7a0af14597.jpg',
   },
   {
     id: 3,
     title: 'CREATE',
     category: 'Digital Experience',
     caption: 'A bold digital platform for creative professionals — fast, immersive, and built to inspire the next generation of makers.',
-    image: 'https://images.unsplash.com/photo-1484154218962-a197022b5858?w=800&q=80',
+    image: 'https://res.cloudinary.com/dpcqf9y8l/image/upload/v1778308458/1_7a0af14597.jpg',
   },
   {
     id: 4,
     title: 'INTERIORS',
     category: 'Interior Design & Renovation',
     caption: 'Premium residential renovation — from concept to completion. Spaces crafted around the people who inhabit them.',
-    image: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&q=80',
+    image: 'https://res.cloudinary.com/dpcqf9y8l/image/upload/v1778308458/1_7a0af14597.jpg',
   },
   {
     id: 5,
     title: 'KOMFORT',
     category: 'Commercial Renovation',
     caption: 'Commercial spaces reimagined. Minimal downtime, maximum impact — delivering results that drive your business forward.',
-    image: 'https://images.unsplash.com/photo-1600210492493-0946911123ea?w=800&q=80',
+    image: 'https://res.cloudinary.com/dpcqf9y8l/image/upload/v1778308458/1_7a0af14597.jpg',
   },
 ];
 
@@ -194,7 +194,7 @@ export default function PortfolioSlider() {
               <img
                 src={project.image}
                 alt={project.title}
-                style={{ width: '100%', height: 'calc(100% - 28px)', objectFit: 'cover', display: 'block' }}
+                style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
               />
             </div>
           ))}
