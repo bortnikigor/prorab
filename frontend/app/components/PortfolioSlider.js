@@ -206,43 +206,25 @@ export default function PortfolioSlider() {
 
         /* ── ПОЗИЦІЇ ── */
         .ps-slide--center {
-          width: 32vw; height: 56vh;
+          width: 36vw; height: 60vh;
           transform: translate(-50%, -50%) translateX(0) scale(1);
-          opacity: 1;
-          filter: brightness(1);
-          z-index: 10;
+          opacity: 1; filter: blur(0px) brightness(1); z-index: 10;
           cursor: default;
         }
         .ps-slide--left {
-          width: 24vw; height: 51vh;
-          transform: translate(-50%, -50%) translateX(-26vw) scale(0.9);
-          opacity: 0.65;
-          filter: brightness(0.7);
-          z-index: 5;
+          width: 28vw; height: 50vh;
+          transform: translate(-50%, -50%) translateX(-38vw) scale(0.88);
+          opacity: 0.7; filter: blur(0px) brightness(0.75); z-index: 5;
           cursor: pointer;
         }
         .ps-slide--right {
-          width: 24vw; height: 51vh;
-          transform: translate(-50%, -50%) translateX(26vw) scale(0.9);
-          opacity: 0.65;
-          filter: brightness(0.7);
-          z-index: 5;
+          width: 28vw; height: 50vh;
+          transform: translate(-50%, -50%) translateX(38vw) scale(0.88);
+          opacity: 0.7; filter: blur(0px) brightness(0.75); z-index: 5;
           cursor: pointer;
         }
-        .ps-slide--far_left {
-          width: 16vw; height: 30vh;
-          transform: translate(-50%, -50%) translateX(-46vw) scale(0.75);
-          opacity: 0;
-          pointer-events: none;
-          z-index: 2;
-        }
-        .ps-slide--far_right {
-          width: 16vw; height: 30vh;
-          transform: translate(-50%, -50%) translateX(46vw) scale(0.75);
-          opacity: 0;
-          pointer-events: none;
-          z-index: 2;
-        }
+        .ps-slide--far_left  { opacity: 0; pointer-events: none; }
+        .ps-slide--far_right { opacity: 0; pointer-events: none; }
 
         /* ── INNER ── */
         .ps-slide-inner {
@@ -275,12 +257,17 @@ export default function PortfolioSlider() {
         /* ── CAPTION ── */
         .ps-caption-wrap {
           position: relative;
-          width: 79vw;
-          margin-top: 12px;
+          width: min(88vw, 860px);
+          margin-top: 3.5vh;
           z-index: 20;
         }
 
         .ps-caption-bar {
+          background: rgba(12, 14, 16, 0.68);
+          backdrop-filter: blur(14px);
+          -webkit-backdrop-filter: blur(14px);
+          border: 1px solid rgba(207, 199, 189, 0.1);
+          border-radius: 2px;
           padding: 1.2rem 2.8rem;
         }
 
