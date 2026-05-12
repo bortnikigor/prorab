@@ -91,7 +91,7 @@ export default function PortfolioSlider() {
   const getSlideStyle = (position) => {
     const absPos = Math.abs(position);
     const scale = position === 0 ? 1 : absPos === 1 ? 0.82 : 0.65;
-    const step = 22;
+    const step = 32;
     const translateX = position * step;
     const opacity = position === 0 ? 1 : absPos === 1 ? 0.7 : 0;
     return {
@@ -243,7 +243,7 @@ export default function PortfolioSlider() {
         /* ── CAPTION ── */
         .ps-caption-wrap {
           position: relative;
-          width: 70vw;
+          width: 90vw;
           margin-top: 3.5vh;
           z-index: 20;
         }
