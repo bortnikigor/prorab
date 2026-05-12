@@ -37,8 +37,13 @@ export default function MobileContactSwipe({ t, language }) {
             <h3 style={{ fontFamily: "Montserrat, sans-serif", fontSize: "15px", fontWeight: 700, color: "#CFC7BD", margin: "0 0 8px" }}>E-mail</h3>
             <a href="mailto:request@prorab.ooo" style={{ fontFamily: "Montserrat, sans-serif", fontSize: "13px", color: "rgba(207,199,169,0.6)", textDecoration: "none" }}>request@prorab.ooo</a>
           </div>
-          {/* Swipe hint */}
-          <span style={{ fontFamily: "Montserrat, sans-serif", fontSize: "15px", letterSpacing: "0.05em", color: "#CFC7BD", fontWeight: 700, textTransform: "none", marginTop: "16px" }}>{t.contacts.swipeToForm}</span>
+          {/* CTA button */}
+          <button
+            onClick={() => setPanel(1)}
+            style={{ background: "transparent", border: "1px solid rgba(245,243,239,0.4)", color: "#F5F3EF", fontFamily: "Montserrat, sans-serif", fontSize: "0.75rem", letterSpacing: "0.2em", textTransform: "uppercase", padding: "0.75rem 2rem", cursor: "pointer", transition: "border-color 0.25s, color 0.25s", marginTop: "8px" }}
+          >
+            {t.contacts.writeUs}
+          </button>
         </div>
 
         {/* Panel 2 — Form */}
