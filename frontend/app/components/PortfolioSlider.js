@@ -234,7 +234,7 @@ export default function PortfolioSlider() {
           bottom: 0;
           left: 50%;
           transform: translateX(-50%);
-          width: 340px;
+          width: 900px;
           height: 80px;
           background: linear-gradient(to bottom, transparent 0%, rgba(10, 11, 13, 0.85) 100%);
           padding: 1rem 2rem;
