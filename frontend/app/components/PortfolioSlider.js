@@ -175,21 +175,6 @@ export default function PortfolioSlider() {
                 if (delta > 0 && !busy) go(1);
               }}
             >
-              {/* Browser mock bar */}
-              <div style={{
-                height: '28px',
-                background: 'rgba(30,30,30,0.9)',
-                borderRadius: `${CARD_RADIUS} ${CARD_RADIUS} 0 0`,
-                display: 'flex',
-                alignItems: 'center',
-                paddingLeft: '8px',
-                gap: '5px',
-                flexShrink: 0,
-              }}>
-                <span style={{ width: 8, height: 8, borderRadius: '50%', background: '#FF5F57', display: 'inline-block' }} />
-                <span style={{ width: 8, height: 8, borderRadius: '50%', background: '#FEBC2E', display: 'inline-block' }} />
-                <span style={{ width: 8, height: 8, borderRadius: '50%', background: '#28C840', display: 'inline-block' }} />
-              </div>
               {/* Project image */}
               <img
                 src={project.image}
