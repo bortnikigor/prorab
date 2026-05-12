@@ -206,20 +206,20 @@ export default function PortfolioSlider() {
 
         /* ── ПОЗИЦІЇ ── */
         .ps-slide--center {
-          width: 36vw; height: 60vh;
+          width: 26vw; height: 52vh;
           transform: translate(-50%, -50%) translateX(0) scale(1);
           opacity: 1; filter: blur(0px) brightness(1); z-index: 10;
           cursor: default;
         }
         .ps-slide--left {
-          width: 28vw; height: 50vh;
-          transform: translate(-50%, -50%) translateX(-38vw) scale(0.88);
+          width: 18vw; height: 42vh;
+          transform: translate(-50%, -50%) translateX(-28vw) scale(0.88);
           opacity: 0.7; filter: blur(0px) brightness(0.75); z-index: 5;
           cursor: pointer;
         }
         .ps-slide--right {
-          width: 28vw; height: 50vh;
-          transform: translate(-50%, -50%) translateX(38vw) scale(0.88);
+          width: 18vw; height: 42vh;
+          transform: translate(-50%, -50%) translateX(28vw) scale(0.88);
           opacity: 0.7; filter: blur(0px) brightness(0.75); z-index: 5;
           cursor: pointer;
         }
@@ -257,17 +257,12 @@ export default function PortfolioSlider() {
         /* ── CAPTION ── */
         .ps-caption-wrap {
           position: relative;
-          width: min(88vw, 860px);
+          width: 26vw;
           margin-top: 3.5vh;
           z-index: 20;
         }
 
         .ps-caption-bar {
-          background: rgba(12, 14, 16, 0.68);
-          backdrop-filter: blur(14px);
-          -webkit-backdrop-filter: blur(14px);
-          border: 1px solid rgba(207, 199, 189, 0.1);
-          border-radius: 2px;
           padding: 1.2rem 2.8rem;
         }
 
