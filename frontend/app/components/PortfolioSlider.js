@@ -212,8 +212,10 @@ export default function PortfolioSlider() {
         }
 
         .ps-wrapper {
+          position: relative;
           width: 900px;
           max-width: 96vw;
+          height: 380px;
           margin: 0 auto;
         }
 
@@ -232,7 +234,8 @@ export default function PortfolioSlider() {
           left: 50%;
           transform: translateX(-50%);
           width: 100%;
-          background: linear-gradient(to bottom, transparent 0%, rgba(15, 17, 19, 0.7) 30%, rgba(15, 17, 19, 0.75) 100%);
+          height: 80px;
+          background: linear-gradient(to bottom, transparent 0%, rgba(10, 11, 13, 0.85) 100%);
           backdrop-filter: blur(10px);
           -webkit-backdrop-filter: blur(10px);
           padding: 1rem 2rem;
@@ -245,6 +248,9 @@ export default function PortfolioSlider() {
           line-height: 1.7;
           z-index: 20;
           box-sizing: border-box;
+          display: flex;
+          align-items: flex-end;
+          justify-content: center;
         }
 
         @media (max-width: 768px) {
