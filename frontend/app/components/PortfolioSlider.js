@@ -85,8 +85,27 @@ export default function PortfolioSlider() {
   const slides = POSITIONS.map((pos, offset) => {
     const delta = offset - 2; // -2, -1, 0, 1, 2
     const idx = mod(active + delta);
-    return { pos, idx, project: projects[idx] };
+    return { pos, idx, project: projects[idx], delta };
   });
+
+  const getSlideStyle = (position) => {
+    const absPos = Math.abs(position);
+    const scale = position === 0 ? 1 : absPos === 1 ? 0.82 : 0.65;
+    const step = 22;
+    const translateX = position * step;
+    const opacity = position === 0 ? 1 : absPos === 1 ? 0.7 : 0;
+    return {
+      width: '26vw',
+      height: '52vh',
+      transform: `translate(-50%, -50%) translateX(${translateX}vw) scale(${scale})`,
+      opacity,
+      filter: position === 0 ? 'brightness(1)' : 'brightness(0.72)',
+      zIndex: 10 - absPos,
+      transition: 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.6s ease, filter 0.6s ease',
+      pointerEvents: absPos > 1 ? 'none' : 'auto',
+      cursor: position === 0 ? 'default' : 'pointer',
+    };
+  };
 
   return (
     <section
@@ -96,30 +115,25 @@ export default function PortfolioSlider() {
     >
       {/* ── СЛАЙДЕР ─────────────────────────────────────── */}
       <div className="ps-track">
-        {slides.map(({ pos, idx, project }) => {
-          const isLeft  = pos === 'left'     || pos === 'far_left';
-          const isRight = pos === 'right'    || pos === 'far_right';
-          const isCenter = pos === 'center';
-
-          return (
-            <div
-              key={`${pos}`}
-              className={`ps-slide ps-slide--${pos}`}
-              onClick={() => {
-                if (isLeft && !busy)  go(-1);
-                if (isRight && !busy) go(1);
-              }}
-            >
-              <div className="ps-slide-inner">
-                <img
-                  src="https://res.cloudinary.com/dpcqf9y8l/image/upload/v1778308458/1_7a0af14597.jpg"
-                  alt={project.title}
-                  style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
-                />
-              </div>
+        {slides.map(({ pos, idx, project, delta }) => (
+          <div
+            key={pos}
+            className="ps-slide"
+            style={getSlideStyle(delta)}
+            onClick={() => {
+              if (delta < 0 && !busy) go(-1);
+              if (delta > 0 && !busy) go(1);
+            }}
+          >
+            <div className="ps-slide-inner">
+              <img
+                src="https://res.cloudinary.com/dpcqf9y8l/image/upload/v1778308458/1_7a0af14597.jpg"
+                alt={project.title}
+                style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+              />
             </div>
-          );
-        })}
+          </div>
+        ))}
       </div>
 
       {/* ── ПІДПИС ──────────────────────────────────────── */}
@@ -195,36 +209,8 @@ export default function PortfolioSlider() {
           top: 50%;
           left: 50%;
           transform-origin: center center;
-          transition:
-            transform 0.55s cubic-bezier(0.4, 0, 0.2, 1),
-            opacity   0.55s cubic-bezier(0.4, 0, 0.2, 1),
-            filter    0.55s cubic-bezier(0.4, 0, 0.2, 1),
-            width     0.55s cubic-bezier(0.4, 0, 0.2, 1),
-            height    0.55s cubic-bezier(0.4, 0, 0.2, 1);
           will-change: transform, opacity, filter;
         }
-
-        /* ── ПОЗИЦІЇ ── */
-        .ps-slide--center {
-          width: 26vw; height: 52vh;
-          transform: translate(-50%, -50%) translateX(0) scale(1);
-          opacity: 1; filter: blur(0px) brightness(1); z-index: 10;
-          cursor: default;
-        }
-        .ps-slide--left {
-          width: 18vw; height: 42vh;
-          transform: translate(-50%, -50%) translateX(-28vw) scale(0.88);
-          opacity: 0.7; filter: blur(0px) brightness(0.75); z-index: 5;
-          cursor: pointer;
-        }
-        .ps-slide--right {
-          width: 18vw; height: 42vh;
-          transform: translate(-50%, -50%) translateX(28vw) scale(0.88);
-          opacity: 0.7; filter: blur(0px) brightness(0.75); z-index: 5;
-          cursor: pointer;
-        }
-        .ps-slide--far_left  { opacity: 0; pointer-events: none; }
-        .ps-slide--far_right { opacity: 0; pointer-events: none; }
 
         /* ── INNER ── */
         .ps-slide-inner {
@@ -314,14 +300,8 @@ export default function PortfolioSlider() {
         /* ── MOBILE ── */
         @media (max-width: 768px) {
           .ps-track { height: 55vh; }
-
-          .ps-slide--center   { width: 74vw; height: 46vh; }
-          .ps-slide--left     { width: 54vw; height: 38vh; transform: translate(-50%, -50%) translateX(-58vw) scale(0.85); }
-          .ps-slide--right    { width: 54vw; height: 38vh; transform: translate(-50%, -50%) translateX(58vw)  scale(0.85); }
-          .ps-slide--far_left,
-          .ps-slide--far_right { opacity: 0; pointer-events: none; }
-
           .ps-arrow { display: none; }
+          .ps-caption-wrap { width: 80vw; }
           .ps-caption-bar { padding: 1rem 1.4rem; }
         }
       `}</style>
