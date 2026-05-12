@@ -206,39 +206,39 @@ export default function PortfolioSlider() {
 
         /* ── ПОЗИЦІЇ ── */
         .ps-slide--center {
-          width: 36vw; height: 56vh;
+          width: 32.4vw; height: 56vh;
           transform: translate(-50%, -50%) translateX(0) scale(1);
           opacity: 1;
-          filter: blur(0px) brightness(1);
+          filter: brightness(1);
           z-index: 10;
           cursor: default;
         }
         .ps-slide--left {
-          width: 40vw; height: 51vh;
-          transform: translate(-50%, -50%) translateX(-26vw) scale(0.9);
+          width: 36vw; height: 51vh;
+          transform: translate(-50%, -50%) translateX(-30vw) scale(0.9);
           opacity: 0.65;
-          filter: blur(1.5px) brightness(0.7);
+          filter: brightness(0.7);
           z-index: 5;
           cursor: pointer;
         }
         .ps-slide--right {
-          width: 40vw; height: 51vh;
-          transform: translate(-50%, -50%) translateX(26vw) scale(0.9);
+          width: 36vw; height: 51vh;
+          transform: translate(-50%, -50%) translateX(30vw) scale(0.9);
           opacity: 0.65;
-          filter: blur(1.5px) brightness(0.7);
+          filter: brightness(0.7);
           z-index: 5;
           cursor: pointer;
         }
         .ps-slide--far_left {
-          width: 20vw; height: 30vh;
-          transform: translate(-50%, -50%) translateX(-46vw) scale(0.75);
+          width: 18vw; height: 30vh;
+          transform: translate(-50%, -50%) translateX(-53vw) scale(0.75);
           opacity: 0;
           pointer-events: none;
           z-index: 2;
         }
         .ps-slide--far_right {
-          width: 20vw; height: 30vh;
-          transform: translate(-50%, -50%) translateX(46vw) scale(0.75);
+          width: 18vw; height: 30vh;
+          transform: translate(-50%, -50%) translateX(53vw) scale(0.75);
           opacity: 0;
           pointer-events: none;
           z-index: 2;
