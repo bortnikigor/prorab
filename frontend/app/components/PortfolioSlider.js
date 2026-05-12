@@ -114,7 +114,8 @@ export default function PortfolioSlider() {
       onTouchStart={onTouchStart}
       onTouchEnd={onTouchEnd}
     >
-      {/* ── СЛАЙДЕР ─────────────────────────────────────── */}
+      {/* ── СЛАЙДЕР + ПІДПИС ───────────────────────────── */}
+      <div style={{ position: 'relative', width: '100%' }}>
       <div className="ps-track">
         {slides.map(({ pos, idx, project, delta }) => (
           <div
@@ -148,6 +149,7 @@ export default function PortfolioSlider() {
             {projects[active].caption}
           </p>
         </div>
+      </div>
       </div>
 
       {/* ── СТРІЛКИ ─────────────────────────────────────── */}
@@ -202,6 +204,8 @@ export default function PortfolioSlider() {
           display: flex;
           align-items: center;
           justify-content: center;
+          padding-bottom: 80px;
+          box-sizing: border-box;
         }
 
         /* ── БАЗОВИЙ СЛАЙД ── */
@@ -243,9 +247,12 @@ export default function PortfolioSlider() {
 
         /* ── CAPTION ── */
         .ps-caption-wrap {
-          position: relative;
+          position: absolute;
+          bottom: 0;
+          left: 50%;
+          transform: translateX(-50%);
           width: 78vw;
-          margin-top: 3.5vh;
+          margin-top: 0;
           z-index: 20;
         }
 
