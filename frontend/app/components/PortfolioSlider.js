@@ -215,7 +215,7 @@ export default function PortfolioSlider() {
         }
         .ps-slide--left {
           width: 24vw; height: 51vh;
-          transform: translate(-50%, -50%) translateX(-34.5vw) scale(0.9);
+          transform: translate(-50%, -50%) translateX(-26vw) scale(0.9);
           opacity: 0.65;
           filter: brightness(0.7);
           z-index: 5;
@@ -223,7 +223,7 @@ export default function PortfolioSlider() {
         }
         .ps-slide--right {
           width: 24vw; height: 51vh;
-          transform: translate(-50%, -50%) translateX(34.5vw) scale(0.9);
+          transform: translate(-50%, -50%) translateX(26vw) scale(0.9);
           opacity: 0.65;
           filter: brightness(0.7);
           z-index: 5;
@@ -231,17 +231,17 @@ export default function PortfolioSlider() {
         }
         .ps-slide--far_left {
           width: 16vw; height: 30vh;
-          transform: translate(-50%, -50%) translateX(-61vw) scale(0.75);
-          opacity: 0;
-          pointer-events: none;
+          transform: translate(-50%, -50%) translateX(-46vw) scale(0.75);
+          opacity: 0.28;
           z-index: 2;
+          cursor: pointer;
         }
         .ps-slide--far_right {
           width: 16vw; height: 30vh;
-          transform: translate(-50%, -50%) translateX(61vw) scale(0.75);
-          opacity: 0;
-          pointer-events: none;
+          transform: translate(-50%, -50%) translateX(46vw) scale(0.75);
+          opacity: 0.28;
           z-index: 2;
+          cursor: pointer;
         }
 
         /* ── INNER ── */
