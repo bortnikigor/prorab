@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useCallback, useRef, useEffect } from 'react';
+import { useState, useCallback, useRef, useEffect, useMemo } from 'react';
 
 const projects = [
   {
@@ -42,7 +42,6 @@ const projects = [
 
 const N = projects.length;
 const mod = (i) => ((i % N) + N) % N;
-const POSITIONS = ['far_left', 'left', 'center', 'right', 'far_right'];
 
 const CARD_RADIUS = '4px';
 
@@ -148,11 +147,13 @@ export default function PortfolioSlider() {
     };
   };
 
-  const slides = POSITIONS.map((pos, offset) => {
-    const delta = offset - 2;
-    const idx = mod(active + delta);
-    return { pos, idx, project: projects[idx], delta };
-  });
+  const slides = useMemo(() =>
+    [-2, -1, 0, 1, 2].map(delta => ({
+      delta,
+      idx: mod(active + delta),
+      project: projects[mod(active + delta)],
+    }))
+  , [active]);
 
   return (
     <section
@@ -165,9 +166,9 @@ export default function PortfolioSlider() {
       <div className="ps-wrapper" style={{ position: 'relative' }}>
 
         <div className="ps-track">
-          {slides.map(({ pos, project, delta }) => (
+          {slides.map(({ idx, project, delta }) => (
             <div
-              key={pos}
+              key={idx}
               style={getSlideStyle(delta)}
               onClick={() => {
                 if (delta < 0 && !busy) go(-1);
