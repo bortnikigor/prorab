@@ -52,6 +52,7 @@ const POSITIONS = ['far_left', 'left', 'center', 'right', 'far_right'];
 export default function PortfolioSlider() {
   const [active, setActive] = useState(0);
   const [busy, setBusy] = useState(false);
+  const [sliding, setSliding] = useState(null);
   const touchX = useRef(null);
   const captionRef = useRef(null);
 
@@ -69,8 +70,12 @@ export default function PortfolioSlider() {
   const go = useCallback((dir) => {
     if (busy) return;
     setBusy(true);
-    setActive((prev) => mod(prev + dir));
-    setTimeout(() => setBusy(false), 550);
+    setSliding(dir > 0 ? 'right' : 'left');
+    setTimeout(() => {
+      setActive((prev) => mod(prev + dir));
+      setSliding(null);
+      setTimeout(() => setBusy(false), 550);
+    }, 150);
   }, [busy]);
 
   const onTouchStart = (e) => { touchX.current = e.touches[0].clientX; };
@@ -95,7 +100,7 @@ export default function PortfolioSlider() {
       onTouchEnd={onTouchEnd}
     >
       {/* ── СЛАЙДЕР ─────────────────────────────────────── */}
-      <div className="ps-track">
+      <div className={`ps-track${sliding ? ` ps-track--sliding-${sliding}` : ''}`}>
         {slides.map(({ pos, idx, project }) => {
           const isLeft  = pos === 'left'     || pos === 'far_left';
           const isRight = pos === 'right'    || pos === 'far_right';
@@ -178,6 +183,11 @@ export default function PortfolioSlider() {
           overflow: visible;
           user-select: none;
         }
+
+        /* ── TRACK SLIDING ── */
+        .ps-track--sliding-left  .ps-slide { margin-left: -3vw; transition: margin 0.15s ease; }
+        .ps-track--sliding-right .ps-slide { margin-left:  3vw; transition: margin 0.15s ease; }
+        .ps-slide { margin-left: 0; transition: margin 0.15s ease, transform 0.55s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.55s cubic-bezier(0.4, 0, 0.2, 1), filter 0.55s cubic-bezier(0.4, 0, 0.2, 1), width 0.55s cubic-bezier(0.4, 0, 0.2, 1), height 0.55s cubic-bezier(0.4, 0, 0.2, 1); }
 
         /* ── TRACK ── */
         .ps-track {
