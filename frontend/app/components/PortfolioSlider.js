@@ -8,35 +8,35 @@ const projects = [
     title: 'TRUSDO',
     category: 'Brand Identity & Web Design',
     caption: 'We are a design company, providing product customization, starting from your needs — your support is our constant driving force.',
-    bg: 'linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%)',
+    image: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&q=80',
   },
   {
     id: 2,
     title: 'MEDTECH',
     category: 'UX/UI & Product Design',
     caption: 'Innovative medical device interface — simplicity meets precision. Every touchpoint designed with care for the person on the other side.',
-    bg: 'linear-gradient(135deg, #0d1117 0%, #161b22 50%, #21262d 100%)',
+    image: 'https://images.unsplash.com/photo-1560448204-603b3fc33ddc?w=800&q=80',
   },
   {
     id: 3,
     title: 'CREATE',
     category: 'Digital Experience',
     caption: 'A bold digital platform for creative professionals — fast, immersive, and built to inspire the next generation of makers.',
-    bg: 'linear-gradient(135deg, #111820 0%, #1a2a3a 50%, #243040 100%)',
+    image: 'https://images.unsplash.com/photo-1484154218962-a197022b5858?w=800&q=80',
   },
   {
     id: 4,
     title: 'INTERIORS',
     category: 'Interior Design & Renovation',
     caption: 'Premium residential renovation — from concept to completion. Spaces crafted around the people who inhabit them.',
-    bg: 'linear-gradient(135deg, #1c1410 0%, #2a1f18 50%, #3a2a20 100%)',
+    image: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&q=80',
   },
   {
     id: 5,
     title: 'KOMFORT',
     category: 'Commercial Renovation',
     caption: 'Commercial spaces reimagined. Minimal downtime, maximum impact — delivering results that drive your business forward.',
-    bg: 'linear-gradient(135deg, #0f1a1a 0%, #162525 50%, #1e3030 100%)',
+    image: 'https://images.unsplash.com/photo-1600210492493-0946911123ea?w=800&q=80',
   },
 ];
 
@@ -191,7 +191,7 @@ export default function PortfolioSlider() {
               </div>
               {/* Project image */}
               <img
-                src="https://res.cloudinary.com/dpcqf9y8l/image/upload/v1778308458/1_7a0af14597.jpg"
+                src={project.image}
                 alt={project.title}
                 style={{ width: '100%', height: 'calc(100% - 28px)', objectFit: 'cover', display: 'block' }}
               />
