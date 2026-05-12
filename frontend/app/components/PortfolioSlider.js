@@ -49,9 +49,17 @@ const CARD_RADIUS = '4px';
 export default function PortfolioSlider() {
   const [active, setActive] = useState(0);
   const [busy, setBusy] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const touchX = useRef(null);
   const captionRef = useRef(null);
   const intervalRef = useRef(null);
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+    check();
+    window.addEventListener('resize', check);
+    return () => window.removeEventListener('resize', check);
+  }, []);
 
   const go = useCallback((dir) => {
     if (busy) return;
@@ -98,6 +106,27 @@ export default function PortfolioSlider() {
   const getSlideStyle = (delta) => {
     const absPos = Math.abs(delta);
     const isCenter = delta === 0;
+
+    if (isMobile) {
+      return {
+        position: 'absolute',
+        top: '50%',
+        left: '50%',
+        width: '85vw',
+        height: '65vw',
+        transform: 'translate(-50%, -50%)',
+        opacity: isCenter ? 1 : 0,
+        filter: 'brightness(1)',
+        zIndex: isCenter ? 10 : 0,
+        pointerEvents: isCenter ? 'auto' : 'none',
+        cursor: 'default',
+        borderRadius: CARD_RADIUS,
+        overflow: 'hidden',
+        transition: 'opacity 0.55s ease',
+        willChange: 'opacity',
+      };
+    }
+
     const isVisible = absPos <= 1;
 
     return {
@@ -233,8 +262,9 @@ export default function PortfolioSlider() {
         }
 
         @media (max-width: 768px) {
-          .ps-track { height: 280px; }
-          .ps-wrapper { width: 100%; }
+          .ps-wrapper { width: 85vw; }
+          .ps-track { height: 65vw; }
+          .ps-caption { width: 85vw; }
         }
       `}</style>
     </section>
