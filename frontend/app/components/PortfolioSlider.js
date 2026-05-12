@@ -215,7 +215,6 @@ export default function PortfolioSlider() {
           position: relative;
           width: 900px;
           max-width: 96vw;
-          height: 380px;
           margin: 0 auto;
           overflow: visible;
         }
@@ -230,13 +229,10 @@ export default function PortfolioSlider() {
         }
 
         .ps-caption {
-          position: absolute;
-          bottom: 0;
-          left: 50%;
-          transform: translateX(-50%);
+          position: relative;
           width: 900px;
-          height: 80px;
-          background: linear-gradient(to bottom, transparent 0%, rgba(10, 11, 13, 0.85) 100%);
+          max-width: 96vw;
+          margin-top: 12px;
           padding: 1rem 2rem;
           text-align: center;
           color: #CFC7BD;
@@ -245,11 +241,7 @@ export default function PortfolioSlider() {
           letter-spacing: 0.07em;
           font-weight: 300;
           line-height: 1.7;
-          z-index: 20;
           box-sizing: border-box;
-          display: flex;
-          align-items: flex-end;
-          justify-content: center;
         }
 
         @media (max-width: 768px) {
