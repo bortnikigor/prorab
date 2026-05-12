@@ -232,9 +232,9 @@ export default function PortfolioSlider() {
           left: 50%;
           transform: translateX(-50%);
           width: 100%;
-          background: rgba(12, 14, 16, 0.72);
-          backdrop-filter: blur(12px);
-          -webkit-backdrop-filter: blur(12px);
+          background: rgba(15, 17, 19, 0.55);
+          backdrop-filter: blur(10px);
+          -webkit-backdrop-filter: blur(10px);
           padding: 1rem 2rem;
           text-align: center;
           color: #CFC7BD;
