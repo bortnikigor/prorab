@@ -309,7 +309,7 @@ export default function PortfolioSlider() {
 
         /* ── DOTS ── */
         .ps-dots {
-          display: flex;
+          display: none;
           gap: 10px;
           margin-top: 2.5vh;
           z-index: 20;
