@@ -232,7 +232,7 @@ export default function PortfolioSlider() {
           left: 50%;
           transform: translateX(-50%);
           width: 100%;
-          background: rgba(15, 17, 19, 0.55);
+          background: linear-gradient(to bottom, transparent 0%, rgba(15, 17, 19, 0.7) 30%, rgba(15, 17, 19, 0.75) 100%);
           backdrop-filter: blur(10px);
           -webkit-backdrop-filter: blur(10px);
           padding: 1rem 2rem;
