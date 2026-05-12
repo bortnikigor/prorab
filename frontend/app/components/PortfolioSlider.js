@@ -163,7 +163,8 @@ export default function PortfolioSlider() {
       onTouchStart={onTouchStart}
       onTouchEnd={onTouchEnd}
     >
-      <div className="ps-wrapper" style={{ position: 'relative' }}>
+      <div style={{ position: 'absolute', inset: 0, background: 'rgba(0, 0, 0, 0.55)', zIndex: 0, pointerEvents: 'none' }} />
+      <div className="ps-wrapper" style={{ position: 'relative', zIndex: 1 }}>
 
         <div className="ps-track">
           {slides.map(({ idx, project, delta }) => (

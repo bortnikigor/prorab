@@ -225,7 +225,11 @@ export default function Home() {
         )}
 
         {/* ── CONTACT ── */}
-        <section className="contact-section" style={{ width: "100%", height: "100vh", display: "flex", flexDirection: "column", backgroundImage: "url('/bg.png')", backgroundSize: "cover", backgroundPosition: "center", backgroundRepeat: "no-repeat" }}>
+        <section className="contact-section" style={{ position: "relative", width: "100%", height: "100vh", display: "flex", flexDirection: "column", backgroundImage: "url('/bg.png')", backgroundSize: "cover", backgroundPosition: "center", backgroundRepeat: "no-repeat" }}>
+
+          <div style={{ position: 'absolute', inset: 0, background: 'rgba(0, 0, 0, 0.55)', zIndex: 0, pointerEvents: 'none' }} />
+
+          <div style={{ position: 'relative', zIndex: 1, flex: 1, display: 'flex', flexDirection: 'column' }}>
 
           {/* DESKTOP layout */}
           <div className="contact-desktop" style={{ flex: 1, display: "grid", gridTemplateColumns: "1fr 1fr", maxWidth: "1280px", margin: "0 auto", width: "100%", padding: "0 60px", alignItems: "center", gap: "80px" }}>
@@ -272,6 +276,7 @@ export default function Home() {
           {/* MOBILE layout — horizontal swipe */}
           <MobileContactSwipe t={t} language={language} />
 
+          </div>
         </section>
 
       </div>
