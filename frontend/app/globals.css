@@ -67,6 +67,7 @@ body {
 
 * {
   box-sizing: border-box;
+  border-color: transparent;
 }
 
 @media (pointer: fine) {
