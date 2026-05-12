@@ -61,7 +61,7 @@ export default function MobileContactSwipe({ t, language }) {
               </div>
             ))}
             <div style={{ display: "flex", justifyContent: "center", marginTop: "16px" }}>
-              <button style={{ background: "rgba(207,199,189,0.1)", border: "1px solid rgba(207,199,189,0.3)", color: "#CFC7BD", fontFamily: "Montserrat, sans-serif", fontSize: "11px", letterSpacing: "0.25em", textTransform: "uppercase", padding: "12px 28px", cursor: "pointer", display: "flex", alignItems: "center", gap: "10px" }}>
+              <button className="mc-send-btn">
                 {t.contacts.sendButton}
               </button>
             </div>
@@ -73,6 +73,22 @@ export default function MobileContactSwipe({ t, language }) {
         @keyframes scrollHintH {
           0%, 100% { opacity: 0.2; transform: scaleX(0.5); transform-origin: left; }
           50% { opacity: 0.8; transform: scaleX(1); transform-origin: left; }
+        }
+        .mc-send-btn {
+          background: transparent;
+          border: 1px solid rgba(245, 243, 239, 0.4);
+          color: #F5F3EF;
+          font-family: Montserrat, sans-serif;
+          font-size: 0.75rem;
+          letter-spacing: 0.2em;
+          text-transform: uppercase;
+          padding: 0.75rem 2rem;
+          cursor: pointer;
+          transition: border-color 0.25s, color 0.25s;
+        }
+        .mc-send-btn:hover {
+          border-color: rgba(245, 243, 239, 0.8);
+          color: #F5F3EF;
         }
       `}</style>
 
