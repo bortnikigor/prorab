@@ -2,9 +2,6 @@
 
 import { useState, useCallback, useRef, useEffect } from 'react';
 
-// ─── ДАНІ ПРОЕКТІВ ───────────────────────────────────────────────────────────
-// Замініть `bg` на реальні шляхи до зображень коли вони будуть готові
-// Наприклад: image: '/images/trusdo.jpg'
 const projects = [
   {
     id: 1,
@@ -45,15 +42,39 @@ const projects = [
 
 const N = projects.length;
 const mod = (i) => ((i % N) + N) % N;
-
-// Позиції слайдера: far-left, left, center, right, far-right
 const POSITIONS = ['far_left', 'left', 'center', 'right', 'far_right'];
+
+const CARD_RADIUS = '4px';
 
 export default function PortfolioSlider() {
   const [active, setActive] = useState(0);
   const [busy, setBusy] = useState(false);
   const touchX = useRef(null);
   const captionRef = useRef(null);
+  const intervalRef = useRef(null);
+
+  const go = useCallback((dir) => {
+    if (busy) return;
+    setBusy(true);
+    setActive((prev) => mod(prev + dir));
+    setTimeout(() => setBusy(false), 650);
+  }, [busy]);
+
+  const startAutoplay = useCallback(() => {
+    intervalRef.current = setInterval(() => go(1), 3600);
+  }, [go]);
+
+  const stopAutoplay = useCallback(() => {
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+      intervalRef.current = null;
+    }
+  }, []);
+
+  useEffect(() => {
+    startAutoplay();
+    return stopAutoplay;
+  }, [startAutoplay, stopAutoplay]);
 
   // Fade caption on change
   useEffect(() => {
@@ -66,13 +87,6 @@ export default function PortfolioSlider() {
     }
   }, [active]);
 
-  const go = useCallback((dir) => {
-    if (busy) return;
-    setBusy(true);
-    setActive((prev) => mod(prev + dir));
-    setTimeout(() => setBusy(false), 550);
-  }, [busy]);
-
   const onTouchStart = (e) => { touchX.current = e.touches[0].clientX; };
   const onTouchEnd = (e) => {
     if (touchX.current === null) return;
@@ -81,109 +95,95 @@ export default function PortfolioSlider() {
     touchX.current = null;
   };
 
-  // Будуємо масив з 5 слайдів навколо активного
+  const getSlideStyle = (delta) => {
+    const absPos = Math.abs(delta);
+    const isCenter = delta === 0;
+    const isVisible = absPos <= 1;
+
+    return {
+      position: 'absolute',
+      top: '50%',
+      left: '50%',
+      width: isCenter ? '340px' : '240px',
+      height: isCenter ? '380px' : '290px',
+      transform: `translate(-50%, -50%) translateX(${delta * 310}px)`,
+      opacity: isVisible ? 1 : 0,
+      filter: isCenter ? 'brightness(1)' : 'brightness(0.55)',
+      zIndex: 10 - absPos,
+      pointerEvents: isVisible ? 'auto' : 'none',
+      cursor: isCenter ? 'default' : 'pointer',
+      borderRadius: CARD_RADIUS,
+      overflow: 'hidden',
+      transition: 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.55s ease, filter 0.55s ease, width 0.6s cubic-bezier(0.4, 0, 0.2, 1), height 0.6s cubic-bezier(0.4, 0, 0.2, 1)',
+      willChange: 'transform, opacity, filter, width, height',
+    };
+  };
+
   const slides = POSITIONS.map((pos, offset) => {
-    const delta = offset - 2; // -2, -1, 0, 1, 2
+    const delta = offset - 2;
     const idx = mod(active + delta);
     return { pos, idx, project: projects[idx], delta };
   });
 
-  const step = 27;
-
-  const getSlideStyle = (position) => {
-    const absPos = Math.abs(position);
-    const scale = position === 0 ? 1 : absPos === 1 ? 0.85 : 0.65;
-    const translateX = position * step;
-    const opacity = position === 0 ? 1 : absPos === 1 ? 0.65 : 0;
-    return {
-      width: '26vw',
-      height: position === 0 ? '65vh' : '55vh',
-      transform: `translate(-50%, -50%) translateX(${translateX}vw) scale(${scale})`,
-      opacity,
-      filter: position === 0 ? 'brightness(1)' : 'brightness(0.65)',
-      zIndex: 10 - absPos,
-      transition: 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.6s ease, filter 0.6s ease, width 0.6s ease, height 0.6s ease',
-      pointerEvents: absPos > 1 ? 'none' : 'auto',
-      cursor: position === 0 ? 'default' : 'pointer',
-    };
-  };
-
   return (
     <section
       className="ps-section"
+      onMouseEnter={stopAutoplay}
+      onMouseLeave={startAutoplay}
       onTouchStart={onTouchStart}
       onTouchEnd={onTouchEnd}
     >
-      {/* ── СЛАЙДЕР + ПІДПИС ───────────────────────────── */}
-      <div style={{ position: 'relative', width: '100%' }}>
-      <div className="ps-track">
-        {slides.map(({ pos, idx, project, delta }) => (
-          <div
-            key={pos}
-            className="ps-slide"
-            style={getSlideStyle(delta)}
-            onClick={() => {
-              if (delta < 0 && !busy) go(-1);
-              if (delta > 0 && !busy) go(1);
-            }}
-          >
-            <div className="ps-slide-inner">
+      <div className="ps-wrapper" style={{ position: 'relative' }}>
+
+        <div className="ps-track">
+          {slides.map(({ pos, project, delta }) => (
+            <div
+              key={pos}
+              style={getSlideStyle(delta)}
+              onClick={() => {
+                if (delta < 0 && !busy) go(-1);
+                if (delta > 0 && !busy) go(1);
+              }}
+            >
+              {/* Browser mock bar */}
+              <div style={{
+                height: '28px',
+                background: 'rgba(30,30,30,0.9)',
+                borderRadius: `${CARD_RADIUS} ${CARD_RADIUS} 0 0`,
+                display: 'flex',
+                alignItems: 'center',
+                paddingLeft: '8px',
+                gap: '5px',
+                flexShrink: 0,
+              }}>
+                <span style={{ width: 8, height: 8, borderRadius: '50%', background: '#FF5F57', display: 'inline-block' }} />
+                <span style={{ width: 8, height: 8, borderRadius: '50%', background: '#FEBC2E', display: 'inline-block' }} />
+                <span style={{ width: 8, height: 8, borderRadius: '50%', background: '#28C840', display: 'inline-block' }} />
+              </div>
+              {/* Project image */}
               <img
                 src="https://res.cloudinary.com/dpcqf9y8l/image/upload/v1778308458/1_7a0af14597.jpg"
                 alt={project.title}
-                style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+                style={{ width: '100%', height: 'calc(100% - 28px)', objectFit: 'cover', display: 'block' }}
               />
             </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
 
-      {/* ── ПІДПИС ──────────────────────────────────────── */}
-      <div className="ps-caption-wrap">
-        <div className="ps-caption-bar">
-          <p
-            ref={captionRef}
-            className="ps-caption-text"
-            style={{ transition: 'opacity 0.35s ease' }}
-          >
+        {/* Caption overlay */}
+        <div className="ps-caption">
+          <p ref={captionRef} style={{ margin: 0, transition: 'opacity 0.35s ease' }}>
             {projects[active].caption}
           </p>
         </div>
-      </div>
-      </div>
 
-      {/* ── СТРІЛКИ ─────────────────────────────────────── */}
-      <button className="ps-arrow ps-arrow--left"  onClick={() => go(-1)} aria-label="Попередній">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-          <polyline points="15 18 9 12 15 6"/>
-        </svg>
-      </button>
-      <button className="ps-arrow ps-arrow--right" onClick={() => go(1)}  aria-label="Наступний">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-          <polyline points="9 18 15 12 9 6"/>
-        </svg>
-      </button>
-
-      {/* ── ТОЧКИ ───────────────────────────────────────── */}
-      <div className="ps-dots">
-        {projects.map((_, i) => (
-          <button
-            key={i}
-            className={`ps-dot${i === active ? ' ps-dot--on' : ''}`}
-            onClick={() => { if (i !== active && !busy) { setBusy(true); setActive(i); setTimeout(() => setBusy(false), 550); } }}
-            aria-label={`Проект ${i + 1}`}
-          />
-        ))}
       </div>
 
-      {/* ══ СТИЛІ ══════════════════════════════════════════════════════════ */}
       <style>{`
         .ps-section {
           position: relative;
           width: 100%;
           min-height: 100vh;
-          padding-top: 0;
-          padding-bottom: 0;
           background-image: url('/bg.png');
           background-size: cover;
           background-position: center;
@@ -196,121 +196,45 @@ export default function PortfolioSlider() {
           user-select: none;
         }
 
-        /* ── TRACK ── */
+        .ps-wrapper {
+          width: 900px;
+          max-width: 96vw;
+          margin: 0 auto;
+        }
+
         .ps-track {
           position: relative;
           width: 100%;
-          height: 72vh;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          padding-bottom: 80px;
-          box-sizing: border-box;
-        }
-
-        /* ── БАЗОВИЙ СЛАЙД ── */
-        .ps-slide {
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          transform-origin: center center;
-          will-change: transform, opacity, filter;
-        }
-
-        /* ── INNER ── */
-        .ps-slide-inner {
-          width: 100%;
-          height: 100%;
-          border-radius: 3px;
-          overflow: hidden;
-          box-shadow: 0 24px 64px rgba(0,0,0,0.65);
-        }
-
-        .ps-slide-bg {
-          width: 100%;
-          height: 100%;
-          position: relative;
+          height: 380px;
           display: flex;
           align-items: center;
           justify-content: center;
         }
 
-        .ps-slide-label {
-          font-family: 'Montserrat', sans-serif;
-          font-weight: 700;
-          font-size: clamp(1rem, 2.5vw, 2rem);
-          letter-spacing: 0.3em;
-          color: rgba(245, 243, 239, 0.85);
-          text-transform: uppercase;
-          text-shadow: 0 2px 20px rgba(0,0,0,0.5);
-        }
-
-        /* ── CAPTION ── */
-        .ps-caption-wrap {
+        .ps-caption {
           position: absolute;
           bottom: 0;
           left: 50%;
           transform: translateX(-50%);
-          width: 78vw;
-          margin-top: 0;
-          z-index: 20;
-        }
-
-        .ps-caption-bar {
-          padding: 1.2rem 2.8rem;
-        }
-
-        .ps-caption-text {
-          font-family: 'Montserrat', sans-serif;
-          font-size: clamp(0.72rem, 1.1vw, 0.95rem);
-          font-weight: 300;
-          letter-spacing: 0.07em;
-          color: #CFC7BD;
+          width: 100%;
+          background: rgba(12, 14, 16, 0.72);
+          backdrop-filter: blur(12px);
+          -webkit-backdrop-filter: blur(12px);
+          padding: 1rem 2rem;
           text-align: center;
-          line-height: 1.75;
-          margin: 0;
-        }
-
-        /* ── ARROWS ── */
-        .ps-arrow {
-          display: none;
-        }
-        .ps-arrow svg { width: 20px; height: 20px; }
-        .ps-arrow:hover {
-          background: rgba(245, 243, 239, 0.12);
-          border-color: rgba(245, 243, 239, 0.35);
-        }
-        .ps-arrow--left  { left: 2.5vw; }
-        .ps-arrow--right { right: 2.5vw; }
-
-        /* ── DOTS ── */
-        .ps-dots {
-          display: none;
-          gap: 10px;
-          margin-top: 2.5vh;
+          color: #CFC7BD;
+          font-family: 'Montserrat', sans-serif;
+          font-size: 0.85rem;
+          letter-spacing: 0.07em;
+          font-weight: 300;
+          line-height: 1.7;
           z-index: 20;
-        }
-        .ps-dot {
-          width: 5px;
-          height: 5px;
-          border-radius: 50%;
-          background: rgba(207, 199, 189, 0.28);
-          border: none;
-          cursor: pointer;
-          padding: 0;
-          transition: background 0.3s, transform 0.3s;
-        }
-        .ps-dot--on {
-          background: #CFC7BD;
-          transform: scale(1.6);
+          box-sizing: border-box;
         }
 
-        /* ── MOBILE ── */
         @media (max-width: 768px) {
-          .ps-track { height: 55vh; }
-          .ps-arrow { display: none; }
-          .ps-caption-wrap { width: 80vw; }
-          .ps-caption-bar { padding: 1rem 1.4rem; }
+          .ps-track { height: 280px; }
+          .ps-wrapper { width: 100%; }
         }
       `}</style>
     </section>
