@@ -52,7 +52,6 @@ const POSITIONS = ['far_left', 'left', 'center', 'right', 'far_right'];
 export default function PortfolioSlider() {
   const [active, setActive] = useState(0);
   const [busy, setBusy] = useState(false);
-  const [sliding, setSliding] = useState(null);
   const touchX = useRef(null);
   const captionRef = useRef(null);
 
@@ -70,12 +69,8 @@ export default function PortfolioSlider() {
   const go = useCallback((dir) => {
     if (busy) return;
     setBusy(true);
-    setSliding(dir > 0 ? 'right' : 'left');
-    setTimeout(() => {
-      setActive((prev) => mod(prev + dir));
-      setSliding(null);
-      setTimeout(() => setBusy(false), 550);
-    }, 150);
+    setActive((prev) => mod(prev + dir));
+    setTimeout(() => setBusy(false), 550);
   }, [busy]);
 
   const onTouchStart = (e) => { touchX.current = e.touches[0].clientX; };
@@ -100,7 +95,7 @@ export default function PortfolioSlider() {
       onTouchEnd={onTouchEnd}
     >
       {/* ── СЛАЙДЕР ─────────────────────────────────────── */}
-      <div className={`ps-track${sliding ? ` ps-track--sliding-${sliding}` : ''}`}>
+      <div className="ps-track">
         {slides.map(({ pos, idx, project }) => {
           const isLeft  = pos === 'left'     || pos === 'far_left';
           const isRight = pos === 'right'    || pos === 'far_right';
@@ -184,11 +179,6 @@ export default function PortfolioSlider() {
           user-select: none;
         }
 
-        /* ── TRACK SLIDING ── */
-        .ps-track--sliding-left  .ps-slide { margin-left: -3vw; transition: margin 0.15s ease; }
-        .ps-track--sliding-right .ps-slide { margin-left:  3vw; transition: margin 0.15s ease; }
-        .ps-slide { margin-left: 0; transition: margin 0.15s ease, transform 0.55s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.55s cubic-bezier(0.4, 0, 0.2, 1), filter 0.55s cubic-bezier(0.4, 0, 0.2, 1), width 0.55s cubic-bezier(0.4, 0, 0.2, 1), height 0.55s cubic-bezier(0.4, 0, 0.2, 1); }
-
         /* ── TRACK ── */
         .ps-track {
           position: relative;
@@ -242,16 +232,16 @@ export default function PortfolioSlider() {
         .ps-slide--far_left {
           width: 16vw; height: 30vh;
           transform: translate(-50%, -50%) translateX(-46vw) scale(0.75);
-          opacity: 0.28;
+          opacity: 0;
+          pointer-events: none;
           z-index: 2;
-          cursor: pointer;
         }
         .ps-slide--far_right {
           width: 16vw; height: 30vh;
           transform: translate(-50%, -50%) translateX(46vw) scale(0.75);
-          opacity: 0.28;
+          opacity: 0;
+          pointer-events: none;
           z-index: 2;
-          cursor: pointer;
         }
 
         /* ── INNER ── */
