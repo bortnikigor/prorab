@@ -243,7 +243,7 @@ export default function PortfolioSlider() {
         /* ── CAPTION ── */
         .ps-caption-wrap {
           position: relative;
-          width: 26vw;
+          width: 70vw;
           margin-top: 3.5vh;
           z-index: 20;
         }
