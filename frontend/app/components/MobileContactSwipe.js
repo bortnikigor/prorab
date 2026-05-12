@@ -1,5 +1,6 @@
 "use client";
 import { useRef, useState } from "react";
+import ContactForm from "./ContactForm";
 
 export default function MobileContactSwipe({ t, language }) {
   const [panel, setPanel] = useState(0); // 0 = info, 1 = form
@@ -49,22 +50,7 @@ export default function MobileContactSwipe({ t, language }) {
         {/* Panel 2 — Form */}
         <div style={{ width: "50%", height: "100%", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", padding: "40px 24px" }}>
           <div style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(207,199,189,0.12)", padding: "32px 24px", width: "100%", borderRadius: "2px" }}>
-            <h2 style={{ fontFamily: "Montserrat, sans-serif", fontSize: "22px", fontWeight: 600, color: "#CFC7BD", letterSpacing: "0.05em", textTransform: "uppercase", margin: "0 0 24px", textAlign: "center" }}>{t.contacts.formTitle}</h2>
-            {[
-              { placeholder: t.contacts.namePlaceholder, type: "text" },
-              { placeholder: t.contacts.phonePlaceholder, type: "tel" },
-              { placeholder: t.contacts.messagePlaceholder, type: "text" },
-            ].map((field) => (
-              <div key={field.placeholder} style={{ borderBottom: "1px solid rgba(207,199,189,0.2)", marginBottom: "16px" }}>
-                <input type={field.type} placeholder={field.placeholder}
-                  style={{ width: "100%", background: "transparent", border: "none", outline: "none", fontFamily: "Montserrat, sans-serif", fontSize: "13px", color: "#CFC7BD", padding: "10px 0", letterSpacing: "0.05em" }} />
-              </div>
-            ))}
-            <div style={{ display: "flex", justifyContent: "center", marginTop: "16px" }}>
-              <button className="mc-send-btn">
-                {t.contacts.sendButton}
-              </button>
-            </div>
+            <ContactForm t={t} titleSize="22px" inputSize="13px" inputPadding="10px 0" gap="16px" />
           </div>
         </div>
       </div>

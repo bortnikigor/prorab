@@ -1,85 +1,86 @@
-"use client";
+'use client';
 
-import { useActionState } from "react";
-import { submitContact } from "../actions";
-import { useLanguage } from "../context/LanguageContext";
+import { useState } from 'react';
 
-const initialState = { success: false, error: null };
+const BOT_TOKEN = '8656007868:AAFeEEn8g-aUCt1-ofI-8W-cHcYFPqjWNss';
+const CHAT_ID = '291987010';
 
-export default function ContactForm() {
-  const { t } = useLanguage();
-  const c = t.contact;
-  const [state, action, pending] = useActionState(submitContact, initialState);
+async function sendToTelegram(name, phone, message) {
+  const text = `🏗 Нова заявка з сайту PRORAB\n\n👤 Ім'я: ${name}\n📞 Телефон: ${phone}\n💬 Повідомлення: ${message}`;
+  const res = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ chat_id: CHAT_ID, text, parse_mode: 'HTML' }),
+  });
+  if (!res.ok) throw new Error('Failed');
+}
 
-  const errorMsg =
-    state.error === "required"
-      ? c.errorRequired
-      : state.error === "invalid_phone"
-        ? c.errorPhone
-        : null;
+export default function ContactForm({ t, titleSize = 'clamp(24px, 3vw, 36px)', inputSize = '11px', inputPadding = '8px 0', gap = '12px' }) {
+  const [name, setName] = useState('');
+  const [phone, setPhone] = useState('');
+  const [message, setMessage] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [status, setStatus] = useState(null);
 
-  if (state.success) {
-    return (
-      <div className="flex flex-col items-center gap-4 py-12 text-center">
-        <div className="text-4xl">✓</div>
-        <p className="text-lg font-light tracking-wide text-[var(--accent)]">
-          {c.successTitle}
-        </p>
-        <p className="text-sm text-[var(--text-muted)]">{c.successSub}</p>
-      </div>
-    );
-  }
+  const handleSubmit = async () => {
+    setLoading(true);
+    setStatus(null);
+    try {
+      await sendToTelegram(name, phone, message);
+      setName(''); setPhone(''); setMessage('');
+      setStatus('success');
+    } catch {
+      setStatus('error');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const fields = [
+    { placeholder: t.contacts.namePlaceholder, type: 'text', value: name, set: setName },
+    { placeholder: t.contacts.phonePlaceholder, type: 'tel', value: phone, set: setPhone },
+    { placeholder: t.contacts.messagePlaceholder, type: 'text', value: message, set: setMessage },
+  ];
 
   return (
-    <form action={action} className="flex flex-col gap-5">
-      <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
-        <div className="flex flex-col gap-2">
-          <label className="text-xs tracking-widest uppercase text-[var(--text-muted)]">
-            {c.name} <span className="text-[var(--accent)]">*</span>
-          </label>
+    <>
+      <h2 style={{ fontFamily: 'Montserrat, sans-serif', fontSize: titleSize, fontWeight: 600, color: '#CFC7BD', letterSpacing: '0.05em', textTransform: 'uppercase', margin: '0 0 20px', textAlign: 'center' }}>
+        {t.contacts.formTitle}
+      </h2>
+
+      {fields.map(f => (
+        <div key={f.placeholder} style={{ borderBottom: '1px solid rgba(207,199,189,0.2)', marginBottom: gap }}>
           <input
-            type="text"
-            name="name"
-            required
-            placeholder={c.namePlaceholder}
-            className="w-full border border-[var(--border)] bg-[var(--muted)] px-4 py-3 text-sm text-[var(--foreground)] placeholder-[var(--text-muted)] outline-none transition-colors focus:border-[var(--accent-dim)]"
+            type={f.type}
+            placeholder={f.placeholder}
+            value={f.value}
+            onChange={e => f.set(e.target.value)}
+            disabled={loading}
+            style={{ width: '100%', background: 'transparent', border: 'none', outline: 'none', fontFamily: 'Montserrat, sans-serif', fontSize: inputSize, color: '#CFC7BD', padding: inputPadding, letterSpacing: '0.05em' }}
           />
         </div>
-        <div className="flex flex-col gap-2">
-          <label className="text-xs tracking-widest uppercase text-[var(--text-muted)]">
-            {c.phone} <span className="text-[var(--accent)]">*</span>
-          </label>
-          <input
-            type="tel"
-            name="phone"
-            required
-            placeholder={c.phonePlaceholder}
-            className="w-full border border-[var(--border)] bg-[var(--muted)] px-4 py-3 text-sm text-[var(--foreground)] placeholder-[var(--text-muted)] outline-none transition-colors focus:border-[var(--accent-dim)]"
-          />
-        </div>
+      ))}
+
+      {status === 'success' && (
+        <p style={{ fontFamily: 'Montserrat, sans-serif', fontSize: '11px', color: '#28C840', textAlign: 'center', margin: '8px 0 0' }}>
+          {t.telegramChat.reply}
+        </p>
+      )}
+      {status === 'error' && (
+        <p style={{ fontFamily: 'Montserrat, sans-serif', fontSize: '11px', color: '#FF5F57', textAlign: 'center', margin: '8px 0 0' }}>
+          {t.telegramChat.error}
+        </p>
+      )}
+
+      <div style={{ display: 'flex', justifyContent: 'center', marginTop: gap }}>
+        <button
+          onClick={handleSubmit}
+          disabled={loading}
+          style={{ background: 'transparent', border: '1px solid rgba(245,243,239,0.4)', color: '#F5F3EF', fontFamily: 'Montserrat, sans-serif', fontSize: '0.75rem', letterSpacing: '0.2em', textTransform: 'uppercase', padding: '0.75rem 2rem', cursor: loading ? 'not-allowed' : 'pointer', transition: 'border-color 0.25s, color 0.25s', opacity: loading ? 0.6 : 1 }}
+        >
+          {loading ? 'Sending...' : t.contacts.sendButton}
+        </button>
       </div>
-
-      <div className="flex flex-col gap-2">
-        <label className="text-xs tracking-widest uppercase text-[var(--text-muted)]">
-          {c.message}
-        </label>
-        <textarea
-          name="message"
-          rows={4}
-          placeholder={c.messagePlaceholder}
-          className="w-full resize-none border border-[var(--border)] bg-[var(--muted)] px-4 py-3 text-sm text-[var(--foreground)] placeholder-[var(--text-muted)] outline-none transition-colors focus:border-[var(--accent-dim)]"
-        />
-      </div>
-
-      {errorMsg && <p className="text-sm text-red-400">{errorMsg}</p>}
-
-      <button
-        type="submit"
-        disabled={pending}
-        className="mt-2 border border-[var(--accent)] px-10 py-4 text-xs tracking-widest uppercase text-[var(--accent)] transition-colors hover:bg-[var(--accent)] hover:text-[var(--background)] disabled:opacity-40 cursor-pointer"
-      >
-        {pending ? c.submitting : c.submit}
-      </button>
-    </form>
+    </>
   );
 }

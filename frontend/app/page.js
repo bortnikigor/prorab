@@ -7,6 +7,7 @@ import LanguageSwitcher from "./components/LanguageSwitcher";
 import PortfolioSlider from "./components/PortfolioSlider";
 import TelegramBotSection from "./components/TelegramBotSection";
 import MobileContactSwipe from "./components/MobileContactSwipe";
+import ContactForm from "./components/ContactForm";
 
 const SERVICE_ICONS = ["◻", "◼", "▣"];
 const CLOUD_NAME = "dpcqf9y8l";
@@ -252,24 +253,7 @@ export default function Home() {
 
             {/* RIGHT — form */}
             <div style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(207,199,189,0.12)", padding: "44px", borderRadius: "2px", display: "flex", flexDirection: "column", maxHeight: "55vh", alignSelf: "center" }}>
-              <h2 style={{ fontFamily: "Montserrat, sans-serif", fontSize: "clamp(24px, 3vw, 36px)", fontWeight: 600, color: "#CFC7BD", letterSpacing: "0.05em", textTransform: "uppercase", margin: "0 0 20px", textAlign: "center" }}>{t.contacts.formTitle}</h2>
-              {[
-                { placeholder: t.contacts.namePlaceholder, type: "text" },
-                { placeholder: t.contacts.phonePlaceholder, type: "tel" },
-                { placeholder: t.contacts.messagePlaceholder, type: "text" },
-              ].map((field) => (
-                <div key={field.placeholder} style={{ borderBottom: "1px solid rgba(207,199,189,0.2)", marginBottom: "12px" }}>
-                  <input type={field.type} placeholder={field.placeholder}
-                    style={{ width: "100%", background: "transparent", border: "none", outline: "none", fontFamily: "Montserrat, sans-serif", fontSize: "11px", color: "#CFC7BD", padding: "8px 0", letterSpacing: "0.05em" }} />
-                </div>
-              ))}
-              <div style={{ display: "flex", justifyContent: "center", marginTop: "12px" }}>
-                <button style={{ background: "rgba(207,199,189,0.1)", border: "1px solid rgba(207,199,189,0.3)", color: "#CFC7BD", fontFamily: "Montserrat, sans-serif", fontSize: "11px", letterSpacing: "0.25em", textTransform: "uppercase", padding: "10px 24px", cursor: "pointer", display: "flex", alignItems: "center", gap: "12px", transition: "all 0.3s" }}
-                  onMouseEnter={(e) => { e.currentTarget.style.background = "#CFC7BD"; e.currentTarget.style.color = "#0F1113"; }}
-                  onMouseLeave={(e) => { e.currentTarget.style.background = "rgba(207,199,189,0.1)"; e.currentTarget.style.color = "#CFC7BD"; }}>
-                  {t.contacts.sendButton}
-                </button>
-              </div>
+              <ContactForm t={t} />
             </div>
           </div>
 
