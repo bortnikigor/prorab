@@ -164,9 +164,9 @@ export default function PortfolioSlider() {
         .ps-section {
           position: relative;
           width: 100%;
-          min-height: auto;
-          padding-top: 80px;
-          padding-bottom: 4rem;
+          min-height: 100vh;
+          padding-top: 0;
+          padding-bottom: 0;
           background-image: url('/bg.png');
           background-size: cover;
           background-position: center;
