@@ -246,7 +246,7 @@ export default function Home() {
                 <a href="https://maps.app.goo.gl/t5QG4VNNnVzZu7J88" target="_blank" rel="noopener noreferrer" style={{ fontFamily: "Montserrat, sans-serif", fontSize: "13px", color: "rgba(207,199,189,0.6)", textDecoration: "none" }}>{t.contacts.city}</a>
               </div>
               <div>
-                <h3 style={{ fontFamily: "Montserrat, sans-serif", fontSize: "18px", fontWeight: 700, color: "#CFC7BD", margin: "0 0 12px" }}>E-mail</h3>
+                <h3 style={{ fontFamily: "Montserrat, sans-serif", fontSize: "18px", fontWeight: 700, color: "#CFC7BD", margin: "0 0 12px" }}>E-MAIL</h3>
                 <a href="mailto:request@prorab.ooo" style={{ fontFamily: "Montserrat, sans-serif", fontSize: "13px", color: "rgba(207,199,189,0.6)", textDecoration: "none" }}>request@prorab.ooo</a>
               </div>
             </div>
