@@ -31,11 +31,11 @@ export default function MobileContactSwipe({ t, language }) {
           <h2 style={{ fontFamily: "Montserrat, sans-serif", fontSize: "28px", fontWeight: 600, color: "#CFC7BD", letterSpacing: "0.05em", textTransform: "uppercase", margin: 0 }}>{t.contacts.title}</h2>
           <p style={{ fontFamily: "Montserrat, sans-serif", fontSize: "13px", color: "rgba(207,199,189,0.6)", lineHeight: 1.7, margin: 0 }}>{t.contacts.description}</p>
           <div>
-            <h3 style={{ fontFamily: "Montserrat, sans-serif", fontSize: "15px", fontWeight: 700, color: "#CFC7BD", margin: "0 0 8px" }}>{t.contacts.address}</h3>
+            <h3 style={{ fontFamily: "Montserrat, sans-serif", fontSize: "15px", fontWeight: 500, color: "#CFC7BD", margin: "0 0 8px" }}>{t.contacts.address}</h3>
             <a href="https://maps.app.goo.gl/t5QG4VNNnVzZu7J88" target="_blank" rel="noopener noreferrer" style={{ fontFamily: "Montserrat, sans-serif", fontSize: "13px", color: "rgba(207,199,189,0.6)", textDecoration: "none" }}>{t.contacts.city}</a>
           </div>
           <div>
-            <h3 style={{ fontFamily: "Montserrat, sans-serif", fontSize: "15px", fontWeight: 700, color: "#CFC7BD", margin: "0 0 8px" }}>E-MAIL</h3>
+            <h3 style={{ fontFamily: "Montserrat, sans-serif", fontSize: "15px", fontWeight: 500, color: "#CFC7BD", margin: "0 0 8px" }}>E-MAIL</h3>
             <a href="mailto:request@prorab.ooo" style={{ fontFamily: "Montserrat, sans-serif", fontSize: "13px", color: "rgba(207,199,169,0.6)", textDecoration: "none" }}>request@prorab.ooo</a>
           </div>
           {/* CTA button */}
