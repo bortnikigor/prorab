@@ -85,7 +85,7 @@ export default function PortfolioSlider() {
   }, [busy]);
 
   const startAutoplay = useCallback(() => {
-    intervalRef.current = setInterval(() => go(1), 3600);
+    intervalRef.current = setInterval(() => go(1), 4000);
   }, [go]);
 
   const stopAutoplay = useCallback(() => {
