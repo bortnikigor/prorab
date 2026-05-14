@@ -65,7 +65,6 @@ export default function PortfolioSlider() {
   const { language } = useLanguage();
   const [active, setActive] = useState(0);
   const [busy, setBusy] = useState(false);
-  const [direction, setDirection] = useState(null);
   const [isMobile, setIsMobile] = useState(false);
   const touchX = useRef(null);
   const intervalRef = useRef(null);
@@ -80,10 +79,8 @@ export default function PortfolioSlider() {
   const go = useCallback((dir) => {
     if (busy) return;
     setBusy(true);
-    setDirection(dir > 0 ? 1 : -1);
     setActive((prev) => mod(prev + dir));
     setTimeout(() => setBusy(false), 650);
-    setTimeout(() => setDirection(null), 500);
   }, [busy]);
 
   const startAutoplay = useCallback(() => {
@@ -198,7 +195,7 @@ export default function PortfolioSlider() {
         <div className="ps-caption">
           <p
             key={active}
-            className={`ps-caption-text${direction === 1 ? ' ps-caption-text--slide-right' : direction === -1 ? ' ps-caption-text--slide-left' : ''}`}
+            className="ps-caption-text"
             style={{ margin: 0 }}
           >
             {typeof projects[active].caption === 'object'
@@ -259,20 +256,13 @@ export default function PortfolioSlider() {
           box-sizing: border-box;
         }
 
-        @keyframes slideInFromRight {
-          from { transform: translateX(60px); opacity: 0; }
-          to   { transform: translateX(0);    opacity: 1; }
-        }
-        @keyframes slideInFromLeft {
-          from { transform: translateX(-60px); opacity: 0; }
-          to   { transform: translateX(0);     opacity: 1; }
+        @keyframes fadeIn {
+          from { opacity: 0; }
+          to   { opacity: 1; }
         }
 
-        .ps-caption-text--slide-right {
-          animation: slideInFromRight 0.45s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-        }
-        .ps-caption-text--slide-left {
-          animation: slideInFromLeft 0.45s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        .ps-caption-text {
+          animation: fadeIn 0.5s ease forwards;
         }
 
         @media (max-width: 768px) {
