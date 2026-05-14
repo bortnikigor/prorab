@@ -29,8 +29,8 @@ const projects = [
     title: 'CREATE',
     category: 'Digital Experience',
     caption: {
-      UA: 'Ви не керуєте ремонтом. Ви отримуєте результат. Ми беремо на себе весь процес реалізації — від кошторису до фінальної здачі.',
-      EN: 'You don\'t manage the renovation. You get the result. We take on the entire implementation process — from estimate to final handover.',
+      UA: 'Ви не керуєте ремонтом.\nВи отримуєте результат.\nМи беремо на себе весь процес реалізації — від кошторису до фінальної здачі.',
+      EN: 'You don\'t manage the renovation.\nYou get the result.\nWe take on the entire implementation process — from estimate to final handover.',
     },
     image: 'https://res.cloudinary.com/dpcqf9y8l/image/upload/q_auto/f_auto/v1778573851/11_h0lurf.jpg',
   },
