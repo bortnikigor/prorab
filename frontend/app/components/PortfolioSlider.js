@@ -39,8 +39,8 @@ const projects = [
     title: 'INTERIORS',
     category: 'Interior Design & Renovation',
     caption: {
-      UA: '— Працюємо за договором — Кошторис з точністю до 95% — Поетапна оплата — Гарантія 2 роки',
-      EN: '— We work under contract — Estimate with 95% accuracy — Stage-by-stage payment — 2-year warranty',
+      UA: '— Кошторис з точністю до 95%\n— Працюємо за договором\n— Поетапна оплата\n— Гарантія 2 роки',
+      EN: '— Estimate with 95% accuracy\n— We work under contract\n— Stage-by-stage payment\n— 2-year warranty',
     },
     image: 'https://res.cloudinary.com/dpcqf9y8l/image/upload/q_auto/f_auto/v1778573851/81def5fd18191e45bdde3f824c831611_dyzptr.jpg',
   },
@@ -196,7 +196,7 @@ export default function PortfolioSlider() {
           <p
             key={active}
             className="ps-caption-text"
-            style={{ margin: 0 }}
+            style={{ margin: 0, whiteSpace: 'pre-line' }}
           >
             {typeof projects[active].caption === 'object'
               ? projects[active].caption[language]
