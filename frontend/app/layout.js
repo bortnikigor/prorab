@@ -35,9 +35,33 @@ export const metadata = {
   },
 };
 
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  name: 'PRORAB',
+  description: 'Професійний ремонт під ключ у Києві',
+  url: 'https://prorab.ooo',
+  telephone: '+380XXXXXXXXX',
+  email: 'request@prorab.ooo',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'Naberezhno-Rybalska Street 3',
+    addressLocality: 'Kyiv',
+    addressCountry: 'UA',
+  },
+  openingHours: 'Mo-Fr 09:00-18:00',
+  priceRange: '₴₴₴',
+};
+
 export default function RootLayout({ children }) {
   return (
     <html lang="uk" className={`${geist.variable}`}>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body className="min-h-screen antialiased">
         <CustomCursor />
         <LanguageProvider>{children}</LanguageProvider>

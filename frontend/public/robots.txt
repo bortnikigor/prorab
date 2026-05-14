@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://prorab.ooo/sitemap.xml
