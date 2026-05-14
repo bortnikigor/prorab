@@ -11,7 +11,11 @@ const geist = Geist({
 export const metadata = {
   title: 'PRORAB — Ремонт квартир, будинків та офісів у Києві',
   description: 'Професійний ремонт під ключ у Києві. Дизайн-проект, авторський нагляд, гарантія 2 роки. Від кошторису до фінальної здачі.',
-  keywords: 'ремонт квартир Київ, ремонт під ключ, дизайн інтер\'єру, ремонт офісів, будівництво будинків',
+  keywords: 'ремонт квартир Київ, ремонт під ключ, дизайн інтер\'єру, ремонт офісів, будівництво будинків, PRORAB',
+  metadataBase: new URL('https://prorab.ooo'),
+  alternates: {
+    canonical: 'https://prorab.ooo',
+  },
   openGraph: {
     title: 'PRORAB — Ремонт під ключ у Києві',
     description: 'Реалізуємо інтер\'єри без спотворень. Від кошторису до фінальної здачі.',
@@ -19,6 +23,15 @@ export const metadata = {
     siteName: 'PRORAB',
     locale: 'uk_UA',
     type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'PRORAB — Ремонт під ключ у Києві',
+    description: 'Реалізуємо інтер\'єри без спотворень. Від кошторису до фінальної здачі.',
+  },
+  robots: {
+    index: true,
+    follow: true,
   },
 };
 
