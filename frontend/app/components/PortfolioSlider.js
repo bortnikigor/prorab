@@ -38,7 +38,10 @@ const projects = [
     id: 4,
     title: 'INTERIORS',
     category: 'Interior Design & Renovation',
-    caption: 'Premium residential renovation — from concept to completion. Spaces crafted around the people who inhabit them.',
+    caption: {
+      UA: '— Працюємо за договором — Кошторис з точністю до 95% — Поетапна оплата — Гарантія 2 роки',
+      EN: '— We work under contract — Estimate with 95% accuracy — Stage-by-stage payment — 2-year warranty',
+    },
     image: 'https://res.cloudinary.com/dpcqf9y8l/image/upload/q_auto/f_auto/v1778573851/81def5fd18191e45bdde3f824c831611_dyzptr.jpg',
   },
   {
