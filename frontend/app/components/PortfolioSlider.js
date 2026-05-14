@@ -19,8 +19,8 @@ const projects = [
     title: 'MEDTECH',
     category: 'UX/UI & Product Design',
     caption: {
-      UA: 'Там, де більшість "спрощує" — ми реалізуємо. Ми відповідаємо за те, щоб інтер\'єр виглядав саме так, як був задуманий. Без спрощень. Без втрати деталей. Без "майже так". І все. Не більше.',
-      EN: 'Where most "simplify" — we deliver. We ensure the interior looks exactly as it was designed. No simplifications. No loss of detail. No "almost right". That\'s it. Nothing more.',
+      UA: 'Там, де більшість "спрощує" — ми реалізуємо.\nМи відповідаємо за те, щоб інтер\'єр виглядав саме так, як був задуманий.\nБез спрощень. Без втрати деталей. Без "майже так". І все. Не більше.',
+      EN: 'Where most "simplify" — we deliver.\nWe ensure the interior looks exactly as it was designed.\nNo simplifications. No loss of detail. No "almost right". That\'s it. Nothing more.',
     },
     image: 'https://res.cloudinary.com/dpcqf9y8l/image/upload/q_auto/f_auto/v1778573852/46e5399f07fd25edfa3012c6f05c9e83_toleet.jpg',
   },
