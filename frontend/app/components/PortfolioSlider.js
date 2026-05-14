@@ -9,8 +9,8 @@ const projects = [
     title: 'TRUSDO',
     category: 'Brand Identity & Web Design',
     caption: {
-      UA: 'Дизайн — це лише намір. Реальність створюється на будівництві. Ми — ті, хто відповідає за те, щоб дизайн став реальністю без спотворень.',
-      EN: 'Design is just intention. Reality is built on the construction site. We are those who ensure that design becomes reality without distortion.',
+      UA: 'Дизайн — це лише намір.\nРеальність створюється на будівництві.\nМи — ті, хто відповідає за те, щоб дизайн став реальністю без спотворень.',
+      EN: 'Design is just intention.\nReality is built on the construction site.\nWe are those who ensure that design becomes reality without distortion.',
     },
     image: 'https://res.cloudinary.com/dpcqf9y8l/image/upload/q_auto/f_auto/v1778573852/10c849511d37cd379dbb5dd9fbff055e_e2ouna.jpg',
   },
