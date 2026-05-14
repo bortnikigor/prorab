@@ -39,8 +39,8 @@ const projects = [
     title: 'INTERIORS',
     category: 'Interior Design & Renovation',
     caption: {
-      UA: '— Кошторис з точністю до 95%\n— Працюємо за договором\n— Поетапна оплата\n— Гарантія 2 роки',
-      EN: '— Estimate with 95% accuracy\n— We work under contract\n— Stage-by-stage payment\n— 2-year warranty',
+      UA: 'Кошторис з точністю до 95%\nПрацюємо за договором\nПоетапна оплата\nГарантія 2 роки',
+      EN: 'Estimate with 95% accuracy\nWe work under contract\nStage-by-stage payment\n2-year warranty',
     },
     image: 'https://res.cloudinary.com/dpcqf9y8l/image/upload/q_auto/f_auto/v1778573851/81def5fd18191e45bdde3f824c831611_dyzptr.jpg',
   },
