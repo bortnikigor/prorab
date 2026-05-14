@@ -1,13 +1,17 @@
 'use client';
 
 import { useState, useCallback, useRef, useEffect, useMemo } from 'react';
+import { useLanguage } from '../context/LanguageContext';
 
 const projects = [
   {
     id: 1,
     title: 'TRUSDO',
     category: 'Brand Identity & Web Design',
-    caption: 'We are a design company, providing product customization, starting from your needs — your support is our constant driving force.',
+    caption: {
+      UA: 'Дизайн — це лише намір. Реальність створюється на будівництві. Ми — ті, хто відповідає за те, щоб дизайн став реальністю без спотворень.',
+      EN: 'Design is just intention. Reality is built on the construction site. We are those who ensure that design becomes reality without distortion.',
+    },
     image: 'https://res.cloudinary.com/dpcqf9y8l/image/upload/q_auto/f_auto/v1778573852/10c849511d37cd379dbb5dd9fbff055e_e2ouna.jpg',
   },
   {
@@ -46,6 +50,7 @@ const mod = (i) => ((i % N) + N) % N;
 const CARD_RADIUS = '4px';
 
 export default function PortfolioSlider() {
+  const { language } = useLanguage();
   const [active, setActive] = useState(0);
   const [busy, setBusy] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
@@ -189,7 +194,9 @@ export default function PortfolioSlider() {
         {/* Caption overlay */}
         <div className="ps-caption">
           <p ref={captionRef} style={{ margin: 0, transition: 'opacity 0.35s ease' }}>
-            {projects[active].caption}
+            {typeof projects[active].caption === 'object'
+              ? projects[active].caption[language]
+              : projects[active].caption}
           </p>
         </div>
 
