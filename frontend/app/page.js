@@ -234,12 +234,16 @@ export default function Home() {
           <style>{`
             behold-widget {
               --behold-column-count: 6;
-              --behold-gap: 8px;
+              --behold-gap: 6px;
               --behold-border-radius: 2px;
+              max-height: 25vh;
+              overflow: hidden;
+              display: block;
             }
             @media (max-width: 768px) {
               behold-widget {
                 --behold-column-count: 2;
+                max-height: none;
               }
             }
           `}</style>
