@@ -83,6 +83,7 @@ export const translations = {
       swipeBack: "Контакти",
       writeUs: "Написати",
     },
+    instagramCaption: "Саме тому наші об'єкти виглядають так, як на візуалізаціях.",
     footer: { rights: "Усі права захищено.", privacy: "Політика конфіденційності" },
   },
 
@@ -170,6 +171,7 @@ export const translations = {
       swipeBack: "Contacts",
       writeUs: "Write to us",
     },
+    instagramCaption: "That's why our projects look exactly like the visualizations.",
     footer: { rights: "All rights reserved.", privacy: "Privacy Policy" },
   },
 
@@ -246,6 +248,7 @@ export const translations = {
       instagram: "Instagram",
       telegram: "Telegram",
     },
+    instagramCaption: "Именно поэтому наши объекты выглядят так, как на визуализациях.",
     footer: { rights: "Все права защищены.", privacy: "Политика конфиденциальности" },
   },
 };

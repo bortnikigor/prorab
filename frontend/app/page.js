@@ -270,7 +270,7 @@ export default function Home() {
               lineHeight: '1.7',
               marginTop: '1.5rem',
             }}>
-              Саме тому наші об&apos;єкти виглядають так, як на візуалізаціях.
+              {t.instagramCaption}
             </p>
           </div>
           <Script src="https://w.behold.so/widget.js" type="module" strategy="lazyOnload" />
