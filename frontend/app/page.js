@@ -260,6 +260,18 @@ export default function Home() {
               INSTAGRAM
             </p>
             <behold-widget feed-id="6RPZtwM6pWTxeB1L3WjP"></behold-widget>
+            <p style={{
+              fontFamily: 'Montserrat',
+              fontSize: '0.85rem',
+              fontWeight: 300,
+              letterSpacing: '0.06em',
+              color: '#CFC7BD',
+              textAlign: 'center',
+              lineHeight: '1.7',
+              marginTop: '1.5rem',
+            }}>
+              Саме тому наші об&apos;єкти виглядають так, як на візуалізаціях.
+            </p>
           </div>
           <Script src="https://w.behold.so/widget.js" type="module" strategy="lazyOnload" />
         </section>
