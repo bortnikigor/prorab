@@ -227,28 +227,41 @@ export default function Home() {
         )}
 
         {/* ── INSTAGRAM ── */}
-        <section style={{ background: '#0F1113', padding: '60px 5vw' }}>
-          <p style={{ fontFamily: 'Montserrat', fontSize: '0.75rem', letterSpacing: '0.2em', color: '#CFC7BD', textTransform: 'uppercase', marginBottom: '1.5rem', textAlign: 'center' }}>
-            INSTAGRAM
-          </p>
-          <style>{`
-            behold-widget {
-              --behold-column-count: 6;
-              --behold-gap: 6px;
-              --behold-border-radius: 2px;
-              max-height: 25vh;
-              overflow: hidden;
-              display: block;
-            }
-            @media (max-width: 768px) {
-              behold-widget {
-                --behold-column-count: 2;
-                max-height: none;
-              }
-            }
-          `}</style>
-          <behold-widget feed-id="6RPZtwM6pWTxeB1L3WjP"></behold-widget>
-          <Script src="https://w.behold.so/widget.js" type="module" strategy="lazyOnload" />
+        <section style={{
+          position: 'relative',
+          width: '100%',
+          minHeight: '100vh',
+          background: '#3a3a3a',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          padding: '0 5vw',
+        }}>
+          {/* Dark overlay як в інших секціях */}
+          <div style={{
+            position: 'absolute',
+            inset: 0,
+            background: 'rgba(0, 0, 0, 0.55)',
+            zIndex: 0,
+            pointerEvents: 'none',
+          }} />
+
+          <div style={{ position: 'relative', zIndex: 1, width: '100%' }}>
+            <p style={{
+              fontFamily: 'Montserrat',
+              fontSize: '0.75rem',
+              letterSpacing: '0.2em',
+              color: '#CFC7BD',
+              textTransform: 'uppercase',
+              marginBottom: '2rem',
+              textAlign: 'center',
+            }}>
+              INSTAGRAM
+            </p>
+            <behold-widget feed-id="6RPZtwM6pWTxeB1L3WjP"></behold-widget>
+            <Script src="https://w.behold.so/widget.js" type="module" strategy="lazyOnload" />
+          </div>
         </section>
 
         {/* ── CONTACT ── */}
