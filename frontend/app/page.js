@@ -227,16 +227,24 @@ export default function Home() {
         )}
 
         {/* ── INSTAGRAM ── */}
-        <section style={{ background: '#0F1113', padding: '80px 10vw', width: '100%', height: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-          <p style={{ fontFamily: 'Montserrat', fontSize: '0.75rem', letterSpacing: '0.2em', color: '#CFC7BD', textTransform: 'uppercase', marginBottom: '2rem', textAlign: 'center' }}>
+        <section style={{ background: '#0F1113', padding: '60px 5vw' }}>
+          <p style={{ fontFamily: 'Montserrat', fontSize: '0.75rem', letterSpacing: '0.2em', color: '#CFC7BD', textTransform: 'uppercase', marginBottom: '1.5rem', textAlign: 'center' }}>
             INSTAGRAM
           </p>
+          <style>{`
+            behold-widget {
+              --behold-column-count: 6;
+              --behold-gap: 8px;
+              --behold-border-radius: 2px;
+            }
+            @media (max-width: 768px) {
+              behold-widget {
+                --behold-column-count: 2;
+              }
+            }
+          `}</style>
           <behold-widget feed-id="6RPZtwM6pWTxeB1L3WjP"></behold-widget>
-          <Script
-            src="https://w.behold.so/widget.js"
-            type="module"
-            strategy="lazyOnload"
-          />
+          <Script src="https://w.behold.so/widget.js" type="module" strategy="lazyOnload" />
         </section>
 
         {/* ── CONTACT ── */}
