@@ -269,6 +269,7 @@ export default function Home() {
               textAlign: 'center',
               lineHeight: '1.7',
               marginTop: '1.5rem',
+              whiteSpace: 'pre-line',
             }}>
               {t.instagramCaption}
             </p>
