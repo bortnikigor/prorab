@@ -8,11 +8,12 @@ import PortfolioSlider from "./components/PortfolioSlider";
 import TelegramBotSection from "./components/TelegramBotSection";
 import MobileContactSwipe from "./components/MobileContactSwipe";
 import ContactForm from "./components/ContactForm";
+import Script from "next/script";
 
 const SERVICE_ICONS = ["◻", "◼", "▣"];
 const CLOUD_NAME = "dpcqf9y8l";
 const HERO_VIDEO_ID = "video2_utuupz";
-const SECTIONS = ["hero", "about", "contact"];
+const SECTIONS = ["hero", "about", "instagram", "contact"];
 
 export default function Home() {
   const { t, language } = useLanguage();
@@ -224,6 +225,19 @@ export default function Home() {
           <PortfolioSlider ref={portfolioRef} onExitBottom={() => goTo(3)} onExitTop={() => goTo(1)} />
         </section>
         )}
+
+        {/* ── INSTAGRAM ── */}
+        <section style={{ background: '#0F1113', padding: '80px 10vw', width: '100%', height: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+          <p style={{ fontFamily: 'Montserrat', fontSize: '0.75rem', letterSpacing: '0.2em', color: '#CFC7BD', textTransform: 'uppercase', marginBottom: '2rem', textAlign: 'center' }}>
+            INSTAGRAM
+          </p>
+          <behold-widget feed-id="6RPZtwM6pWTxeB1L3WjP"></behold-widget>
+          <Script
+            src="https://w.behold.so/widget.js"
+            type="module"
+            strategy="lazyOnload"
+          />
+        </section>
 
         {/* ── CONTACT ── */}
         <section className="contact-section" style={{ position: "relative", width: "100%", height: "100vh", display: "flex", flexDirection: "column", backgroundImage: "url('/bg.png')", backgroundSize: "cover", backgroundPosition: "center", backgroundRepeat: "no-repeat" }}>
