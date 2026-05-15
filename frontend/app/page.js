@@ -247,7 +247,7 @@ export default function Home() {
             pointerEvents: 'none',
           }} />
 
-          <div style={{ position: 'relative', zIndex: 1, width: '100%', maxWidth: '900px', margin: '0 auto' }}>
+          <div style={{ position: 'relative', zIndex: 1, width: 'clamp(300px, 467px, 100%)', margin: '0 auto' }}>
             <p style={{
               fontFamily: 'Montserrat',
               fontSize: '0.75rem',
