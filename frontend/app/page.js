@@ -247,7 +247,7 @@ export default function Home() {
             pointerEvents: 'none',
           }} />
 
-          <div style={{ position: 'relative', zIndex: 1, width: '100%' }}>
+          <div style={{ position: 'relative', zIndex: 1, width: '467px', margin: '0 auto' }}>
             <p style={{
               fontFamily: 'Montserrat',
               fontSize: '0.75rem',
@@ -260,8 +260,8 @@ export default function Home() {
               INSTAGRAM
             </p>
             <behold-widget feed-id="6RPZtwM6pWTxeB1L3WjP"></behold-widget>
-            <Script src="https://w.behold.so/widget.js" type="module" strategy="lazyOnload" />
           </div>
+          <Script src="https://w.behold.so/widget.js" type="module" strategy="lazyOnload" />
         </section>
 
         {/* ── CONTACT ── */}
