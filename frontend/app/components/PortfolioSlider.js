@@ -44,16 +44,6 @@ const projects = [
     },
     image: 'https://res.cloudinary.com/dpcqf9y8l/image/upload/q_auto/f_auto/v1778573851/81def5fd18191e45bdde3f824c831611_dyzptr.jpg',
   },
-  {
-    id: 5,
-    title: 'KOMFORT',
-    category: 'Commercial Renovation',
-    caption: {
-      UA: 'Саме тому наші об\'єкти виглядають так, як на візуалізаціях.',
-      EN: 'That\'s why our projects look exactly like the visualizations.',
-    },
-    image: 'https://res.cloudinary.com/dpcqf9y8l/image/upload/q_auto/f_auto/v1778308479/1b482142b6c947d39ed08334814a00d2_ab116b1052.jpg',
-  },
 ];
 
 const N = projects.length;
