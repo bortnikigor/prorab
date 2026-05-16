@@ -52,7 +52,7 @@ const mod = (i) => ((i % N) + N) % N;
 const CARD_RADIUS = '4px';
 
 export default function PortfolioSlider() {
-  const { language } = useLanguage();
+  const { language, t } = useLanguage();
   const [active, setActive] = useState(0);
   const [busy, setBusy] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
@@ -162,23 +162,42 @@ export default function PortfolioSlider() {
       <div className="ps-wrapper" style={{ position: 'relative', zIndex: 1 }}>
 
         <div className="ps-track">
-          {slides.map(({ idx, project, delta }) => (
-            <div
-              key={idx}
-              style={getSlideStyle(delta)}
-              onClick={() => {
-                if (delta < 0 && !busy) go(-1);
-                if (delta > 0 && !busy) go(1);
-              }}
-            >
-              {/* Project image */}
+          {slides.map(({ idx, project, delta }) => {
+            const isCenter = delta === 0;
+            const slideStyle = getSlideStyle(delta);
+            const inner = (
               <img
                 src={project.image}
                 alt={project.title}
                 style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
               />
-            </div>
-          ))}
+            );
+            if (isCenter) {
+              return (
+                <a
+                  key={idx}
+                  href="https://www.instagram.com/prorabkiev"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ ...slideStyle, display: 'block', cursor: 'pointer' }}
+                >
+                  {inner}
+                </a>
+              );
+            }
+            return (
+              <div
+                key={idx}
+                style={slideStyle}
+                onClick={() => {
+                  if (delta < 0 && !busy) go(-1);
+                  if (delta > 0 && !busy) go(1);
+                }}
+              >
+                {inner}
+              </div>
+            );
+          })}
         </div>
 
         {/* Caption overlay */}
@@ -192,6 +211,25 @@ export default function PortfolioSlider() {
               ? projects[active].caption[language]
               : projects[active].caption}
           </p>
+          <a
+            href="https://www.instagram.com/prorabkiev"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              display: 'inline-block',
+              fontFamily: 'Montserrat',
+              fontSize: '0.75rem',
+              letterSpacing: '0.2em',
+              textTransform: 'uppercase',
+              color: '#CFC7BD',
+              textDecoration: 'none',
+              borderBottom: '1px solid rgba(207,199,189,0.4)',
+              paddingBottom: '2px',
+              marginTop: '1.5rem',
+            }}
+          >
+            {t.viewAllWorks}
+          </a>
         </div>
 
       </div>
