@@ -82,6 +82,33 @@ export function Banner1({ language }) {
     <section style={{ ...sectionBase, background: BG1 }}>
       <Grid bg={BG1}/>
       <Frame/>
+      {/* Background photo layer */}
+      <div style={{
+        position: 'absolute',
+        right: 0,
+        top: 0,
+        width: '55%',
+        height: '100%',
+        zIndex: 0,
+        overflow: 'hidden',
+      }}>
+        <div style={{
+          position: 'absolute',
+          inset: 0,
+          background: 'linear-gradient(to right, rgb(19,18,16) 0%, transparent 40%)',
+          zIndex: 1,
+        }} />
+        <img
+          src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=1200&q=80"
+          alt="Architectural drawings"
+          style={{
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+            opacity: 0.4,
+          }}
+        />
+      </div>
       <div style={{ position:"relative", zIndex:3, width:"100%", maxWidth:"860px", padding:"0 8vw", display:"flex", alignItems:"center", justifyContent:"space-between", gap:"40px" }}>
         <div style={{ flex:1 }}>
           <p style={{ fontFamily:"Montserrat,sans-serif", fontSize:"clamp(18px,2.2vw,28px)", fontWeight:300, color:TEXT,  letterSpacing:"0.02em", margin:"0 0 2px" }}>{c.line1}</p>
