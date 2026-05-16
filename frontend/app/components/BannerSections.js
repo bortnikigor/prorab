@@ -109,6 +109,7 @@ export function Banner1({ language }) {
           }}
         />
       </div>
+      <h2 style={{ position:'absolute', width:'1px', height:'1px', overflow:'hidden', clip:'rect(0,0,0,0)', whiteSpace:'nowrap' }}>Ремонт квартир у Києві — від дизайну до реалізації</h2>
       <div style={{ position:"relative", zIndex:3, width:"100%", maxWidth:"860px", padding:"0 8vw", display:"flex", alignItems:"center", justifyContent:"space-between", gap:"40px" }}>
         <div style={{ flex:1 }}>
           <p style={{ fontFamily:"Montserrat,sans-serif", fontSize:"clamp(18px,2.2vw,28px)", fontWeight:300, color:TEXT,  letterSpacing:"0.02em", margin:"0 0 2px" }}>{c.line1}</p>
@@ -188,6 +189,7 @@ export function Banner2({ language }) {
           }}
         />
       </div>
+      <h2 style={{ position:'absolute', width:'1px', height:'1px', overflow:'hidden', clip:'rect(0,0,0,0)', whiteSpace:'nowrap' }}>Ремонт під ключ без спрощень та компромісів</h2>
       <div style={{ position:"relative", zIndex:3, width:"100%", maxWidth:"860px", padding:"0 8vw", display:"flex", alignItems:"center", justifyContent:"space-between", gap:"40px" }}>
         <div style={{ flex:1 }}>
           <p style={{ fontFamily:"Montserrat,sans-serif", fontSize:"clamp(9px,0.8vw,10px)", fontWeight:400, color:"#8a7a60", letterSpacing:"0.3em", margin:"0 0 14px" }}>{c.overline}</p>
@@ -274,6 +276,7 @@ export function Banner3({ language }) {
           }}
         />
       </div>
+      <h2 style={{ position:'absolute', width:'1px', height:'1px', overflow:'hidden', clip:'rect(0,0,0,0)', whiteSpace:'nowrap' }}>Повний цикл ремонту від кошторису до здачі</h2>
       <div style={{ position:"relative", zIndex:3, width:"100%", maxWidth:"860px", padding:"0 8vw", display:"flex", alignItems:"center", justifyContent:"space-between", gap:"40px" }}>
         <div style={{ flex:1 }}>
           <p style={{ fontFamily:"Montserrat,sans-serif", fontSize:"clamp(16px,2vw,24px)", fontWeight:300, color:"#6a6258", letterSpacing:"0.02em", margin:"0 0 20px" }}>{c.dim}</p>
@@ -349,6 +352,7 @@ export function Banner4({ language }) {
           }}
         />
       </div>
+      <h2 style={{ position:'absolute', width:'1px', height:'1px', overflow:'hidden', clip:'rect(0,0,0,0)', whiteSpace:'nowrap' }}>Умови співпраці — договір, гарантія, поетапна оплата</h2>
       <div style={{ position:"relative", zIndex:3, width:"100%", maxWidth:"860px", padding:"0 8vw" }}>
         <p style={{ fontFamily:"Montserrat,sans-serif", fontSize:"clamp(9px,0.8vw,10px)", fontWeight:400, color:"#8a7a60", letterSpacing:"0.3em", margin:"0 0 14px" }}>{overline}</p>
         <p style={{ fontFamily:"Montserrat,sans-serif", fontSize:"clamp(20px,2.4vw,30px)", fontWeight:700, color:TEXT, letterSpacing:"-0.01em", margin:"0 0 4px" }}>{h1}</p>
@@ -388,6 +392,7 @@ export function Banner5({ language }) {
     <section style={{ ...sectionBase, background: BG2 }}>
       <Grid bg={BG2}/>
       <Frame/>
+      <h2 style={{ position:'absolute', width:'1px', height:'1px', overflow:'hidden', clip:'rect(0,0,0,0)', whiteSpace:'nowrap' }}>Наші проекти — ремонт квартир та офісів у Києві</h2>
       <div style={{ position:"relative", zIndex:3, width:"100%", maxWidth:"900px", padding:"0 8vw" }}>
 
         {/* Heading */}
@@ -454,6 +459,7 @@ export function Banner6({ t, language }) {
     <section style={{ ...sectionBase, background: BG1 }}>
       <Grid bg={BG1}/>
       <Frame/>
+      <h2 style={{ position:'absolute', width:'1px', height:'1px', overflow:'hidden', clip:'rect(0,0,0,0)', whiteSpace:'nowrap' }}>Контакти — замовити ремонт у Києві</h2>
       <div style={{ position:"relative", zIndex:3, width:"100%", maxWidth:"860px", padding:"0 8vw", display:"flex", alignItems:"center", gap:"60px" }}>
 
         {/* LEFT */}
