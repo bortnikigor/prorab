@@ -41,7 +41,7 @@ const jsonLd = {
   name: 'PRORAB',
   description: 'Професійний ремонт під ключ у Києві',
   url: 'https://prorab.ooo',
-  telephone: '+380XXXXXXXXX',
+  telephone: '+380958611898',
   email: 'request@prorab.ooo',
   address: {
     '@type': 'PostalAddress',
@@ -50,6 +50,9 @@ const jsonLd = {
     addressCountry: 'UA',
   },
   openingHours: 'Mo-Fr 09:00-18:00',
+  areaServed: 'Київ та Київська область',
+  serviceType: ['Ремонт квартир', 'Ремонт офісів', 'Дизайн інтер\'єру', 'Ремонт будинків'],
+  image: 'https://res.cloudinary.com/dpcqf9y8l/image/upload/v1778911578/prorab_bg_1920x1080_xhwcpb.png',
   priceRange: '₴₴₴',
 };
 
