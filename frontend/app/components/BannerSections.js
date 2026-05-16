@@ -220,6 +220,33 @@ export function Banner3({ language }) {
     <section style={{ ...sectionBase, background: BG3 }}>
       <Grid bg={BG3}/>
       <Frame/>
+      {/* Background photo layer */}
+      <div style={{
+        position: 'absolute',
+        right: 0,
+        top: 0,
+        width: '55%',
+        height: '100%',
+        zIndex: 0,
+        overflow: 'hidden',
+      }}>
+        <div style={{
+          position: 'absolute',
+          inset: 0,
+          background: 'linear-gradient(to right, rgb(19,18,16) 0%, transparent 40%)',
+          zIndex: 1,
+        }} />
+        <img
+          src="https://res.cloudinary.com/dpcqf9y8l/image/upload/q_auto/f_auto/v1778308479/1b482142b6c947d39ed08334814a00d2_ab116b1052.jpg"
+          alt="Interior renovation result"
+          style={{
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+            opacity: 0.4,
+          }}
+        />
+      </div>
       <div style={{ position:"relative", zIndex:3, width:"100%", maxWidth:"860px", padding:"0 8vw", display:"flex", alignItems:"center", justifyContent:"space-between", gap:"40px" }}>
         <div style={{ flex:1 }}>
           <p style={{ fontFamily:"Montserrat,sans-serif", fontSize:"clamp(16px,2vw,24px)", fontWeight:300, color:"#6a6258", letterSpacing:"0.02em", margin:"0 0 20px" }}>{c.dim}</p>
