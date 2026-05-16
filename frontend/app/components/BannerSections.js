@@ -99,7 +99,7 @@ export function Banner1({ language }) {
           zIndex: 1,
         }} />
         <img
-          src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=1200&q=80"
+          src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=900&q=75"
           alt="Architectural drawings"
           style={{
             width: '100%',
