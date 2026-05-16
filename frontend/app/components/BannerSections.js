@@ -161,6 +161,33 @@ export function Banner2({ language }) {
     <section style={{ ...sectionBase, background: BG2 }}>
       <Grid bg={BG2}/>
       <Frame/>
+      {/* Background photo layer */}
+      <div style={{
+        position: 'absolute',
+        right: 0,
+        top: 0,
+        width: '55%',
+        height: '100%',
+        zIndex: 0,
+        overflow: 'hidden',
+      }}>
+        <div style={{
+          position: 'absolute',
+          inset: 0,
+          background: 'linear-gradient(to right, rgb(19,18,16) 0%, transparent 40%)',
+          zIndex: 1,
+        }} />
+        <img
+          src="https://res.cloudinary.com/dpcqf9y8l/image/upload/q_auto/f_auto/v1778965561/7c3d0ba37a4d3ac08163adf0d0671911_sg0jzg.jpg"
+          alt="Interior detail materials"
+          style={{
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+            opacity: 0.4,
+          }}
+        />
+      </div>
       <div style={{ position:"relative", zIndex:3, width:"100%", maxWidth:"860px", padding:"0 8vw", display:"flex", alignItems:"center", justifyContent:"space-between", gap:"40px" }}>
         <div style={{ flex:1 }}>
           <p style={{ fontFamily:"Montserrat,sans-serif", fontSize:"clamp(9px,0.8vw,10px)", fontWeight:400, color:"#8a7a60", letterSpacing:"0.3em", margin:"0 0 14px" }}>{c.overline}</p>
