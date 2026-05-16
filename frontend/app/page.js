@@ -40,19 +40,6 @@ export default function Home() {
   const [isAnimating, setIsAnimating] = useState(false);
   const [videoEnded, setVideoEnded] = useState(false);
 
-  const banner1Ref = useRef(null);
-  const banner1ImgRef = useRef(null);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (!banner1Ref.current || !banner1ImgRef.current) return;
-      const rect = banner1Ref.current.getBoundingClientRect();
-      const scrolled = -rect.top * 0.3;
-      banner1ImgRef.current.style.transform = `translateY(${scrolled}px)`;
-    };
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
   const portfolioRef = useRef(null);
   const lastScrollTime = useRef(0);
 
@@ -209,7 +196,7 @@ export default function Home() {
         {/* <PortfolioSlider /> */}
 
         {/* ── BANNER 1 — Дизайн — це лише намір ── */}
-        <Banner1 language={language} containerRef={banner1Ref} imgRef={banner1ImgRef} />
+        <Banner1 language={language} />
 
         {/* ── BANNER 2 — Там, де більшість спрощує ── */}
         <Banner2 language={language} />

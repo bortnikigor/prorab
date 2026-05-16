@@ -1,5 +1,6 @@
 "use client";
 
+import { useRef, useEffect } from "react";
 import ContactForm from "./ContactForm";
 
 // ─────────────────────────────────────────────
@@ -65,7 +66,20 @@ const Divider = ({ mb = "24px" }) => (
 // ═════════════════════════════════════════════
 //  BANNER 1 — "Дизайн — це лише намір"
 // ═════════════════════════════════════════════
-export function Banner1({ language, containerRef, imgRef }) {
+export function Banner1({ language }) {
+  const banner1Ref = useRef(null);
+  const banner1ImgRef = useRef(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!banner1Ref.current || !banner1ImgRef.current) return;
+      const rect = banner1Ref.current.getBoundingClientRect();
+      const scrolled = -rect.top * 0.25;
+      banner1ImgRef.current.style.transform = `translateY(${scrolled}px)`;
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
   const c = language === "EN" ? {
     line1: "Design is just intention.",
     line2: "Reality is built",
@@ -79,7 +93,7 @@ export function Banner1({ language, containerRef, imgRef }) {
   };
 
   return (
-    <section ref={containerRef} style={{ ...sectionBase, background: BG1, overflow: "hidden" }}>
+    <section ref={banner1Ref} style={{ ...sectionBase, background: BG1, overflow: "hidden" }}>
       <Grid bg={BG1}/>
       <Frame/>
       <div style={{ position:"relative", zIndex:3, width:"100%", maxWidth:"860px", padding:"0 8vw", display:"flex", alignItems:"center", justifyContent:"space-between", gap:"40px" }}>
@@ -91,11 +105,12 @@ export function Banner1({ language, containerRef, imgRef }) {
           <p style={{ fontFamily:"Montserrat,sans-serif", fontSize:"clamp(11px,1vw,13px)", fontWeight:300, color:MUTED, letterSpacing:"0.03em", lineHeight:1.85, margin:0, whiteSpace:"pre-line" }}>{c.sub}</p>
         </div>
         {/* Photo */}
-        <div ref={imgRef} style={{ flexShrink:0, width:"130px", height:"130px", position:"relative", overflow:"hidden", willChange:"transform", transition:"transform 0.1s linear" }}>
+        <div style={{ flexShrink:0, width:"420px", minHeight:"400px", height:"100%", position:"relative", overflow:"hidden" }}>
           <img
+            ref={banner1ImgRef}
             src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=800&q=80"
             alt="Architectural drawings"
-            style={{ width:"100%", height:"130%", objectFit:"cover", display:"block" }}
+            style={{ width:"100%", height:"130%", objectFit:"cover", display:"block", willChange:"transform" }}
           />
         </div>
       </div>
