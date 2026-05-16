@@ -161,7 +161,7 @@ export default function Home() {
           >
             <source src="https://res.cloudinary.com/dpcqf9y8l/video/upload/q_auto/f_auto/v1778910820/hero-video_wodonh.mp4" type="video/mp4" />
           </video>
-          <div style={{ position: "absolute", inset: 0, background: "rgba(0,0,0,0.55)" }} />
+          <div style={{ position: "absolute", inset: 0, background: "rgba(19,18,16,0.45)" }} />
           <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, #0F1113 0%, transparent 50%)" }} />
 
           {/* CENTER — Slogan */}
