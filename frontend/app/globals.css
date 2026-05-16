@@ -84,6 +84,12 @@ body {
   100% { transform: translateX(0); }
 }
 
+/* Banner 1 photo float */
+@keyframes parallaxFloat {
+  from { transform: translateY(0px); }
+  to   { transform: translateY(-30px); }
+}
+
 /* Chat typing-dot bounce */
 @keyframes typing-bounce {
   0%, 60%, 100% { transform: translateY(0);    opacity: 0.3; }
