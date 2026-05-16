@@ -161,7 +161,7 @@ export default function Home() {
             style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", opacity: videoEnded ? 0 : 1, transition: "opacity 1.2s ease" }}
             onEnded={() => setVideoEnded(true)}
           >
-            <source src="https://res.cloudinary.com/dpcqf9y8l/video/upload/q_auto/f_auto/v1778910820/hero-video_wodonh.mp4" type="video/mp4" />
+            <source src="https://res.cloudinary.com/dpcqf9y8l/video/upload/q_auto/f_auto/v1778911844/start-video_kcrubf.mp4" type="video/mp4" />
           </video>
           <div style={{
             position: 'absolute',
