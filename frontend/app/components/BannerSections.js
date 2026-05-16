@@ -8,7 +8,7 @@ import ContactForm from "./ContactForm";
 const GOLD  = "#c9a96e";
 const BG1   = "#131210";
 const BG2   = "#161410";
-const BG3   = "#141618";
+const BG3   = "#151210";
 const TEXT  = "#f0ece4";
 const MUTED = "#9a9080";
 

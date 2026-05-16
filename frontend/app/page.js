@@ -159,7 +159,7 @@ export default function Home() {
             poster={`https://res.cloudinary.com/${CLOUD_NAME}/video/upload/so_0/${HERO_VIDEO_ID}.jpg`}
             style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }}
           >
-            <source src={`https://res.cloudinary.com/${CLOUD_NAME}/video/upload/${HERO_VIDEO_ID}.mp4`} type="video/mp4" />
+            <source src="https://res.cloudinary.com/dpcqf9y8l/video/upload/q_auto/f_auto/v1778910820/hero-video_wodonh.mp4" type="video/mp4" />
           </video>
           <div style={{ position: "absolute", inset: 0, background: "rgba(0,0,0,0.55)" }} />
           <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, #0F1113 0%, transparent 50%)" }} />
