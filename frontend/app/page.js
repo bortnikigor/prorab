@@ -38,6 +38,7 @@ export default function Home() {
   const { t, language } = useLanguage();
   const [currentSection, setCurrentSection] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
+  const [videoEnded, setVideoEnded] = useState(false);
   const portfolioRef = useRef(null);
   const lastScrollTime = useRef(0);
 
@@ -157,10 +158,21 @@ export default function Home() {
         <section style={{ position: "relative", width: "100%", height: "100vh", overflow: "hidden", backgroundColor: 'rgb(19, 18, 16)' }}>
           <video autoPlay muted playsInline
             poster={`https://res.cloudinary.com/${CLOUD_NAME}/video/upload/so_0/${HERO_VIDEO_ID}.jpg`}
-            style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }}
+            style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", opacity: videoEnded ? 0 : 1, transition: "opacity 1.2s ease" }}
+            onEnded={() => setVideoEnded(true)}
           >
             <source src="https://res.cloudinary.com/dpcqf9y8l/video/upload/q_auto/f_auto/v1778910820/hero-video_wodonh.mp4" type="video/mp4" />
           </video>
+          <div style={{
+            position: 'absolute',
+            inset: 0,
+            backgroundImage: 'url(https://res.cloudinary.com/dpcqf9y8l/image/upload/v1778911578/prorab_bg_1920x1080_xhwcpb.png)',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            opacity: videoEnded ? 1 : 0,
+            transition: 'opacity 1.2s ease',
+            zIndex: 0,
+          }} />
           <div style={{ position: "absolute", inset: 0, background: "rgba(19,18,16,0.45)" }} />
           <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, #0F1113 0%, transparent 50%)" }} />
 
