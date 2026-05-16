@@ -65,7 +65,7 @@ const Divider = ({ mb = "24px" }) => (
 // ═════════════════════════════════════════════
 //  BANNER 1 — "Дизайн — це лише намір"
 // ═════════════════════════════════════════════
-export function Banner1({ language }) {
+export function Banner1({ language, containerRef, imgRef }) {
   const c = language === "EN" ? {
     line1: "Design is just intention.",
     line2: "Reality is built",
@@ -79,7 +79,7 @@ export function Banner1({ language }) {
   };
 
   return (
-    <section style={{ ...sectionBase, background: BG1 }}>
+    <section ref={containerRef} style={{ ...sectionBase, background: BG1, overflow: "hidden" }}>
       <Grid bg={BG1}/>
       <Frame/>
       <div style={{ position:"relative", zIndex:3, width:"100%", maxWidth:"860px", padding:"0 8vw", display:"flex", alignItems:"center", justifyContent:"space-between", gap:"40px" }}>
@@ -91,7 +91,7 @@ export function Banner1({ language }) {
           <p style={{ fontFamily:"Montserrat,sans-serif", fontSize:"clamp(11px,1vw,13px)", fontWeight:300, color:MUTED, letterSpacing:"0.03em", lineHeight:1.85, margin:0, whiteSpace:"pre-line" }}>{c.sub}</p>
         </div>
         {/* Deco */}
-        <div style={{ flexShrink:0, width:"130px", height:"130px", position:"relative", opacity:0.28 }}>
+        <div ref={imgRef} style={{ flexShrink:0, width:"130px", height:"130px", position:"relative", opacity:0.28, willChange:"transform", transition:"transform 0.1s linear" }}>
           <div style={{ position:"absolute", inset:0, border:`0.5px solid ${GOLD}` }}/>
           <div style={{ position:"absolute", inset:"14px", border:`0.5px solid ${GOLD}` }}/>
           <div style={{ position:"absolute", inset:"28px", border:`0.5px solid ${GOLD}`, background:`${GOLD}12` }}/>
