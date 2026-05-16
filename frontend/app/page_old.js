@@ -9,32 +9,11 @@ import TelegramBotSection from "./components/TelegramBotSection";
 import MobileContactSwipe from "./components/MobileContactSwipe";
 import ContactForm from "./components/ContactForm";
 import Script from "next/script";
-import {
-  Banner1,
-  Banner2,
-  Banner3,
-  Banner4,
-  Banner5,
-  Banner6,
-} from "./components/BannerSections";
 
 const SERVICE_ICONS = ["◻", "◼", "▣"];
 const CLOUD_NAME = "dpcqf9y8l";
 const HERO_VIDEO_ID = "video2_utuupz";
-
-// ── Додали 6 нових секцій між "about" і "instagram" ──
-const SECTIONS = [
-  "hero",
-  "about",
-  "banner1",
-  "banner2",
-  "banner3",
-  "banner4",
-  "banner5",
-  "banner6",
-  "instagram",
-  // секцію contact прибрали — вона тепер вбудована в banner6
-];
+const SECTIONS = ["hero", "about", "instagram", "contact"];
 
 export default function Home() {
   const { t, language } = useLanguage();
@@ -59,6 +38,7 @@ export default function Home() {
       const now = Date.now();
       if (now - lastScrollTime.current < 800) return;
       lastScrollTime.current = now;
+
       if (e.deltaY > 0) goTo(currentSection + 1);
       else goTo(currentSection - 1);
     }
@@ -72,11 +52,17 @@ export default function Home() {
       const deltaY = touchStartY - e.changedTouches[0].clientY;
       const deltaTime = Date.now() - touchStartTime;
       const velocity = Math.abs(deltaY) / deltaTime;
+
+      // мінімум 50px свайп або швидкий флік
       if (Math.abs(deltaY) < 50 && velocity < 0.3) return;
+
       const now = Date.now();
       if (now - lastScrollTime.current < 800) return;
       lastScrollTime.current = now;
-      if (deltaY > 0) goTo(currentSection + 1);
+
+      const dir = deltaY > 0 ? 1 : -1;
+
+      if (dir > 0) goTo(currentSection + 1);
       else goTo(currentSection - 1);
     }
 
@@ -107,7 +93,29 @@ export default function Home() {
         </div>
       </nav>
 
-      {/* ── FIXED SOCIAL ICONS ── */}
+      {/* ── DOT NAVIGATION ── */}
+      {false && (
+      <div style={{ position: "fixed", right: "24px", top: "50%", transform: "translateY(-50%)", zIndex: 50, display: "flex", flexDirection: "column", gap: "12px" }}>
+        {SECTIONS.map((_, i) => (
+          <button
+            key={i}
+            onClick={() => goTo(i)}
+            style={{
+              width: i === currentSection ? 8 : 6,
+              height: i === currentSection ? 8 : 6,
+              borderRadius: "50%",
+              border: "none",
+              padding: 0,
+              cursor: "pointer",
+              background: i === currentSection ? "#CFC7BD" : "rgba(207,199,189,0.3)",
+              transition: "all 0.3s ease",
+            }}
+          />
+        ))}
+      </div>
+      )}
+
+      {/* FIXED SOCIAL ICONS */}
       <div style={{ position: "fixed", bottom: "32px", left: "36px", zIndex: 50, display: "flex", flexDirection: "column", alignItems: "center", gap: "16px" }}>
         <div style={{ display: "flex", flexDirection: "column", gap: "16px", alignItems: "center" }}>
           <a href="https://www.instagram.com/prorabkiev" target="_blank" rel="noopener noreferrer" style={{ color: "#CFC7BD", opacity: 0.7, transition: "opacity 0.3s" }}
@@ -134,7 +142,7 @@ export default function Home() {
         </div>
       </div>
 
-      {/* ── FIXED SCROLL ── */}
+      {/* FIXED SCROLL */}
       <div style={{ position: "fixed", bottom: "32px", right: "36px", zIndex: 50, display: "flex", flexDirection: "column", alignItems: "center", gap: "12px" }}>
         <span style={{ fontFamily: "Montserrat, sans-serif", fontSize: "9px", letterSpacing: "0.3em", color: "#CFC7BD", textTransform: "uppercase", writingMode: "vertical-rl", textOrientation: "mixed", opacity: 0.7 }}>
           SCROLL
@@ -157,6 +165,7 @@ export default function Home() {
 
         {/* ── HERO ── */}
         <section style={{ position: "relative", width: "100%", height: "100vh", overflow: "hidden" }}>
+          {/* Background video */}
           <video autoPlay muted playsInline
             poster={`https://res.cloudinary.com/${CLOUD_NAME}/video/upload/so_0/${HERO_VIDEO_ID}.jpg`}
             style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }}
@@ -165,6 +174,30 @@ export default function Home() {
           </video>
           <div style={{ position: "absolute", inset: 0, background: "rgba(0,0,0,0.55)" }} />
           <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, #0F1113 0%, transparent 50%)" }} />
+
+{/* TOP RIGHT — Nav buttons */}
+          {false && (
+          <div style={{ position: "absolute", top: "28px", right: "32px", zIndex: 20 }}>
+            <div style={{ display: "flex" }}>
+              <button
+                onClick={() => goTo(1)}
+                style={{ background: "none", border: "none", borderRight: "1px solid rgba(207,199,189,0.5)", padding: "10px 24px", fontFamily: "Montserrat, sans-serif", fontSize: "11px", letterSpacing: "0.25em", color: "#CFC7BD", cursor: "pointer", textTransform: "uppercase", transition: "all 0.3s" }}
+                onMouseEnter={(e) => { e.currentTarget.style.background = "rgba(207,199,189,0.1)"; }}
+                onMouseLeave={(e) => { e.currentTarget.style.background = "none"; }}
+              >
+                {t.services.label}
+              </button>
+              <button
+                onClick={() => goTo(2)}
+                style={{ background: "none", border: "none", padding: "10px 24px", fontFamily: "Montserrat, sans-serif", fontSize: "11px", letterSpacing: "0.25em", color: "#CFC7BD", cursor: "pointer", textTransform: "uppercase", transition: "all 0.3s" }}
+                onMouseEnter={(e) => { e.currentTarget.style.background = "rgba(207,199,189,0.1)"; }}
+                onMouseLeave={(e) => { e.currentTarget.style.background = "none"; }}
+              >
+                {t.contacts.label}
+              </button>
+            </div>
+          </div>
+          )}
 
           {/* CENTER — Slogan */}
           <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", zIndex: 10 }}>
@@ -179,28 +212,19 @@ export default function Home() {
               {t.hero.slogan.split(" ").slice(Math.ceil(t.hero.slogan.split(" ").length / 2)).join(" ")}
             </p>
           </div>
+
+
         </section>
 
-        {/* ── ABOUT + PORTFOLIO SLIDER ── */}
+        {/* ── ABOUT + SERVICES ── */}
         <PortfolioSlider />
 
-        {/* ── BANNER 1 — Дизайн — це лише намір ── */}
-        <Banner1 language={language} />
-
-        {/* ── BANNER 2 — Там, де більшість спрощує ── */}
-        <Banner2 language={language} />
-
-        {/* ── BANNER 3 — Ви не керуєте ремонтом ── */}
-        <Banner3 language={language} />
-
-        {/* ── BANNER 4 — Результат передбачуваний ── */}
-        <Banner4 language={language} />
-
-        {/* ── BANNER 5 — Галерея ── */}
-        <Banner5 language={language} />
-
-        {/* ── BANNER 6 — Контакти ── */}
-        <Banner6 t={t} language={language} />
+        {/* ── PORTFOLIO ── */}
+        {false && (
+        <section style={{ width: "100%", height: "100vh", position: "relative" }}>
+          <PortfolioSlider ref={portfolioRef} onExitBottom={() => goTo(3)} onExitTop={() => goTo(1)} />
+        </section>
+        )}
 
         {/* ── INSTAGRAM ── */}
         <section style={{
@@ -214,17 +238,81 @@ export default function Home() {
           justifyContent: 'center',
           padding: '0 5vw',
         }}>
-          <div style={{ position: 'absolute', inset: 0, background: 'rgba(0, 0, 0, 0.55)', zIndex: 0, pointerEvents: 'none' }} />
+          {/* Dark overlay як в інших секціях */}
+          <div style={{
+            position: 'absolute',
+            inset: 0,
+            background: 'rgba(0, 0, 0, 0.55)',
+            zIndex: 0,
+            pointerEvents: 'none',
+          }} />
+
           <div style={{ position: 'relative', zIndex: 1, width: 'clamp(300px, 467px, 100%)', margin: '0 auto' }}>
-            <p style={{ fontFamily: 'Montserrat', fontSize: '0.75rem', letterSpacing: '0.2em', color: '#CFC7BD', textTransform: 'uppercase', marginBottom: '2rem', textAlign: 'center' }}>
+            <p style={{
+              fontFamily: 'Montserrat',
+              fontSize: '0.75rem',
+              letterSpacing: '0.2em',
+              color: '#CFC7BD',
+              textTransform: 'uppercase',
+              marginBottom: '2rem',
+              textAlign: 'center',
+            }}>
               INSTAGRAM
             </p>
             <behold-widget feed-id="6RPZtwM6pWTxeB1L3WjP"></behold-widget>
-            <p style={{ fontFamily: 'Montserrat', fontSize: '0.85rem', fontWeight: 300, letterSpacing: '0.06em', color: '#CFC7BD', textAlign: 'center', lineHeight: '1.7', marginTop: '1.5rem', whiteSpace: 'pre-line' }}>
+            <p style={{
+              fontFamily: 'Montserrat',
+              fontSize: '0.85rem',
+              fontWeight: 300,
+              letterSpacing: '0.06em',
+              color: '#CFC7BD',
+              textAlign: 'center',
+              lineHeight: '1.7',
+              marginTop: '1.5rem',
+              whiteSpace: 'pre-line',
+            }}>
               {t.instagramCaption}
             </p>
           </div>
           <Script src="https://w.behold.so/widget.js" type="module" strategy="lazyOnload" />
+        </section>
+
+        {/* ── CONTACT ── */}
+        <section className="contact-section" style={{ position: "relative", width: "100%", height: "100vh", display: "flex", flexDirection: "column", backgroundImage: "url('/bg.png')", backgroundSize: "cover", backgroundPosition: "center", backgroundRepeat: "no-repeat" }}>
+
+          <div style={{ position: 'absolute', inset: 0, background: 'rgba(0, 0, 0, 0.55)', zIndex: 0, pointerEvents: 'none' }} />
+
+          <div style={{ position: 'relative', zIndex: 1, flex: 1, display: 'flex', flexDirection: 'column' }}>
+
+          {/* DESKTOP layout */}
+          <div className="contact-desktop" style={{ flex: 1, display: "grid", gridTemplateColumns: "1fr 1fr", maxWidth: "1280px", margin: "0 auto", width: "100%", padding: "0 60px", alignItems: "center", gap: "80px" }}>
+
+            {/* LEFT */}
+            <div style={{ display: "flex", flexDirection: "column", gap: "32px", textAlign: "center", justifyContent: "center", alignItems: "center" }}>
+              <div>
+                <h2 style={{ fontFamily: "Montserrat, sans-serif", fontSize: "clamp(24px, 3vw, 36px)", fontWeight: 600, color: "#CFC7BD", letterSpacing: "0.05em", textTransform: "uppercase", margin: "0 0 20px" }}>{t.contacts.title}</h2>
+                <p style={{ fontFamily: "Montserrat, sans-serif", fontSize: "13px", color: "rgba(207,199,189,0.6)", lineHeight: 1.7, maxWidth: "380px", margin: "0 auto" }}>{t.contacts.description}</p>
+              </div>
+              <div>
+                <h3 style={{ fontFamily: "Montserrat, sans-serif", fontSize: "18px", fontWeight: 500, color: "#CFC7BD", margin: "0 0 12px" }}>{t.contacts.address}</h3>
+                <a href="https://maps.app.goo.gl/t5QG4VNNnVzZu7J88" target="_blank" rel="noopener noreferrer" style={{ fontFamily: "Montserrat, sans-serif", fontSize: "13px", color: "rgba(207,199,189,0.6)", textDecoration: "none" }}>{t.contacts.city}</a>
+              </div>
+              <div>
+                <h3 style={{ fontFamily: "Montserrat, sans-serif", fontSize: "18px", fontWeight: 500, color: "#CFC7BD", margin: "0 0 12px" }}>E-MAIL</h3>
+                <a href="mailto:request@prorab.ooo" style={{ fontFamily: "Montserrat, sans-serif", fontSize: "13px", color: "rgba(207,199,189,0.6)", textDecoration: "none" }}>request@prorab.ooo</a>
+              </div>
+            </div>
+
+            {/* RIGHT — form */}
+            <div style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(207,199,189,0.12)", padding: "44px", borderRadius: "2px", display: "flex", flexDirection: "column", maxHeight: "55vh", alignSelf: "center" }}>
+              <ContactForm t={t} />
+            </div>
+          </div>
+
+          {/* MOBILE layout — horizontal swipe */}
+          <MobileContactSwipe t={t} language={language} />
+
+          </div>
         </section>
 
       </div>
