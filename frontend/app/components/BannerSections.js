@@ -302,29 +302,29 @@ export function Banner5({ language }) {
         {/* Grid */}
         <div style={{ display:"grid", gridTemplateColumns:"2fr 1fr 1fr", gridTemplateRows:"160px 130px", gap:"6px" }}>
           {/* Big photo — spans both rows */}
-          <div style={{ gridRow:"1/3", borderRadius:"2px", overflow:"hidden", background:"#2a2520" }}>
+          <a href="https://www.instagram.com/prorabkiev" target="_blank" rel="noopener noreferrer" style={{ display:"block", gridRow:"1/3", borderRadius:"2px", overflow:"hidden", background:"#2a2520", cursor:"pointer" }}>
             <img src={photos[0]} alt="project 1" style={{ width:"100%", height:"100%", objectFit:"cover", display:"block" }}/>
-          </div>
+          </a>
           {/* 3 small photos */}
           {photos.slice(1, 4).map((src, i) => (
-            <div key={i} style={{ borderRadius:"2px", overflow:"hidden", background:"#2a2520" }}>
+            <a key={i} href="https://www.instagram.com/prorabkiev" target="_blank" rel="noopener noreferrer" style={{ display:"block", borderRadius:"2px", overflow:"hidden", background:"#2a2520", cursor:"pointer" }}>
               <img src={src} alt={`project ${i+2}`} style={{ width:"100%", height:"100%", objectFit:"cover", display:"block" }}/>
-            </div>
+            </a>
           ))}
           {/* Overlay card "+more" */}
-          <div style={{ borderRadius:"2px", background:"#1e1c18", border:`0.5px solid rgba(201,169,110,0.2)`, display:"flex", alignItems:"center", justifyContent:"center" }}>
+          <a href="https://www.instagram.com/prorabkiev" target="_blank" rel="noopener noreferrer" style={{ display:"flex", borderRadius:"2px", background:"#1e1c18", border:`0.5px solid rgba(201,169,110,0.2)`, alignItems:"center", justifyContent:"center", cursor:"pointer", textDecoration:"none" }}>
             <span style={{ fontFamily:"Montserrat,sans-serif", fontSize:"12px", fontWeight:600, color:GOLD, letterSpacing:"0.15em" }}>
               {isEN ? "+ MORE" : "+ ЩЕ ФОТО"}
             </span>
-          </div>
+          </a>
         </div>
 
         {/* Caption */}
         <div style={{ display:"flex", alignItems:"center", gap:"16px", marginTop:"16px" }}>
           <div style={{ flex:1, height:"0.5px", background:GOLD, opacity:0.22 }}/>
-          <p style={{ fontFamily:"Montserrat,sans-serif", fontSize:"clamp(9px,0.75vw,10px)", color:"#6a6258", letterSpacing:"0.15em", margin:0, whiteSpace:"nowrap" }}>
+          <a href="https://www.instagram.com/prorabkiev" target="_blank" rel="noopener noreferrer" style={{ fontFamily:"Montserrat,sans-serif", fontSize:"clamp(9px,0.75vw,10px)", color:"#6a6258", letterSpacing:"0.15em", margin:0, whiteSpace:"nowrap", textDecoration:"none" }}>
             {isEN ? "VIEW ALL PROJECTS" : "ДИВИТИСЬ УСІ РОБОТИ"}
-          </p>
+          </a>
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={GOLD} strokeWidth="1.5" strokeOpacity="0.5">
             <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
           </svg>
