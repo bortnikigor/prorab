@@ -25,14 +25,12 @@ const HERO_VIDEO_ID = "video2_utuupz";
 // ── Додали 6 нових секцій між "about" і "instagram" ──
 const SECTIONS = [
   "hero",
-  "about",
   "banner1",
   "banner2",
   "banner3",
   "banner4",
   "banner5",
   "banner6",
-  "instagram",
   // секцію contact прибрали — вона тепер вбудована в banner6
 ];
 
@@ -182,7 +180,7 @@ export default function Home() {
         </section>
 
         {/* ── ABOUT + PORTFOLIO SLIDER ── */}
-        <PortfolioSlider />
+        {/* <PortfolioSlider /> */}
 
         {/* ── BANNER 1 — Дизайн — це лише намір ── */}
         <Banner1 language={language} />
@@ -203,7 +201,7 @@ export default function Home() {
         <Banner6 t={t} language={language} />
 
         {/* ── INSTAGRAM ── */}
-        <section style={{
+        {/* <section style={{
           position: 'relative',
           width: '100%',
           minHeight: '100vh',
@@ -225,7 +223,7 @@ export default function Home() {
             </p>
           </div>
           <Script src="https://w.behold.so/widget.js" type="module" strategy="lazyOnload" />
-        </section>
+        </section> */}
 
       </div>
 
