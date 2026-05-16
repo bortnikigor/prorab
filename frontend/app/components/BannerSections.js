@@ -79,7 +79,7 @@ export function Banner1({ language }) {
   };
 
   return (
-    <section style={{ ...sectionBase, background: BG1, overflow: "hidden" }}>
+    <section style={{ ...sectionBase, background: BG1 }}>
       <Grid bg={BG1}/>
       <Frame/>
       <div style={{ position:"relative", zIndex:3, width:"100%", maxWidth:"860px", padding:"0 8vw", display:"flex", alignItems:"center", justifyContent:"space-between", gap:"40px" }}>
@@ -90,13 +90,16 @@ export function Banner1({ language }) {
           <Divider/>
           <p style={{ fontFamily:"Montserrat,sans-serif", fontSize:"clamp(11px,1vw,13px)", fontWeight:300, color:MUTED, letterSpacing:"0.03em", lineHeight:1.85, margin:0, whiteSpace:"pre-line" }}>{c.sub}</p>
         </div>
-        {/* Photo */}
-        <div style={{ flexShrink:0, width:"420px", minHeight:"400px", height:"100%", position:"relative", overflow:"hidden", alignSelf:"center" }}>
-          <img
-            src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=800&q=80"
-            alt="Architectural drawings"
-            style={{ width:"100%", height:"130%", objectFit:"cover", display:"block", marginTop:"-15%", animation:"parallaxFloat 8s ease-in-out infinite alternate" }}
-          />
+        {/* Deco */}
+        <div style={{ flexShrink:0, width:"130px", height:"130px", position:"relative", opacity:0.28 }}>
+          <div style={{ position:"absolute", inset:0, border:`0.5px solid ${GOLD}` }}/>
+          <div style={{ position:"absolute", inset:"14px", border:`0.5px solid ${GOLD}` }}/>
+          <div style={{ position:"absolute", inset:"28px", border:`0.5px solid ${GOLD}`, background:`${GOLD}12` }}/>
+          <svg style={{ position:"absolute", inset:0, width:"100%", height:"100%" }} viewBox="0 0 130 130">
+            <line x1="0" y1="0" x2="130" y2="130" stroke={GOLD} strokeWidth="0.5" opacity="0.45"/>
+            <line x1="130" y1="0" x2="0" y2="130" stroke={GOLD} strokeWidth="0.5" opacity="0.45"/>
+            <circle cx="65" cy="65" r="4" fill={GOLD} opacity="0.7"/>
+          </svg>
         </div>
       </div>
     </section>
