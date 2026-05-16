@@ -165,26 +165,6 @@ export default function PortfolioSlider() {
           {slides.map(({ idx, project, delta }) => {
             const isCenter = delta === 0;
             const slideStyle = getSlideStyle(delta);
-            const inner = (
-              <img
-                src={project.image}
-                alt={project.title}
-                style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
-              />
-            );
-            if (isCenter) {
-              return (
-                <a
-                  key={idx}
-                  href="https://www.instagram.com/prorabkiev"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{ ...slideStyle, display: 'block', cursor: 'pointer' }}
-                >
-                  {inner}
-                </a>
-              );
-            }
             return (
               <div
                 key={idx}
@@ -194,7 +174,19 @@ export default function PortfolioSlider() {
                   if (delta > 0 && !busy) go(1);
                 }}
               >
-                {inner}
+                <a
+                  href="https://www.instagram.com/prorabkiev"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ display: 'block', width: '100%', height: '100%', cursor: isCenter ? 'pointer' : 'default' }}
+                  onClick={!isCenter ? (e) => e.preventDefault() : undefined}
+                >
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+                  />
+                </a>
               </div>
             );
           })}
