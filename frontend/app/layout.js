@@ -61,6 +61,12 @@ export default function RootLayout({ children }) {
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
+        <link rel="apple-touch-icon" sizes="180x180" href="/logo.png" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <meta name="theme-color" content="#0F1113" />
+        <link rel="alternate" hrefLang="uk" href="https://prorab.ooo/" />
+        <link rel="alternate" hrefLang="en" href="https://prorab.ooo/" />
       </head>
       <body className="min-h-screen antialiased">
         <CustomCursor />
