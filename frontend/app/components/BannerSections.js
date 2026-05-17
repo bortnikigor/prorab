@@ -383,9 +383,9 @@ export function Banner5({ language }) {
   // Замініть на ваші реальні фото з Cloudinary
   const photos = [
     "https://res.cloudinary.com/dpcqf9y8l/image/upload/q_auto/f_auto/v1779002956/25-02-28_317_yymrik.heic",
-    "https://res.cloudinary.com/dpcqf9y8l/image/upload/q_auto/f_auto/v1778573852/46e5399f07fd25edfa3012c6f05c9e83_toleet.jpg",
-    "https://res.cloudinary.com/dpcqf9y8l/image/upload/q_auto/f_auto/v1778573851/11_h0lurf.jpg",
-    "https://res.cloudinary.com/dpcqf9y8l/image/upload/q_auto/f_auto/v1778573851/81def5fd18191e45bdde3f824c831611_dyzptr.jpg",
+    "https://res.cloudinary.com/dpcqf9y8l/image/upload/q_auto/f_auto/v1779003358/25-02-28_289_tag1ix.heic",
+    "https://res.cloudinary.com/dpcqf9y8l/image/upload/q_auto/f_auto/v1779003360/25-02-28_214_otnm2t.heic",
+    "https://res.cloudinary.com/dpcqf9y8l/image/upload/q_auto/f_auto/v1779003358/25-02-28_311_sbjkhu.heic",
   ];
 
   return (
