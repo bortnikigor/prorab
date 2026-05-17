@@ -1,11 +1,13 @@
-import { Geist } from "next/font/google";
+import { Montserrat } from "next/font/google";
 import { LanguageProvider } from "./context/LanguageContext";
 import CustomCursor from "./components/CustomCursor";
 import "./globals.css";
 
-const geist = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
+const montserrat = Montserrat({
+  subsets: ["latin", "cyrillic"],
+  weight: ["400", "500", "600", "700"],
+  display: "swap",
+  variable: "--font-montserrat",
 });
 
 export const metadata = {
@@ -58,7 +60,7 @@ const jsonLd = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="uk" className={`${geist.variable}`}>
+    <html lang="uk" className={montserrat.variable}>
       <head>
         <script
           type="application/ld+json"
@@ -67,8 +69,6 @@ export default function RootLayout({ children }) {
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="apple-touch-icon" sizes="180x180" href="/logo.png" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <meta name="theme-color" content="#0F1113" />
         <link rel="alternate" hrefLang="uk" href="https://prorab.ooo/" />
         <link rel="alternate" hrefLang="en" href="https://prorab.ooo/" />

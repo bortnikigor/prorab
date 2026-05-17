@@ -360,7 +360,7 @@ export function Banner4({ language }) {
         <div style={{ height:"0.5px", background:GOLD, opacity:0.2, marginBottom:"24px" }}/>
         <div style={{ display:"grid", gridTemplateColumns:"repeat(4,1fr)", gap:"10px" }}>
           {cards.map(({ num, label, note }, i) => (
-            <div key={i} style={{ background:"#1e1c18", border:`0.5px solid rgba(201,169,110,0.25)`, borderRadius:"2px", padding:"20px 16px 16px", position:"relative", overflow:"hidden" }}>
+            <div key={i} style={{ background:"#1e1c18", border:`0.5px solid rgba(201,169,110,0.25)`, borderRadius:"2px", padding:"20px 16px 16px", position:"relative", overflow:"hidden", display:"flex", flexDirection:"column", alignItems:"center", textAlign:"center" }}>
               <div style={{ position:"absolute", top:0, left:0, right:0, height:"2px", background:GOLD, opacity:[0.9,0.7,0.5,0.35][i] }}/>
               <p style={{ fontFamily:"Montserrat,sans-serif", fontSize:"clamp(14px,1.5vw,20px)", fontWeight:700, color:GOLD, margin:"0 0 8px", whiteSpace:"pre-line", lineHeight:1.2 }}>{num}</p>
               <p style={{ fontFamily:"Montserrat,sans-serif", fontSize:"clamp(9px,0.75vw,11px)", fontWeight:400, color:MUTED, letterSpacing:"0.04em", margin:0, lineHeight:1.6, whiteSpace:"pre-line" }}>{label}</p>
