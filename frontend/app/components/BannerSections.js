@@ -342,7 +342,7 @@ export function Banner4({ language }) {
           zIndex: 1,
         }} />
         <img
-          src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=900&q=75"
+          src="https://res.cloudinary.com/dpcqf9y8l/image/upload/q_auto/f_auto/v1779006338/ChatGPT_Image_17_%D1%82%D1%80%D0%B0%D0%B2._2026_%D1%80._11_24_08_jemrms.png"
           alt="Contract signing"
           style={{
             width: '100%',
