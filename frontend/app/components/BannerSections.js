@@ -385,7 +385,7 @@ export function Banner5({ language }) {
     "https://res.cloudinary.com/dpcqf9y8l/image/upload/q_auto/f_auto/v1779002956/25-02-28_317_yymrik.heic",
     "https://res.cloudinary.com/dpcqf9y8l/image/upload/q_auto/f_auto/v1779003358/25-02-28_289_tag1ix.heic",
     "https://res.cloudinary.com/dpcqf9y8l/image/upload/q_auto/f_auto/v1779003360/25-02-28_214_otnm2t.heic",
-    "https://res.cloudinary.com/dpcqf9y8l/image/upload/q_auto/f_auto/v1779003357/25-02-28_211_pmdynj.heic",
+    "https://res.cloudinary.com/dpcqf9y8l/image/upload/q_auto/f_auto/v1779002408/cls002cho_living_1-15_ihx8u7.jpg",
   ];
 
   return (
