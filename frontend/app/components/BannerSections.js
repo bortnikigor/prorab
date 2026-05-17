@@ -476,8 +476,8 @@ export function Banner6({ t, language }) {
           </p>
           <p style={{ fontFamily:"Montserrat,sans-serif", fontSize:"clamp(11px,1vw,13px)", fontWeight:300, color:MUTED, lineHeight:1.85, margin:0, whiteSpace:"pre-line" }}>
             {isEN
-              ? "If our approach resonates with you —\nfill out the form and we'll get\nback to you within 2 hours."
-              : "Якщо наш підхід вам близький —\nзаповніть форму і ми зв'яжемося\nз вами протягом 2 годин."}
+              ? "If our approach resonates with you —\nfill out the form and we'll get\nback to you."
+              : "Якщо наш підхід вам близький —\nзаповніть форму і ми зв'яжемося\nз вами."}
           </p>
           <div style={{ height:"0.5px", background:GOLD, opacity:0.25, marginTop:"28px" }}/>
         </div>
