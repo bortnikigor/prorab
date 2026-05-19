@@ -427,7 +427,7 @@ export function Banner5({ language }) {
           {/* Overlay card "+more" */}
           <a href="https://www.instagram.com/prorabkiev" target="_blank" rel="noopener noreferrer" style={{ display:"flex", borderRadius:"2px", background:"#1e1c18", border:`0.5px solid rgba(201,169,110,0.2)`, alignItems:"center", justifyContent:"center", cursor:"pointer", textDecoration:"none" }}>
             <span style={{ fontFamily:"Montserrat,sans-serif", fontSize:"12px", fontWeight:600, color:GOLD, letterSpacing:"0.15em" }}>
-              {isEN ? "+ MORE" : "+ ЩЕ ФОТО"}
+              {isEN ? "+ MORE" : "+ ЩЕ\nФОТО"}
             </span>
           </a>
         </div>
