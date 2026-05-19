@@ -460,10 +460,46 @@ export function Banner6({ t, language }) {
       <Grid bg={BG1}/>
       <Frame/>
       <h2 style={{ position:'absolute', width:'1px', height:'1px', overflow:'hidden', clip:'rect(0,0,0,0)', whiteSpace:'nowrap' }}>Контакти — замовити ремонт у Києві</h2>
-      <div style={{ position:"relative", zIndex:3, width:"100%", maxWidth:"860px", padding:"0 8vw", display:"flex", alignItems:"center", gap:"60px" }}>
+
+      <style>{`
+        .banner6-inner {
+          position: relative;
+          z-index: 3;
+          width: 100%;
+          max-width: 860px;
+          padding: 0 8vw;
+          display: flex;
+          align-items: center;
+          gap: 60px;
+        }
+        .banner6-left { flex: 1; }
+        .banner6-right { width: 320px; flex-shrink: 0; }
+
+        @media (max-width: 768px) {
+          .banner6-inner {
+            flex-direction: column;
+            gap: 0;
+            padding: 80px 28px 40px;
+            justify-content: flex-start;
+            align-items: stretch;
+            overflow-y: auto;
+            max-height: 100vh;
+          }
+          .banner6-left {
+            flex: none;
+            padding-bottom: 24px;
+          }
+          .banner6-right {
+            width: 100%;
+            flex-shrink: 1;
+          }
+        }
+      `}</style>
+
+      <div className="banner6-inner">
 
         {/* LEFT */}
-        <div style={{ flex:1 }}>
+        <div className="banner6-left">
           <div style={{ height:"0.5px", background:GOLD, opacity:0.25, marginBottom:"28px" }}/>
           <p style={{ fontFamily:"Montserrat,sans-serif", fontSize:"clamp(9px,0.8vw,10px)", color:"#8a7a60", letterSpacing:"0.3em", margin:"0 0 16px" }}>
             {isEN ? "CONTACT" : "ЗВ'ЯЗОК"}
@@ -483,7 +519,7 @@ export function Banner6({ t, language }) {
         </div>
 
         {/* RIGHT — ContactForm */}
-        <div style={{ width:"320px", flexShrink:0 }}>
+        <div className="banner6-right">
           <div style={{ height:"0.5px", background:GOLD, opacity:0.25, marginBottom:"28px" }}/>
           <p style={{ fontFamily:"Montserrat,sans-serif", fontSize:"clamp(9px,0.8vw,10px)", color:"#8a7a60", letterSpacing:"0.3em", margin:"0 0 24px" }}>
             {isEN ? "CONTACT FORM" : "ФОРМА ЗВ'ЯЗКУ"}
